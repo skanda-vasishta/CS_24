@@ -1,5 +1,6 @@
 #include <iostream>
-#include<cctype>
+#include <cctype>
+
 using namespace std;
 
 int main (int argc, char*argv[]) {
@@ -29,7 +30,7 @@ int main (int argc, char*argv[]) {
         }
     }
 
-
+    cout << newStr<< endl;
 
 
 
