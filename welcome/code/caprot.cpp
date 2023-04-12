@@ -17,15 +17,23 @@ int main (int argc, char*argv[]) {
     string newStr = userStr;
 
 
-    for (int i = 0; i < len; i++) {
+  for (int i = 0; i < len; i++) {
         if (isalpha(userStr[i])) {
             if (isupper(userStr[i])) {
                newStr[i] = tolower(userStr[i]);
-                if ((i+num)<len) {
+                if ((i+num)<=len && (i+num)>=0) {
                     newStr[i+num] = toupper(userStr[i+num]);
-                } else {
-                    newStr[(i+num)%len] = toupper(userStr[(i+num)%len]);
+                } 
+                else if ((i+num)>=len)  {
+                    newStr[(i+num%len)%len] = toupper(userStr[(i+num%len)%len]);
                 }
+               else if ((i+num)<=0) {
+                   if (i>num%len){
+                       newStr[(i+num)%len + len] = toupper(userStr[(i+num)%len + len]);
+                   } else if (i<num%len) {
+                       newStr[(i+num)%len] = toupper(userStr[(i+num)%len]);
+                   }
+              }
             } 
         }
     }
