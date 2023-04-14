@@ -29,11 +29,11 @@ size_t FibVec::capacity() const{
   return cnt;
  }
 
- void FibVec::insert(int value, int index){
+ void FibVec::insert(int value, size_t index){
   
  }
 
- int FibVec::lookup(int index) const {
+ int FibVec::lookup(size_t index) const {
   return 1;
  }
 
@@ -45,6 +45,6 @@ void FibVec::push(int value) {
 
 }
 
-int FibVec::remove(int index){
+int FibVec::remove(size_t index){
   return 1;
 }

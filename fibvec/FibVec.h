@@ -17,11 +17,11 @@ public:
   // Member Functions
   size_t capacity() const;
   size_t count() const;
-  void insert(int value, int index);
-  int lookup(int index) const;
+  void insert(int value, size_t index);
+  int lookup(size_t index) const;
   int pop();
   void push(int value);
-  int remove(int index);
+  int remove(size_t index);
 
 private:
   int *vec;
