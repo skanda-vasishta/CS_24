@@ -20,23 +20,23 @@ FibVec::~FibVec(){
 
 // FibVec Function Implementations
 size_t FibVec::capacity() const{
-
+  return 1;
 }
 
  size_t FibVec::count() const {
-
+  return 1;
  }
 
  void FibVec::insert(int value, int index){
-
+  
  }
 
  int FibVec::lookup(int index) const {
-
+  return 1;
  }
 
  int FibVec::pop(){
-
+  return 1;
  }
 
 void FibVec::push(int value) {
@@ -44,5 +44,5 @@ void FibVec::push(int value) {
 }
 
 int FibVec::remove(int index){
-
+  return 1;
 }
