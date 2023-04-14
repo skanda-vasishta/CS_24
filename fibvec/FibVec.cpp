@@ -11,20 +11,22 @@ FibVec* create_fibvec() {
 }
 
 FibVec::FibVec(){
-  //default constructor 
+  vec = new int[1];
+  cap = 1;
+  cnt = 0; 
 }
 
 FibVec::~FibVec(){
-  //destructor
+  delete [] vec;
 }
 
 // FibVec Function Implementations
 size_t FibVec::capacity() const{
-  return 1;
+  return cap;
 }
 
  size_t FibVec::count() const {
-  return 1;
+  return cnt;
  }
 
  void FibVec::insert(int value, int index){
