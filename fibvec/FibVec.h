@@ -27,7 +27,8 @@ private:
   int *vec;
   size_t cap;
   size_t cnt;
-  
+  //size_t n;
+
 };
 
 // Used by the autograder:
