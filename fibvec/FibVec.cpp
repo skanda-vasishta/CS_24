@@ -20,11 +20,11 @@ FibVec::~FibVec(){
   delete [] vec;
 }
 
-void FibVec resize(){
+void FibVec::resize(){
   size_t new_cap;
   int *new_vec;
 
-  
+
 }
 // FibVec Function Implementations
 size_t FibVec::capacity() const{
