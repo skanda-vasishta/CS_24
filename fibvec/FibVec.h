@@ -27,8 +27,8 @@ private:
   int *vec;
   size_t cap;
   size_t cnt;
-  //size_t n;
-  //void resize();
+  void resize();
+  size_t fib(size_t num);
 
 };
 
