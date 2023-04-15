@@ -20,12 +20,28 @@ FibVec::~FibVec(){
   delete [] vec;
 }
 
-//void FibVec::resize(){
-  //size_t new_cap;
-  //int *new_vec;
+size_t FibVec::fib(size_t num) {
+  if (num<=1){
+    return num;
+  }
+  return fib(num-1) + fib(num-2);
+}
 
+void FibVec::resize(){
+  size_t new_cap;
+  int *new_vec;
+  new_cap = fib(cap+1);
+  new_vec = new int[new_cap];
 
-//}
+  for (size_t i = 0; i<count; i++){
+    new_vec[i] = vec[i];
+  }
+  delete[] vec;
+  vec = new_vec;
+  cap = new_cap;
+
+}
+
 // FibVec Function Implementations
 size_t FibVec::capacity() const{
   return cap;
@@ -39,11 +55,9 @@ size_t FibVec::capacity() const{
   if (index>cap){
     throw std::out_of_range("index is out of range");
   }
-  if (cnt>cap){
+  if (cnt==cap){
     //resize vector since no room
-  } else {
-    vec[index] = value;
-  }
+  } 
  }
 
  int FibVec::lookup(size_t index) const {
