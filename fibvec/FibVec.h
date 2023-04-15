@@ -28,7 +28,7 @@ private:
   size_t cap;
   size_t cnt;
   //size_t n;
-  void resize();
+  //void resize();
 
 };
 
