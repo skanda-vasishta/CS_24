@@ -36,10 +36,10 @@ size_t FibVec::capacity() const{
  }
 
  void FibVec::insert(int value, size_t index){
-  if ((index <0)||(index>count)){
+  if ((index <0)||(index>cnt)){
     throw std::out_of_range("index is out of range");
   }
-  if (count>cap){
+  if (cnt>cap){
     //resize vector since no room
   } else {
     vec[index] = value;
