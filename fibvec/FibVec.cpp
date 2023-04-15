@@ -52,13 +52,17 @@ size_t FibVec::capacity() const{
  }
 
  void FibVec::insert(int value, size_t index){
-  if (index>=cnt){
+  if (index>cnt){
     throw std::out_of_range("index is out of range");
   }
   if (cnt==cap){
     resize();
   } 
+  for (size_t i = cnt; i > index; --i){
+    vec[i] = vec[i-1];
+  }
   vec[index] = value;
+  cnt++;
  }
 
  int FibVec::lookup(size_t index) const {
