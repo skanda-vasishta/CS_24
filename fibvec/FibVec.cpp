@@ -33,7 +33,7 @@ void FibVec::resize(){
   new_cap = fib(cap+1);
   new_vec = new int[new_cap];
 
-  for (size_t i = 0; i<count; i++){
+  for (size_t i = 0; i<cnt; i++){
     new_vec[i] = vec[i];
   }
   delete[] vec;
