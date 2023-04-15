@@ -20,6 +20,12 @@ FibVec::~FibVec(){
   delete [] vec;
 }
 
+void FibVec resize(){
+  size_t new_cap;
+  int *new_vec;
+
+  
+}
 // FibVec Function Implementations
 size_t FibVec::capacity() const{
   return cap;
@@ -30,7 +36,14 @@ size_t FibVec::capacity() const{
  }
 
  void FibVec::insert(int value, size_t index){
-  
+  if ((index <0)||(index>count)){
+    throw std::out_of_range;
+  }
+  if (count>cap){
+    //resize vector since no room
+  } else {
+    vec[index] = value;
+  }
  }
 
  int FibVec::lookup(size_t index) const {
