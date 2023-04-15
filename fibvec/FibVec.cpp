@@ -56,8 +56,9 @@ size_t FibVec::capacity() const{
     throw std::out_of_range("index is out of range");
   }
   if (cnt==cap){
-    //resize vector since no room
+    resize();
   } 
+  vec[index] = value;
  }
 
  int FibVec::lookup(size_t index) const {
