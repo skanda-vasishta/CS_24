@@ -75,6 +75,9 @@ size_t FibVec::capacity() const{
  }
 
  int FibVec::pop(){
+  if (cnt == 0) {
+    throw std::underflow("vector is empty");
+  }
   int pop_val = vec[cnt];
   cnt--;
   if (cnt < fib(cap-2)){
@@ -92,5 +95,18 @@ void FibVec::push(int value) {
 }
 
 int FibVec::remove(size_t index){
-  return 1;
+  if (index>cnt){
+    throw std::out_of_range("index is out of range");
+  }
+  int remove_val = vec[index];
+  cnt--;
+  for (size_t i = cnt; i > index; i--){
+      vec[i] = vec[i+1];
+  }
+   if (cnt < fib(cap-2)){
+    resize(cap-1);
+  }
+  return remove_val;
+
+
 }
