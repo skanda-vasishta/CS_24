@@ -79,7 +79,11 @@ size_t FibVec::capacity() const{
  }
 
 void FibVec::push(int value) {
-  //vec[cap] = value;
+  if (cnt == cap){
+    resize();
+  }
+  cnt++;
+  vec[cnt] = value;
 }
 
 int FibVec::remove(size_t index){
