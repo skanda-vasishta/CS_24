@@ -28,6 +28,7 @@ size_t FibVec::fib(size_t num) {
         a = b;
         b = c;
     }
+    return b;
 }
 
 
