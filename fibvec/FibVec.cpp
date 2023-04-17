@@ -23,7 +23,7 @@ FibVec::~FibVec(){
 size_t FibVec::fib(size_t num) {
     size_t a = 1;
     size_t b = 1;
-    for (size_t i = 0; i <= num; i++) {
+    for (size_t i = 0; i < num; i++) {
         size_t c = a + b;
         a = b;
         b = c;
