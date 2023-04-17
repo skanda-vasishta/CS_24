@@ -21,19 +21,10 @@ FibVec::~FibVec(){
 }
 
 size_t FibVec::fib(size_t num) {
-    if (num == 0) {
-        return 0;
-    }
-    size_t a = 1;
-    size_t b = 1;
-    size_t i = 3;
-    while (i <= num) {
-        size_t c = a + b;
-        a = b;
-        b = c;
-        i++;
-    }
-    return b;
+  if (num<=1){
+    return num;
+  }
+  return fib(num-1) + fib(num-2);
 }
 
 
@@ -89,7 +80,7 @@ size_t FibVec::capacity() const{
  }
 
 void FibVec::push(int value) {
-  if (cnt >= cap){
+  if (cnt == cap){
     resize(fib(cap+1));
   }
   vec[cnt] = value;
