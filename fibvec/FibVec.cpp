@@ -82,8 +82,8 @@ void FibVec::push(int value) {
   if (cnt == cap){
     resize();
   }
-  cnt++;
   vec[cnt] = value;
+  cnt++;
 }
 
 int FibVec::remove(size_t index){
