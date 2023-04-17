@@ -68,7 +68,10 @@ size_t FibVec::capacity() const{
  }
 
  int FibVec::lookup(size_t index) const {
-  return 1;
+  if (index>cnt){
+    throw std::out_of_range("index is out of range");
+  }
+  return vec[index];
  }
 
  int FibVec::pop(){
