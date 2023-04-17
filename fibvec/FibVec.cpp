@@ -82,7 +82,7 @@ size_t FibVec::capacity() const{
   vec[cnt-1] = 0;
   cnt--;
   if (cnt < fib(cap-2)){
-    resize(cap-1);
+    resize(fib(cap-1));
   }
   return pop_val ;
  }
@@ -106,7 +106,7 @@ int FibVec::remove(size_t index){
   vec[cnt-1] = 0;
   cnt--;
   if (cnt < fib(cap-2)){
-    resize(cap-1);
+    resize(fib(cap-1));
   }
 
   return remove_val;
