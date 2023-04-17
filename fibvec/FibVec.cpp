@@ -76,7 +76,7 @@ size_t FibVec::capacity() const{
 
  int FibVec::pop(){
   if (cnt == 0) {
-    throw std::underflow("vector is empty");
+    throw std::underflow_error("vector is empty");
   }
   int pop_val = vec[cnt];
   cnt--;
