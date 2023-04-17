@@ -12,7 +12,7 @@ FibVec* create_fibvec() {
 
 FibVec::FibVec(){
   vec = new int[1];
-  cap = 2;
+  cap = 1;
   cnt = 0; 
 }
 
@@ -57,7 +57,7 @@ size_t FibVec::capacity() const{
     throw std::out_of_range("index is out of range");
   }
   if (cnt==cap){
-    resize(fib(cap+1));
+    resize(fib(cap+2));
   } 
   for (size_t i = cnt; i > index; i--){
       vec[i] = vec[i-1];
