@@ -61,7 +61,7 @@ size_t FibVec::capacity() const{
     resize(fib(cap+1));
   } 
   for (size_t i = cnt-1; i > index; i--){
-      vec[i+1] = vec[i];
+      vec[i] = vec[i-1];
   }
   vec[index] = value;
   cnt++;
