@@ -20,15 +20,19 @@ FibVec::~FibVec(){
   delete [] vec;
 }
 
-size_t FibVec::fib(size_t num) {
-  if (num<=1){
-    return num;
-  }
-  return fib(num-1) + fib(num-2);
+int fibonacci(size_t n) {
+    int a = 1;
+    int b = 1;
+    for (int i = 3; i <= n; i++) {
+        int c = a + b;
+        a = b;
+        b = c;
+    }
+    return b;
 }
 
 void FibVec::resize(size_t new_cap){
-  int *new_vec = new int[fib(new_cap)];
+  int *new_vec = new int[new_cap];
   for (size_t i = 0; i<cnt; i++){
     new_vec[i] = vec[i];
   }
@@ -53,7 +57,7 @@ size_t FibVec::capacity() const{
     throw std::out_of_range("index is out of range");
   }
   if (cnt>=cap){
-    resize(cap+1);
+    resize(fib(cap+1));
   } 
   for (size_t i = cnt; i > index; i--){
       vec[i] = vec[i-1];
@@ -80,7 +84,7 @@ size_t FibVec::capacity() const{
 
 void FibVec::push(int value) {
   if (cnt == cap){
-    resize(cap+1);
+    resize(fib(cap+1));
   }
   vec[cnt] = value;
   cnt++;
