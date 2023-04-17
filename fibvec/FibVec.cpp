@@ -30,7 +30,11 @@ size_t FibVec::fib(size_t num) {
 void FibVec::resize(){
   size_t new_cap;
   int *new_vec;
-  new_cap = fib(cap+1);
+  if (cnt < fib(cap-2)){
+    new_cap = fib(cap-1);
+  } else {
+    new_cap = fib(cap+1);
+  }
   new_vec = new int[new_cap];
 
   for (size_t i = 0; i<cnt; i++){
@@ -61,7 +65,7 @@ size_t FibVec::capacity() const{
   } 
   if (index<cnt){
     for (size_t i = cnt; i > index; i--){
-      vec[i] = vec[i-1];
+      vec[i] = vec[i+1];
   }
   }
   vec[index] = value;
@@ -76,6 +80,7 @@ size_t FibVec::capacity() const{
  }
 
  int FibVec::pop(){
+  cnt--;
   return 1;
  }
 
