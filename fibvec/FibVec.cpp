@@ -28,13 +28,14 @@ size_t FibVec::fib(size_t num) {
 }
 
 void FibVec::resize(size_t new_cap){
-  int *new_vec = new int[new_cap];
+  size_t cap1 = fib(new_cap);
+  int *new_vec = new int[cap1];
   for (size_t i = 0; i<cnt; i++){
     new_vec[i] = vec[i];
   }
   delete[] vec;
   vec = new_vec;
-  cap = new_cap;
+  cap = cap1;
 
 
 }
@@ -52,7 +53,7 @@ size_t FibVec::capacity() const{
   if (index>cnt){
     throw std::out_of_range("index is out of range");
   }
-  if (cnt==cap){
+  if (cnt>=cap){
     resize(cap+1);
   } 
   for (size_t i = cnt; i > index; i--){
