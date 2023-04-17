@@ -60,7 +60,7 @@ size_t FibVec::capacity() const{
   if (cnt==cap){
     resize(fib(cap+1));
   } 
-  for (size_t i = cnt-1; i > index; i--){
+  for (size_t i = cnt; i > index; i--){
       vec[i] = vec[i-1];
   }
   vec[index] = value;
@@ -78,7 +78,7 @@ size_t FibVec::capacity() const{
   if (cnt == 0) {
     throw std::underflow_error("vector is empty");
   }
-  int pop_val = vec[cnt];
+  int pop_val = vec[cnt-1];
   vec[cnt-1] = 0;
   cnt--;
   if (cnt < fib(cap-2)){
@@ -104,7 +104,7 @@ int FibVec::remove(size_t index){
       vec[i] = vec[i+1];
   }
   vec[cnt-1] = 0;
-  cnt --;
+  cnt--;
   if (cnt < fib(cap-2)){
     resize(cap-1);
   }
