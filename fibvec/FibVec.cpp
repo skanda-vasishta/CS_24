@@ -12,7 +12,7 @@ FibVec* create_fibvec() {
 
 FibVec::FibVec(){
   vec = new int[1];
-  cap = 2;
+  cap = 1;
   cnt = 0; 
 }
 
