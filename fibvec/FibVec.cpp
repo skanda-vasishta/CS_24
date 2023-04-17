@@ -21,6 +21,9 @@ FibVec::~FibVec(){
 }
 
 size_t FibVec::fib(size_t num) {
+  if (num == 0){
+    return 0;
+  }
     if (num<=2){
     return 1;
   }
