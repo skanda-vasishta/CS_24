@@ -28,7 +28,7 @@ size_t FibVec::fib(size_t num) {
 }
 
 void FibVec::resize(size_t new_cap){
-  size_t cap1 = fib(new_cap);
+  size_t cap1 = new_cap;
   int *new_vec = new int[cap1];
   for (size_t i = 0; i<cnt; i++){
     new_vec[i] = vec[i];
