@@ -39,14 +39,14 @@ void FibVec::resize(size_t new_cap){
   }
   delete[] vec;
   vec = new_vec;
-  cap = idx;
+  cap = new_cap+1;
 
 
 }
 
 // FibVec Function Implementations
 size_t FibVec::capacity() const{
-  return fib(cap);
+  return cap;
 }
 
  size_t FibVec::count() const {
