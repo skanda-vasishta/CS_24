@@ -29,6 +29,7 @@ private:
   size_t cnt;
   void resize(size_t new_cap);
   size_t fib(size_t num);
+  size_t actual_size;
 
 };
 

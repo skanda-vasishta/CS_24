@@ -14,6 +14,7 @@ FibVec::FibVec(){
   vec = new int[1];
   cap = 2;
   cnt = 0; 
+  actual_size = fib(cap);
 }
 
 FibVec::~FibVec(){
@@ -46,8 +47,7 @@ void FibVec::resize(size_t new_cap){
 
 // FibVec Function Implementations
 size_t FibVec::capacity() const{
-  size_t fib_cap = fib(cap);
-  return fib_cap;
+  return actual_size;
 }
 
  size_t FibVec::count() const {
