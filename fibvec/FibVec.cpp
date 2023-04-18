@@ -46,7 +46,8 @@ void FibVec::resize(size_t new_cap){
 
 // FibVec Function Implementations
 size_t FibVec::capacity() const{
-  return cap;
+  size_t fib_cap = fib(cap);
+  return fib_cap;
 }
 
  size_t FibVec::count() const {
