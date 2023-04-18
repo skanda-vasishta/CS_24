@@ -98,14 +98,14 @@ void FibVec::push(int value) {
 }
 
 int FibVec::remove(size_t index){
-  if (index>=cnt){
+  if (index>cnt){
     throw std::out_of_range("index is out of range");
   }
   int remove_val = vec[index];
-  for (size_t i = cnt; i >= index+1; i--){
-      vec[i-1] = vec[i];
+  for (size_t i = cnt; i > index; i--){
+      vec[i] = vec[i+1];
   }
-  vec[cnt-1] = 0;
+  //vec[cnt-1] = 0;
   cnt--;
   if (cnt < fib(cap-2)){
     resize(cap-1);
