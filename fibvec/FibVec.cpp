@@ -32,14 +32,14 @@ size_t FibVec::fib(size_t num) {
 
 
 void FibVec::resize(size_t new_cap){
-  size_t idx = fib(new_cap);
-  int *new_vec = new int[idx];
+  size_t new_size = fib(new_cap);
+  int *new_vec = new int[new_size];
   for (size_t i = 0; i<cnt; i++){
     new_vec[i] = vec[i];
   }
   delete[] vec;
   vec = new_vec;
-  cap = new_cap+1;
+  cap = new_cap;
 
 
 }
