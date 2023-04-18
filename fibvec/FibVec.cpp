@@ -98,7 +98,7 @@ void FibVec::push(int value) {
 }
 
 int FibVec::remove(size_t index){
-  if (index>cnt){
+  if (index>cnt-1){
     throw std::out_of_range("index is out of range");
   }
   int remove_val = vec[index];
