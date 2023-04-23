@@ -48,6 +48,10 @@ bool Move::hashtag_checker(char hashtag) {
 }
 
 
-std::ostream& operator << (std::ostream& stream, const Move& move) {
-
+std::ostream& operator<<(std::ostream& stream, const Move& move) {
+    stream << move.number << " " << move.player << " " << move.row << " " << move.column;
+    if (move.hashtag != '\0') {
+        stream << " # " << move.comment;
+    }
+    return stream;
 }
