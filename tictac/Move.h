@@ -8,16 +8,28 @@
 
 #include <ostream>
 #include <string>
+#include <sstream>
+#include <stdio.h>
+
+
 
 struct Move {
   // Member Variables
   int  number;
   char player;
-  int  row;
+  char  row;
   int  column;
+  char hashtag;
+  string comment;
 
   // The constructor parses a string.
   Move(const std::string& input);
+
+  bool num_checker(int num);
+  bool player_checker(char player);
+  bool row_checker(char row);
+  bool column_checker(int column);
+  bool hashtag_checker(char hashtag)
 };
 
 // Adding a << operator allows easy printing to std::cout.
