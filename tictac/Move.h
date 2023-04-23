@@ -20,7 +20,7 @@ struct Move {
   char  row;
   int  column;
   char hashtag;
-  string comment;
+  std::string comment;
 
   // The constructor parses a string.
   Move(const std::string& input);
