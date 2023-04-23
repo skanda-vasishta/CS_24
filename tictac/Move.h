@@ -29,7 +29,7 @@ struct Move {
   bool player_checker(char player);
   bool row_checker(char row);
   bool column_checker(int column);
-  bool hashtag_checker(char hashtag)
+  bool hashtag_checker(char hashtag);
 };
 
 // Adding a << operator allows easy printing to std::cout.
