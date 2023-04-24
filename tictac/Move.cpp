@@ -8,7 +8,7 @@ Move::Move(const std::string& input) {
     tic_stream >> number >> player >> row >> column;
 
     if (tic_stream.fail()) {
-        throw ParseError("Invalid input");
+        throw ParseError("Parse error");
     }
 
     if (!tic_stream) {
@@ -16,7 +16,7 @@ Move::Move(const std::string& input) {
     }
 
     if (tic_stream.fail()) {
-        throw ParseError("Invalid input");
+        throw ParseError("Parse error");
     }
 
     if (!(num_checker(number) && player_checker(player) && row_checker(row) 
