@@ -5,9 +5,44 @@
 
 Move::Move(const std::string& input) {
     std::istringstream tic_stream(input);
-    tic_stream >> number >> player >> row >> column;
+    tic_stream >> number;
+    if (tic_stream.fail() || !num_checker(number)){
+        throw ParseError("Incorrect number format");
+    }
 
-    if (tic_stream.fail()) {
+    tic_stream >> player;
+    player = toupper(player);
+    if (tic_stream.fail() || !player_checker(player)){
+        throw ParseError("incorrect player format");
+    }
+
+    tic_stream >> row;
+    row = toupper(row);
+    if (tic_stream.fail() || !row_checker(row)){
+        throw ParseError("incorrect row format");
+    }
+
+    tic_stream >> column;
+    if (tic_stream.fail() || !column_checker(column)){
+        throw ParseError("incorrect column format");
+    }
+
+     if (!tic_stream) {
+        tic_stream >> hashtag;
+        if (tic_stream.fail() || !hashtag_checker(hashtag)) {
+            throw ParseError("incorrect hashtag format");
+        } else {
+            tic_stream >> comment;
+            if (tic_stream.fail()) {
+            throw ParseError("incorrect comment format");
+        } 
+        }
+    } else {
+        hashtag = 0;
+    }
+
+
+ /*   if (tic_stream.fail()) {
         throw ParseError("Parse error");
     }
 
@@ -20,14 +55,14 @@ Move::Move(const std::string& input) {
     }
 
     player = toupper(player);
-    row = toupper(row);
-    
+    row = toupper(row); */
 
-    if (!(num_checker(number) && player_checker(player) && row_checker(row) 
+
+   /* if (!(num_checker(number) && player_checker(player) && row_checker(row) 
     && column_checker(column) && hashtag_checker(hashtag))){
         throw ParseError("Parse error");
-    }
-}
+    } */
+} 
 
 bool Move::num_checker(int num) {
     return num > 0;
@@ -52,7 +87,7 @@ bool Move::hashtag_checker(char hashtag) {
 
 std::ostream& operator<<(std::ostream& stream, const Move& move) {
     stream << move.number << " " << move.player << " " << move.row << " " << move.column;
-    if (move.hashtag != '\0') {
+    if (move.hashtag != 0) {
         stream << " # " << move.comment;
     }
     return stream;
