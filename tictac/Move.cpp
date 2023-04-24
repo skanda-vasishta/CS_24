@@ -35,6 +35,22 @@ Move::Move(const std::string& input) {
         throw ParseError("incorrect column format");
     }
 
+    if (!(tic_stream.get(whitespace))|| !(std::isspace(whitespace))) {
+        throw ParseError("Missing whitespace");
+    }
+
+    if (!tic_stream) {
+        tic_stream >> hashtag;
+        if (tic_stream.fail() || !hashtag_checker(hashtag)) {
+            throw ParseError("incorrect hashtag format");
+        } else {
+            std::getline(tic_stream >> std::ws, comment);
+            if (tic_stream.fail()) {
+                throw ParseError("incorrect comment format");
+            } 
+        }
+    } 
+
     /*tic_stream >> hashtag; 
     if (tic_stream.fail() || !hashtag_checker(column)){
         throw ParseError("incorrect column format");
@@ -53,7 +69,7 @@ Move::Move(const std::string& input) {
         } else {
             throw ParseError("Incorrect comment format");
         }
-    } */
+    } 
     std::string hashtag_and_comment;
     std::getline(tic_stream >> std::ws, hashtag_and_comment);
     if (!hashtag_and_comment.empty() && hashtag_and_comment[0] == '#' && !tic_stream.fail()) {
@@ -64,7 +80,7 @@ Move::Move(const std::string& input) {
         } else {
             throw ParseError("Incorrect comment format");
         }
-    }
+    }*/
 
     
 
