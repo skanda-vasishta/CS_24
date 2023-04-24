@@ -21,7 +21,7 @@ struct Move {
   int  column;
   char hashtag;
   std::string comment;
-  //char whitespace;
+  char whitespace;
 
   // The constructor parses a string.
   Move(const std::string& input);
@@ -30,8 +30,8 @@ struct Move {
   bool player_checker(char player);
   bool row_checker(char row);
   bool column_checker(int column);
-  //bool hashtag_checker(char hashtag);
-  //bool whitespace_checker(char whitespace);
+  bool hashtag_checker(char hashtag);
+  bool whitespace_checker(char whitespace);
 
 };
 
