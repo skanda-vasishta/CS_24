@@ -88,8 +88,8 @@ bool Move::whitespace_checker(char whitespace){
 
 std::ostream& operator<<(std::ostream& stream, const Move& move) {
     stream << move.number << " " << move.player << " " << move.row << move.column;
-   if (move.hashtag == '#') {
-        stream << " # " << move.comment;
-    }
+   //if (move.hashtag == '#') {
+    //    stream << " # " << move.comment;
+   // }
     return stream;
 }
