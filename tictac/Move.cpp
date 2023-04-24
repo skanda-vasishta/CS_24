@@ -37,9 +37,7 @@ Move::Move(const std::string& input) {
             throw ParseError("incorrect comment format");
         } 
         }
-    } else {
-        hashtag = 0;
-    }
+    } 
 
 
  /*   if (tic_stream.fail()) {
@@ -86,9 +84,9 @@ bool Move::hashtag_checker(char hashtag) {
 
 
 std::ostream& operator<<(std::ostream& stream, const Move& move) {
-    stream << move.number << " " << move.player << " " << move.row << " " << move.column;
-    if (move.hashtag != 0) {
-        stream << " # " << move.comment;
-    }
+    stream << move.number << " " << move.player << " " << move.row << move.column;
+   // if (move.hashtag == "#") {
+        //stream << " # " << move.comment;
+    //}
     return stream;
 }
