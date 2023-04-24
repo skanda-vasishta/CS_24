@@ -49,15 +49,14 @@ Move::Move(const std::string& input) {
     } */
     std::string hashtag_and_comment;
     std::getline(tic_stream >> std::ws, hashtag_and_comment);
-    if (!hashtag_and_comment.empty() && hashtag_and_comment[0] == '#') {
+    if (!hashtag_and_comment.empty() && hashtag_and_comment[0] == '#' && !tic_stream.fail()) {
         if (hashtag_and_comment.size() > 1 && hashtag_and_comment[1] == ' ') {
             hashtag = '#';
             comment = hashtag_and_comment.substr(2);
         } else {
             throw ParseError("Incorrect comment format");
         }
-    }
-  
+    } 
 
 } 
 
