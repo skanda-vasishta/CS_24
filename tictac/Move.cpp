@@ -19,6 +19,10 @@ Move::Move(const std::string& input) {
         throw ParseError("Parse error");
     }
 
+    player = toupper(player);
+    row = toupper(row);
+    
+
     if (!(num_checker(number) && player_checker(player) && row_checker(row) 
     && column_checker(column) && hashtag_checker(hashtag))){
         throw ParseError("Parse error");
@@ -30,12 +34,10 @@ bool Move::num_checker(int num) {
 }
 
 bool Move::player_checker(char player) {
-    player = toupper(player);
     return player == 'X' || player == 'O';
 }
 
-bool Move::row_checker(char row) {
-    row = toupper(row); 
+bool Move::row_checker(char row) { 
     return row >= 'A' && row <= 'C';
 }
 
