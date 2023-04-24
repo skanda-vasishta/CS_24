@@ -50,41 +50,6 @@ Move::Move(const std::string& input) {
             } 
         }
     } 
-
-    /*tic_stream >> hashtag; 
-    if (tic_stream.fail() || !hashtag_checker(column)){
-        throw ParseError("incorrect column format");
-    } 
-
-    if (!(tic_stream.get(whitespace))|| !(std::isspace(whitespace))) {
-        throw ParseError("Missing whitespace");
-    }
-
-    std::string hashtag_and_comment;
-    std::getline(tic_stream >> std::ws, hashtag_and_comment);
-    if (!hashtag_and_comment.empty() && hashtag_and_comment[0] == '#' && !tic_stream.fail()) {
-        if (hashtag_and_comment.size() > 1) {
-            hashtag = '#';
-            comment = hashtag_and_comment.substr(1);
-        } else {
-            throw ParseError("Incorrect comment format");
-        }
-    } 
-    std::string hashtag_and_comment;
-    std::getline(tic_stream >> std::ws, hashtag_and_comment);
-    if (!hashtag_and_comment.empty() && hashtag_and_comment[0] == '#' && !tic_stream.fail()) {
-        std::size_t whitespace_pos = hashtag_and_comment.find(' ');
-        if (whitespace_pos != std::string::npos && whitespace_pos < hashtag_and_comment.size() - 1) {
-            hashtag = '#';
-            comment = hashtag_and_comment.substr(whitespace_pos + 1);
-        } else {
-            throw ParseError("Incorrect comment format");
-        }
-    }*/
-
-    
-
-
 } 
 
 bool Move::num_checker(int num) {
