@@ -38,28 +38,6 @@ Move::Move(const std::string& input) {
         } 
         }
     } 
-
-
- /*   if (tic_stream.fail()) {
-        throw ParseError("Parse error");
-    }
-
-    if (!tic_stream) {
-        tic_stream >> hashtag >> comment;
-    }
-
-    if (tic_stream.fail()) {
-        throw ParseError("Parse error");
-    }
-
-    player = toupper(player);
-    row = toupper(row); */
-
-
-   /* if (!(num_checker(number) && player_checker(player) && row_checker(row) 
-    && column_checker(column) && hashtag_checker(hashtag))){
-        throw ParseError("Parse error");
-    } */
 } 
 
 bool Move::num_checker(int num) {
@@ -84,7 +62,8 @@ bool Move::hashtag_checker(char hashtag) {
 
 
 std::ostream& operator<<(std::ostream& stream, const Move& move) {
-    stream << move.number << " " << move.player << " " << move.row << move.column;
+    stream << move.number << " " << move.player << " " << move.row << move.column 
+    << move.hashtag << move.comment;
    // if (move.hashtag == "#") {
         //stream << " # " << move.comment;
     //}
