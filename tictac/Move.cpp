@@ -13,10 +13,7 @@ Move::Move(const std::string& input) {
     if (!(tic_stream.get(whitespace))|| !(std::isspace(whitespace))) {
         throw ParseError("Missing whitespace");
     }
-    //if (tic_stream.get(whitespace) && std::isspace(whitespace)) {
-    //    throw ParseError("Too many whitespace characters");
-    //}
-
+ 
     tic_stream >> player;
     player = toupper(player);
     if (tic_stream.fail() || !player_checker(player)){
@@ -26,10 +23,6 @@ Move::Move(const std::string& input) {
     if (!(tic_stream.get(whitespace))|| !(std::isspace(whitespace))) {
         throw ParseError("Missing whitespace");
     }
-    //if (tic_stream.get(whitespace) && std::isspace(whitespace)) {
-    //    throw ParseError("Too many whitespace characters");
-    //}
-
 
     tic_stream >> row;
     row = toupper(row);
@@ -41,17 +34,26 @@ Move::Move(const std::string& input) {
     if (tic_stream.fail() || !column_checker(column)){
         throw ParseError("incorrect column format");
     }
+
+    /*tic_stream >> hashtag; 
+    if (tic_stream.fail() || !hashtag_checker(column)){
+        throw ParseError("incorrect column format");
+    } */
+
     
     std::string hashtag_and_comment;
     std::getline(tic_stream >> std::ws, hashtag_and_comment);
     if (!hashtag_and_comment.empty() && hashtag_and_comment[0] == '#' && !tic_stream.fail()) {
-        if (hashtag_and_comment.size() > 1 && hashtag_and_comment[1] == ' ') {
+        if (hashtag_and_comment.size() > 1 && hashtag_and_comment[1] == ' ' && hashtag_and_comment[2] != ' ') {
             hashtag = '#';
             comment = hashtag_and_comment.substr(2);
         } else {
             throw ParseError("Incorrect comment format");
         }
     } 
+
+    
+
 
 } 
 
