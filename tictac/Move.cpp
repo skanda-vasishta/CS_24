@@ -35,11 +35,11 @@ Move::Move(const std::string& input) {
         throw ParseError("incorrect column format");
     }
 
-    if (!(tic_stream.get(whitespace))|| !(std::isspace(whitespace))) {
-        throw ParseError("Missing whitespace");
-    }
 
     if (!tic_stream) {
+        if (!(tic_stream.get(whitespace))|| !(std::isspace(whitespace))) {
+            throw ParseError("Missing whitespace");
+        }
         tic_stream >> hashtag;
         if (tic_stream.fail() || !hashtag_checker(hashtag)) {
             throw ParseError("incorrect hashtag format");
