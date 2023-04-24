@@ -19,9 +19,9 @@ struct Move {
   char player;
   char  row;
   int  column;
-  char hashtag;
+  //char hashtag;
   std::string comment;
-  char whitespace;
+  //char whitespace;
 
   // The constructor parses a string.
   Move(const std::string& input);
