@@ -37,7 +37,7 @@ int main() {
         std::cout << "Game over: O wins." << std::endl;
     } else if (gameBoard.get_result() == 'D') {
         std::cout << "Game over: Draw." << std::endl;
-    }
+    } 
 
     return 0;
 

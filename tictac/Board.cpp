@@ -7,7 +7,7 @@ Board::Board(){
     moves = 1;
     result = ' ';
     for (int i = 0; i < size; i++){
-        for (int j = 0; j < size; i++){
+        for (int j = 0; j < size; j++){
             board[i][j] = ' ';
         }
     }
@@ -46,7 +46,7 @@ void Board::play(const Move& move){
 
 bool Board::check_winner() {
     for (int i = 0; i < size; i++) {
-        bool win = true;
+        win = true;
         for (int j = 1; j < size; j++) {
             if (board[i][j] != board[i][0]) {
                 win = false;
@@ -59,7 +59,7 @@ bool Board::check_winner() {
     }
 
     for (int i = 0; i < size; i++) {
-        bool win = true;
+        win = true;
         for (int j = 1; j < size; j++) {
             if (board[j][i] != board[0][i]) {
                 win = false;
@@ -71,7 +71,7 @@ bool Board::check_winner() {
         }
     }
 
-    bool win = true;
+    win = true;
     for (int i = 1; i < size; i++) {
         if (board[i][i] != board[0][0]) {
             win = false;
