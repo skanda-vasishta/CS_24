@@ -18,9 +18,13 @@ private:
 
 
 public:
-    Board(const Move& move);
+    Board();
     void play(const Move& move);
     bool check_winner();
+    int get_size() const;
+    int get_moves() const;
+    char get_result() const;
+    char get_player() const;
 
 
 };

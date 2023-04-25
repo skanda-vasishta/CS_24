@@ -2,10 +2,10 @@
 #include "Board.h"
 
 // Space for implementing Board functions.
-Board::Board(const Move& move){
+Board::Board(){
     size = 3;
-    moves = 0;
-    current_player = move.player;
+    moves = 1;
+    result = ' ';
     for (int i = 0; i < size; i++){
         for (int j = 0; j < size; i++){
             board[i][j] = ' ';
@@ -14,25 +14,28 @@ Board::Board(const Move& move){
 }
 
 void Board::play(const Move& move){
-   //takes move object as parameter and applies move on board
-   char newrow = move.row;
-   int rownum;
-   if (newrow == 'A'){
-    rownum = 0; 
-   } else if (newrow == 'B'){
-    rownum = 1;
-   } else if (newrow == 'C'){
-    rownum = 2;
-   }
-   int newcol = move.column - 1;
+    current_player = move.player;
+    char newrow = move.row;
+    int rownum;
+    if (newrow == 'A'){
+        rownum = 0; 
+    } else if (newrow == 'B'){
+        rownum = 1;
+    } else if (newrow == 'C'){
+        rownum = 2;
+    }
+    int newcol = move.column - 1;
 
-   if (board[rownum][newcol] == 'X' || board[rownum][newcol] == 'O') {
+    if (board[rownum][newcol] == 'X' || board[rownum][newcol] == 'O') {
         throw InvalidMove("Invalid square");
+    }
+    if (move.number != moves){
+        throw InvalidMove("Wrong move number");
     }
    board[rownum][newcol] = current_player;
 
    if (check_winner()){
-     result = move.player;
+    result = move.player;
    }
    if (moves == 9 && !check_winner()){
      result = 'D';
@@ -91,4 +94,17 @@ bool Board::check_winner() {
     }
 
     return false;
+}
+
+int Board::get_size() const {
+    return size;
+}
+int Board::get_moves() const {
+    return moves;
+}
+char Board::get_result() const {
+    return result;
+}
+char Board::get_player() const {
+    return current_player;
 }
