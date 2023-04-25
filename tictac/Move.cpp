@@ -5,6 +5,10 @@
 
 Move::Move(const std::string& input) {
     std::istringstream tic_stream(input);
+    if ((tic_stream.get(whitespace))|| (std::isspace(whitespace))) {
+        throw ParseError("Unnecessary whitespace");
+    }
+    
     tic_stream >> number;
     if (tic_stream.fail() || !num_checker(number)){
         throw ParseError("Incorrect number format");
@@ -30,6 +34,10 @@ Move::Move(const std::string& input) {
         throw ParseError("incorrect row format");
     }
 
+    if ((tic_stream.get(whitespace))|| (std::isspace(whitespace))) {
+        throw ParseError("Unnecessary whitespace");
+    }
+
     tic_stream >> column;
     if (tic_stream.fail() || !column_checker(column)){
         throw ParseError("incorrect column format");
@@ -50,6 +58,7 @@ Move::Move(const std::string& input) {
             } 
         }
     } 
+
 } 
 
 bool Move::num_checker(int num) {
@@ -79,8 +88,5 @@ bool Move::whitespace_checker(char whitespace){
 
 std::ostream& operator<<(std::ostream& stream, const Move& move) {
     stream << move.number << " " << move.player << " " << move.row << move.column;
-   //if (move.hashtag == '#') {
-    //    stream << " # " << move.comment;
-   // }
     return stream;
 }
