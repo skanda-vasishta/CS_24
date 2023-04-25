@@ -5,10 +5,6 @@
 
 Move::Move(const std::string& input) {
     std::istringstream tic_stream(input);
-    if ((tic_stream.get(whitespace))|| (std::isspace(whitespace))) {
-        throw ParseError("Unnecessary whitespace");
-    }
-    
     tic_stream >> number;
     if (tic_stream.fail() || !num_checker(number)){
         throw ParseError("Incorrect number format");
@@ -32,10 +28,6 @@ Move::Move(const std::string& input) {
     row = toupper(row);
     if (tic_stream.fail() || !row_checker(row)) {
         throw ParseError("incorrect row format");
-    }
-
-    if ((tic_stream.get(whitespace))|| (std::isspace(whitespace))) {
-        throw ParseError("Unnecessary whitespace");
     }
 
     tic_stream >> column;
@@ -62,7 +54,7 @@ Move::Move(const std::string& input) {
 } 
 
 bool Move::num_checker(int num) {
-    return num > 0;
+    return num >0 && num <=9;
 }
 
 bool Move::player_checker(char player) {
