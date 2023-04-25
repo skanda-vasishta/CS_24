@@ -5,6 +5,11 @@
 
 Move::Move(const std::string& input) {
     std::istringstream tic_stream(input);
+    /*tic_stream >> std::ws;
+    std::getline(tic_stream, white);
+    if (isspace(white[0]) || tic_stream.fail()){
+        throw ParseError("Incorrect whitespace format");
+    } */
     tic_stream >> number;
     if (tic_stream.fail() || !num_checker(number)){
         throw ParseError("Incorrect number format");
