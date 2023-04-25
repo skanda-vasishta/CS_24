@@ -25,8 +25,7 @@ void Board::play(const Move& move){
     rownum = 2;
    }
    int newcol = move.column - 1;
-
-   if 
+    
    if (board[newrow][newcol] == 'X' || board[newrow][newcol] == 'O') {
         throw InvalidMove("Invalid square");
     }
