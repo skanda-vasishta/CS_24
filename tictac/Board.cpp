@@ -25,11 +25,11 @@ void Board::play(const Move& move){
     rownum = 2;
    }
    int newcol = move.column - 1;
-    
-   if (board[newrow][newcol] == 'X' || board[newrow][newcol] == 'O') {
+
+   if (board[rownum][newcol] == 'X' || board[rownum][newcol] == 'O') {
         throw InvalidMove("Invalid square");
     }
-   board[newrow][newcol] = current_player;
+   board[rownum][newcol] = current_player;
 
    if (check_winner()){
      result = move.player;
