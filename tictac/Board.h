@@ -13,6 +13,7 @@ private:
     int size;
     bool win;
     char result;
+    char current_player;
 
 
 
