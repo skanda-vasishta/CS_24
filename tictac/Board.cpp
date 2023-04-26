@@ -34,12 +34,12 @@ void Board::play(const Move& move){
     }
    board[rownum][newcol] = current_player;
 
-   if (check_winner()){
+  /* if (check_winner()){
     result = current_player;
    }
    if (moves == 9 && !check_winner()){
      result = 'D';
-   }
+   }*/
    moves++;
 
 }
