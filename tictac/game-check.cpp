@@ -8,7 +8,7 @@ int main() {
     std::string line;
     int game_move = 0;
     
-     while (game_move <9 && !gameBoard.check_winner()) {
+     while (game_move <9 ) {
         std::getline(std::cin, line);
         try {
             Move move(line);
