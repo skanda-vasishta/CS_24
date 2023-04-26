@@ -48,7 +48,12 @@ Move::Move(const std::string& input) {
         throw ParseError("incorrect column format");
     }
 
-
+    if (tic_stream){
+        if (isspace(tic_stream.peek())){
+            throw ParseError("Incorrect whitespace format");
+        }
+    }
+    
     if (!tic_stream) {
         if (!(tic_stream.get(whitespace))|| !(std::isspace(whitespace))) {
             throw ParseError("Missing whitespace");
