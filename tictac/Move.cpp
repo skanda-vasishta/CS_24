@@ -13,7 +13,7 @@ Move::Move(const std::string& input) {
     if (isspace(tic_stream.peek())){
         throw ParseError("Incorrect whitespace format");
     }
-    
+
     tic_stream >> number;
     if (tic_stream.fail() || !num_checker(number)){
         throw ParseError("Incorrect number format");
@@ -37,6 +37,10 @@ Move::Move(const std::string& input) {
     row = toupper(row);
     if (tic_stream.fail() || !row_checker(row)) {
         throw ParseError("incorrect row format");
+    }
+
+    if (isspace(tic_stream.peek())){
+        throw ParseError("Incorrect whitespace format");
     }
 
     tic_stream >> column;
