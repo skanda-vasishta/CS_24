@@ -22,11 +22,11 @@ int main() {
             }
         } 
         catch (const ParseError& e) {
-            std::cout << "Parsing error: " << e.what();
+            std::cout << "Parse error." ;
             return 1;
         } 
         catch (const InvalidMove& e) {
-             std::cout << "Invalid move: " << e.what();
+             std::cout << "Invalid move." ;
             return 2;
         }
     }
