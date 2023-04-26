@@ -31,10 +31,10 @@ int main() {
     } else {
         for (int i = 0; i < game_move; i++) {
             if(curr_player == 'X'){
-                std::cout << "Game in progress: O's turn" << std::endl;
+                std::cout << "Game in progress: O's turn." << std::endl;
                 curr_player = 'O';
             } else if (curr_player == 'O') {
-                std::cout << "Game in progress: X's turn" << std::endl;
+                std::cout << "Game in progress: X's turn." << std::endl;
                 curr_player = 'X';
             }
 
