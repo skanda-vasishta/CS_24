@@ -4,6 +4,9 @@
 // Space for implementing Move functions.
 
 Move::Move(const std::string& input) {
+    if (input.empty()){
+        throw ParseError("error");
+    }
     std::istringstream tic_stream(input);
     
     if (!isdigit(tic_stream.peek())){
