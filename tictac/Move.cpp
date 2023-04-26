@@ -5,7 +5,7 @@
 
 Move::Move(const std::string& input) {
     std::istringstream tic_stream(input);
-
+    
     if (!isdigit(tic_stream.peek())){
         throw ParseError("Incorrect whitespace format");
     }
@@ -44,26 +44,45 @@ Move::Move(const std::string& input) {
         throw ParseError("incorrect column format");
     }
 
-
-    if (!tic_stream) {
+    if (isspace(tic_stream.peek())){
+        tic_stream >> std::ws;
+        if (tic_stream.peek() == '#') {
+            tic_stream >> hashtag;
+            if (tic_stream.fail() || !hashtag_checker(hashtag)) {
+                throw ParseError("incorrect hashtag format");
+            } else {
+                std::getline(tic_stream >> std::ws, comment);
+                if (tic_stream.fail()) {
+                    throw ParseError("incorrect comment format");
+                } 
+            }
+        } else {
+            throw ParseError("incorrect comment format");
+        }
+    } else if (!isspace(tic_stream.peek())) {
+        if (tic_stream){
+            throw ParseError("incorrect comment format");
+        }
+    }
+    /*if (!tic_stream) {
         if (!(tic_stream.get(whitespace))|| !(std::isspace(whitespace))) {
             throw ParseError("Missing whitespace");
+        }
+        if (!isspace(tic_stream.peek())){
+            throw ParseError("Incorrect whitespace format");
         }
         tic_stream >> hashtag;
         if (tic_stream.fail() || !hashtag_checker(hashtag)) {
             throw ParseError("incorrect hashtag format");
         } else {
-            if (!isspace(tic_stream.peek())){
-                throw ParseError("Incorrect whitespace format");
-            }   
             std::getline(tic_stream >> std::ws, comment);
             if (tic_stream.fail()) {
                 throw ParseError("incorrect comment format");
             } 
         }
-    } 
+    } */
 
-} 
+}
 
 bool Move::num_checker(int num) {
     return num >0 && num <=9;
