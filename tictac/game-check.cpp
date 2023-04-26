@@ -8,13 +8,13 @@ int main() {
     std::string line;
     int game_move = gameBoard.get_moves();
     
-     while (game_move <=9) {
+     while (game_move <=9 || !gameBoard.check_winner()) {
 
         std::cout << "Game in progress: ";
-        if (gameBoard.get_moves() == 0) {
+        if (gameBoard.get_moves()-1 == 0) {
             std::cout << "New game." << std::endl;
         } else {
-            std::cout << (gameBoard.get_player() == 'X' ? "X's turn." : "O's turn.") << std::endl;
+            std::cout << (gameBoard.get_player() == 'X' ? "O's turn." : "X's turn.") << std::endl;
         }
 
         std::getline(std::cin, line);
