@@ -14,7 +14,7 @@ int main() {
             Move move(line);
             gameBoard.play(move);
             game_move++;
-            curr_player = move.player;
+            curr_player = gameBoard.get_player();
         } 
         catch (const ParseError& e) {
             std::cout << "Parsing error: " << e.what();
@@ -30,7 +30,14 @@ int main() {
         std::cout << "Game in progress: New game." << std::endl;
     } else {
         for (int i = 0; i < game_move; i++) {
-            std::cout << "Game in progress: " << (curr_player == 'X' ? "O's turn." : "X's turn.") << std::endl;
+            if(curr_player == 'X'){
+                std::cout << "Game in progress: O's turn" << std::endl;
+                curr_player = 'O';
+            } else if (curr_player == 'O') {
+                std::cout << "Game in progress: X's turn" << std::endl;
+                curr_player = 'X';
+            }
+
         }
     if (gameBoard.get_result() == 'X') {
         std::cout << "Game over: X wins." << std::endl;
