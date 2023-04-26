@@ -29,7 +29,7 @@ int main() {
     if (game_move == 0) {
         std::cout << "Game in progress: New game." << std::endl;
     } else {
-        for (int i = 0; i < game_move; i++) {
+        /*for (int i = 0; i < game_move; i++) {
             if(curr_player == 'X'){
                 std::cout << "Game in progress: O's turn." << std::endl;
                 curr_player = 'O';
@@ -38,7 +38,7 @@ int main() {
                 curr_player = 'X';
             }
 
-        }
+        }*/
     if (gameBoard.get_result() == 'X') {
         std::cout << "Game over: X wins." << std::endl;
     } else if (gameBoard.get_result() == 'O') {
