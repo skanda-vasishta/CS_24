@@ -13,6 +13,9 @@ int main() {
      while (std::getline(std::cin, line)) {
         try {
             Move move(line);
+            if (gameBoard.check_winner()){
+                throw InvalidMove("game is over");
+            }
             gameBoard.play(move);
             game_move++;
             prev_player = curr_player;
