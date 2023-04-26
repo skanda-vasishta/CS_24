@@ -10,6 +10,10 @@ Move::Move(const std::string& input) {
     if (isspace(white[0]) || tic_stream.fail()){
         throw ParseError("Incorrect whitespace format");
     } */
+    if (isspace(tic_stream.peek())){
+        throw ParseError("Incorrect whitespace format");
+    }
+    
     tic_stream >> number;
     if (tic_stream.fail() || !num_checker(number)){
         throw ParseError("Incorrect number format");
