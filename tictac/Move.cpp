@@ -4,9 +4,6 @@
 // Space for implementing Move functions.
 
 Move::Move(const std::string& input) {
-    if (input.empty()){
-        throw ParseError("error");
-    }
     std::istringstream tic_stream(input);
     
     if (!isdigit(tic_stream.peek())){
@@ -38,11 +35,15 @@ Move::Move(const std::string& input) {
         throw ParseError("incorrect row format");
     }
 
-    if (isspace(tic_stream.peek())){
+    /*if (isspace(tic_stream.peek())){
         throw ParseError("Incorrect whitespace format");
+    }*/
+    if (!isdigit(tic_stream.peek())){
+        throw ParseError("Incorrect column format");
     }
 
     tic_stream >> column;
+    
     if (tic_stream.fail() || !column_checker(column)){
         throw ParseError("incorrect column format");
     }
