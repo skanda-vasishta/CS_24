@@ -48,7 +48,7 @@ bool Board::check_winner() {
     for (int i = 0; i < size; i++) {
         win = true;
         for (int j = 1; j < size; j++) {
-            if (board[i][j] != board[i][0]) {
+            if (board[i][j] != board[i][0] && board[i][j] == ' ' &&  board[i][0] == ' ' ) {
                 win = false;
                 break;
             }
@@ -61,7 +61,7 @@ bool Board::check_winner() {
     for (int i = 0; i < size; i++) {
         win = true;
         for (int j = 1; j < size; j++) {
-            if (board[j][i] != board[0][i]) {
+            if (board[j][i] != board[0][i] && board[j][i] == ' ' && board[0][i] == ' ' ) {
                 win = false;
                 break;
             }
@@ -73,7 +73,7 @@ bool Board::check_winner() {
 
     win = true;
     for (int i = 1; i < size; i++) {
-        if (board[i][i] != board[0][0]) {
+        if (board[i][i] != board[0][0] && board[i][i] == ' ' && board[0][0] == ' ') {
             win = false;
             break;
         }
@@ -84,7 +84,7 @@ bool Board::check_winner() {
 
     win = true;
     for (int i = 1; i < size; i++) {
-        if (board[size - i - 1][i] != board[size - 1][0]) {
+        if (board[size - i - 1][i] != board[size - 1][0] && board[size - i - 1][i] == ' ' && board[size - 1][0] == ' ' ) {
             win = false;
             break;
         }
