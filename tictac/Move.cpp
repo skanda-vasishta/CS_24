@@ -5,11 +5,7 @@
 
 Move::Move(const std::string& input) {
     std::istringstream tic_stream(input);
-    /*tic_stream >> std::ws;
-    std::getline(tic_stream, white);
-    if (isspace(white[0]) || tic_stream.fail()){
-        throw ParseError("Incorrect whitespace format");
-    } */
+
     if (!isdigit(tic_stream.peek())){
         throw ParseError("Incorrect whitespace format");
     }
@@ -57,6 +53,9 @@ Move::Move(const std::string& input) {
         if (tic_stream.fail() || !hashtag_checker(hashtag)) {
             throw ParseError("incorrect hashtag format");
         } else {
+            if (!isspace(tic_stream.peek())){
+                throw ParseError("Incorrect whitespace format");
+            }   
             std::getline(tic_stream >> std::ws, comment);
             if (tic_stream.fail()) {
                 throw ParseError("incorrect comment format");
