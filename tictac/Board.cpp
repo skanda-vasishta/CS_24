@@ -34,66 +34,41 @@ void Board::play(const Move& move){
     }
    board[rownum][newcol] = current_player;
 
-  /* if (check_winner()){
+  if (check_winner()){
     result = current_player;
    }
    if (moves == 9 && !check_winner()){
      result = 'D';
-   }*/
+   }
    moves++;
 
 }
 
 bool Board::check_winner() {
-    for (int i = 0; i < size; i++) {
-        win = true;
-        for (int j = 1; j < size; j++) {
-            if (board[i][j] != board[i][0] && board[i][j] == ' ' &&  board[i][0] == ' ' ) {
-                win = false;
-                break;
-            }
-        }
-        if (win) {
+     for (int i = 0; i < size; i++) {
+        if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ') {
             return true;
         }
     }
 
+    // Check columns
     for (int i = 0; i < size; i++) {
-        win = true;
-        for (int j = 1; j < size; j++) {
-            if (board[j][i] != board[0][i] && board[j][i] == ' ' && board[0][i] == ' ' ) {
-                win = false;
-                break;
-            }
-        }
-        if (win) {
+        if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != ' ') {
             return true;
         }
     }
 
-    win = true;
-    for (int i = 1; i < size; i++) {
-        if (board[i][i] != board[0][0] && board[i][i] == ' ' && board[0][0] == ' ') {
-            win = false;
-            break;
-        }
-    }
-    if (win) {
+    // Check diagonals
+    if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != ' ') {
         return true;
     }
 
-    win = true;
-    for (int i = 1; i < size; i++) {
-        if (board[size - i - 1][i] != board[size - 1][0] && board[size - i - 1][i] == ' ' && board[size - 1][0] == ' ' ) {
-            win = false;
-            break;
-        }
-    }
-    if (win) {
+    if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != ' ') {
         return true;
     }
 
     return false;
+
 }
 
 int Board::get_size() const {
