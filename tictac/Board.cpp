@@ -35,7 +35,7 @@ void Board::play(const Move& move){
    board[rownum][newcol] = current_player;
 
    if (check_winner()){
-    result = move.player;
+    result = current_player;
    }
    if (moves == 9 && !check_winner()){
      result = 'D';
