@@ -57,7 +57,12 @@ Move::Move(const std::string& input) {
                 } 
             }
         } else {
-            throw ParseError("incorrect comment format");
+            while (tic_stream){
+                if (!isspace(tic_stream.peek())){
+                    throw ParseError("incorrect comment format");
+                }
+            }
+            
         }
     } else if (!isspace(tic_stream.peek())) {
         if (tic_stream){
