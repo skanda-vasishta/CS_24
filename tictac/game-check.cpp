@@ -6,8 +6,9 @@
 int main() {
     Board gameBoard;
     std::string line;
+    int game_move = gameBoard.get_moves();
     
-     while (gameBoard.get_result() == ' ') {
+     while (game_move <=9) {
 
         std::cout << "Game in progress: ";
         if (gameBoard.get_moves() == 0) {
@@ -29,6 +30,7 @@ int main() {
              std::cout << "Invalid move: " << e.what();
             return 2;
         }
+        game_move++;
     }
 
     if (gameBoard.get_result() == 'X') {

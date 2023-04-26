@@ -102,6 +102,7 @@ int Board::get_size() const {
 int Board::get_moves() const {
     return moves;
 }
+
 char Board::get_result() const {
     return result;
 }
