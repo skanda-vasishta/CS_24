@@ -29,23 +29,19 @@ int main() {
     if (game_move == 0) {
         std::cout << "Game in progress: New game." << std::endl;
     } else {
-        /*for (int i = 0; i < game_move; i++) {
-            if(curr_player == 'X'){
-                std::cout << "Game in progress: O's turn." << std::endl;
-                curr_player = 'O';
-            } else if (curr_player == 'O') {
-                std::cout << "Game in progress: X's turn." << std::endl;
-                curr_player = 'X';
-            }
-
-        }*/
-    if (gameBoard.get_result() == 'X') {
-        std::cout << "Game over: X wins." << std::endl;
-    } else if (gameBoard.get_result() == 'O') {
-        std::cout << "Game over: O wins." << std::endl;
-    } else if (gameBoard.get_result() == 'D') {
-        std::cout << "Game over: Draw." << std::endl;
-    } 
+        if(curr_player == 'X' && game_move < 9 && !gameBoard.check_winner()){
+            std::cout << "Game in progress: O's turn." << std::endl;
+            curr_player = 'O';
+        } else if (curr_player == 'O' && game_move < 9 && !gameBoard.check_winner()) {
+            std::cout << "Game in progress: X's turn." << std::endl;
+            curr_player = 'X';
+        } else if (gameBoard.get_result() == 'X') {
+            std::cout << "Game over: X wins." << std::endl;
+        } else if (gameBoard.get_result() == 'O') {
+            std::cout << "Game over: O wins." << std::endl;
+        } else if (gameBoard.get_result() == 'D') {
+            std::cout << "Game over: Draw." << std::endl;
+        } 
 
     return 0;
 
