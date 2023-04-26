@@ -52,9 +52,9 @@ Move::Move(const std::string& input) {
                 throw ParseError("incorrect hashtag format");
             } else {
                 std::getline(tic_stream >> std::ws, comment);
-                /*if (tic_stream.fail()) {
+                if (comment.empty()) {
                     throw ParseError("incorrect comment format");
-                } */
+                } 
             }
         } else {
             while (tic_stream){
