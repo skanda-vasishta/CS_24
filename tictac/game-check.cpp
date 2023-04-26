@@ -8,13 +8,18 @@ int main() {
     std::string line;
     int game_move = 0;
     char curr_player = ' ';
+    char prev_player = 'L';
     
      while (std::getline(std::cin, line)) {
         try {
             Move move(line);
             gameBoard.play(move);
             game_move++;
+            prev_player = curr_player;
             curr_player = gameBoard.get_player();
+            if (curr_player == prev_player) {
+                throw InvalidMove("Same player moved twice in a row");
+            }
         } 
         catch (const ParseError& e) {
             std::cout << "Parsing error: " << e.what();
