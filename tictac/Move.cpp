@@ -54,7 +54,7 @@ Move::Move(const std::string& input) {
     }
     column = std::stoi(string_col);
 
-    tic_stream >> column;
+    //tic_stream >> column;
     
     if (tic_stream.fail() || !column_checker(column)){
         throw ParseError("incorrect column format");
