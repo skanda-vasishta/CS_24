@@ -1,16 +1,21 @@
 #include "Errors.h"
 #include "Move.h"
 
+
 // Space for implementing Move functions.
 
 Move::Move(const std::string& input) {
     std::istringstream tic_stream(input);
-    
     if (!isdigit(tic_stream.peek())){
         throw ParseError("Incorrect whitespace format");
     }
 
-    tic_stream >> number;
+    std::string string_num;
+    tic_stream >> string_num;
+    if (string_num.size() != 1){
+        throw ParseError("Incorrect number format");
+    }
+    number = std::stoi(string_num);
     if (tic_stream.fail() || !num_checker(number)){
         throw ParseError("Incorrect number format");
     }
