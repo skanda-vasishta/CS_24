@@ -47,6 +47,13 @@ Move::Move(const std::string& input) {
         throw ParseError("Incorrect column format");
     }
 
+    std::string string_col;
+    tic_stream >> string_col;
+    if (string_col.size() != 1){
+        throw ParseError("Incorrect number format");
+    }
+    column = std::stoi(string_col);
+
     tic_stream >> column;
     
     if (tic_stream.fail() || !column_checker(column)){
