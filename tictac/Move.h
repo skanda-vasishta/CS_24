@@ -22,6 +22,7 @@ struct Move {
   char hashtag;
   std::string comment;
   char whitespace;
+  std::string white;
 
   // The constructor parses a string.
   Move(const std::string& input);
