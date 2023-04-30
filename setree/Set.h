@@ -16,7 +16,7 @@ public:
   Set(const Set& other);
   Set(Set&& other);
   ~Set();
-
+/*
   size_t clear();
   bool contains(const std::string& value) const;
   size_t count() const;
@@ -24,7 +24,7 @@ public:
   size_t insert(const std::string& value);
   const std::string& lookup(size_t n) const;
   void print() const;
-  size_t remove(const std::string& value);
+  size_t remove(const std::string& value);*/
 };
 
 #endif
