@@ -2,6 +2,7 @@
 #include "Board.h"
 
 // Space for implementing Board functions.
+// ok
 Board::Board(){
     size = 3;
     moves = 1;
