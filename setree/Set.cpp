@@ -17,6 +17,7 @@ Set::~Set(){
 
 size_t Set::clear() {
     //ok
+    return 1;
 }
 
 bool Set::contains(const std::string& value) const {
@@ -40,7 +41,11 @@ size_t Set::insert(const std::string& value){
 
 const std::string& Set::lookup(size_t n) const{
     //set
-    return "ok";
+    std::string x = "10";
+    std::string * ptr = &x;
+    std::string y = *ptr;
+
+    return y;
 }
 
 void Set::print() const{
