@@ -96,8 +96,9 @@ const std::string& Set::lookup(size_t n) const{
 void inOrder(Node* root){
     if (root != NULL) {
         inOrder(root->left);
-        std::cout << "(" << root->data << ")";
+        std::cout << "(" << root->data ;
         inOrder(root->right);
+        std::cout << << ")"
     } else {
         //std::cout<<"-";
     }
