@@ -4,8 +4,12 @@ Set::Set() {
 }
 
 Set::Set(const Set& other){
-    //ok
+    if (other.mRoot == nullptr){
+        mRoot = nullptr;
+    }
+    
 }
+
 
 Set::Set(Set&& other) {
     //ok
@@ -39,14 +43,10 @@ size_t Set::insert(const std::string& value){
     return 1;
 }
 
-const std::string& Set::lookup(size_t n) const{
+/*const std::string& Set::lookup(size_t n) const{
     //set
-    std::string x = "10";
-    std::string * ptr = &x;
-    std::string y = *ptr;
-
-    return y;
-}
+    return "ok";
+}*/
 
 void Set::print() const{
     //ok
