@@ -101,7 +101,7 @@ void inOrder(Node* root){
             inOrder(root->right);
             std::cout << std::endl;
         } else if (root->count == 0){
-            std::cout<< " ";
+            return;
         }
     } else {
         //std::cout<<"-";
