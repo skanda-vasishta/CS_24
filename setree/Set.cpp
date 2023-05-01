@@ -2,8 +2,8 @@
 
 Node* copy_set(const Node* root){
     Node* copy_node = new Node;
-    copy_node -> data = root -> data;
     copy_node->left = copy_set(root->left);
+    copy_node -> data = root -> data;
     copy_node->right = copy_set(root->right);
     return copy_node;
 
@@ -69,11 +69,12 @@ void inOrder(Node* root){
         std::cout << root->data;
         inOrder(root->right);
     } else {
-        std::cout<<"-";
+        std::cout<<"-"<<std::endl;
     }
 }
 void Set::print() const{
     inOrder(mRoot);
+    std::cout << std::endl;
 }
 
 size_t Set:: remove(const std::string& value){
