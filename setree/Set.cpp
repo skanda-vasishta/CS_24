@@ -18,7 +18,7 @@ Set::Set(const Set& other){
         mRoot =  nullptr;
     } else {
     //mRoot = copy_set(other.mRoot);
-    mRoot = other.mRoot;
+    mRoot = copy_set(other.mRoot);
     }
 
 }
@@ -63,8 +63,15 @@ const std::string& Set::lookup(size_t n) const{
     return s;
 }
 
+void inOrder(Node* root){
+    if (root != nullptr) {
+        inOrder(root->left);
+        std::cout << root->data;
+        inOrder(root->right);
+    }
+}
 void Set::print() const{
-    //ok
+    inOrder(mRoot);
 }
 
 size_t Set:: remove(const std::string& value){
