@@ -43,10 +43,11 @@ size_t Set::insert(const std::string& value){
     return 1;
 }
 
-/*const std::string& Set::lookup(size_t n) const{
+const std::string& Set::lookup(size_t n) const{
     //set
-    return "ok";
-}*/
+    static std::string s("");
+    return s;
+}
 
 void Set::print() const{
     //ok
