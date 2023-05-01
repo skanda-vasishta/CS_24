@@ -11,6 +11,7 @@ class Node {
     Node* left;
     Node* right;
 
+    Node* copy_set(const Node* root);
 
 };
 #endif
