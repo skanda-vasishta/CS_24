@@ -71,7 +71,7 @@ size_t Set::insert(const std::string& value){
             mRoot->left = new Node();
             mRoot->left->data = value;
         } else {
-            insert(mRoot->left->data);
+            insert(value);
         }
     }
     if (value > mRoot->data){
@@ -79,7 +79,7 @@ size_t Set::insert(const std::string& value){
             mRoot->right = new Node();
             mRoot->right->data = value;
         } else {
-            insert(mRoot->right->data);
+            insert(value);
         }
     }
     mRoot->count ++;
@@ -102,9 +102,11 @@ void inOrder(Node* root){
             std::cout << std::endl;
         } else if (root->count == 0){
             //
+        } else {
+
         }
     } else {
-        std::cout<<"-";
+        //std::cout<<"-";
     }
 }
 void Set::print() const{
