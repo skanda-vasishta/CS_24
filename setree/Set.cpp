@@ -14,8 +14,8 @@ Set::Set() {
 }
 
 Set::Set(const Set& other){
-    if (other.mRoot == nullptr){
-        mRoot =  nullptr;
+    if (other.mRoot == NULL){
+        mRoot =  NULL;
     } else {
     //mRoot = copy_set(other.mRoot);
     mRoot = copy_set(other.mRoot);
@@ -64,7 +64,7 @@ const std::string& Set::lookup(size_t n) const{
 }
 
 void inOrder(Node* root){
-    if (root != nullptr) {
+    if (root != NULL) {
         inOrder(root->left);
         std::cout << root->data;
         inOrder(root->right);
