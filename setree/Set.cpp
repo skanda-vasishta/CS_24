@@ -16,7 +16,9 @@ Set::Set() {
 }
 
 Set::Set(const Set& other){
-    Node* newRoot = copy_set(other.mRoot);
+    mRoot = copy_set(other.mRoot);
+    Node* newRoot = new Node;
+    newRoot = mRoot;
 
 }
 
