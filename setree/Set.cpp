@@ -98,7 +98,7 @@ void inOrder(Node* root){
         inOrder(root->left);
         std::cout << "(" << root->data ;
         inOrder(root->right);
-        std::cout << << ")"
+        std::cout << ")"
     } else {
         //std::cout<<"-";
     }
