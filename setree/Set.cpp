@@ -16,7 +16,7 @@ Set::Set() {
 }
 
 Set::Set(const Set& other){
-    mRoot = copy_set(other.mRoot);
+    Node* newRoot = copy_set(other.mRoot);
 
 }
 
@@ -37,7 +37,7 @@ size_t Set::clear() {
 
 bool Set::contains(const std::string& value) const {
     //ok
-    return true;
+    return false;
 }
 
 size_t Set::count() const{
