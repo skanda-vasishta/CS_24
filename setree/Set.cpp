@@ -1,14 +1,15 @@
 #include "Set.h"
 
-Node* copy_set(const Node* other){
-    if (other == nullptr){
+Node* copy_set(const Node* root){
+    if (root == nullptr){
         return nullptr;
-    }
+    } else {
     Node* copy_node = new Node;
-    copy_node -> data = other -> data;
-    copy_node->left = copy_set(other->left);
-    copy_node->right = copy_set(other->right);
+    copy_node -> data = root -> data;
+    copy_node->left = copy_set(root->left);
+    copy_node->right = copy_set(root->right);
     return copy_node;
+    }
 }
 
 Set::Set() {
