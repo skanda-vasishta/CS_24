@@ -90,7 +90,7 @@ void inOrder(Node* root){
         std::cout << root->data;
         inOrder(root->right);
     } else {
-        std::cout<<"-";
+        //std::cout<<"-";
     }
 }
 void Set::print() const{
