@@ -108,7 +108,7 @@ void inOrder(Node* root){
 }
 void Set::print() const{
     inOrder(mRoot);
-    //std::cout << std::endl;
+    std::cout << std::endl;
 }
 
 size_t Set:: remove(const std::string& value){
