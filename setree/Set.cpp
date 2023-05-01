@@ -17,7 +17,8 @@ Set::Set(const Set& other){
     if (other.mRoot == nullptr){
         mRoot =  nullptr;
     } else {
-    mRoot = copy_set(other.mRoot);
+    //mRoot = copy_set(other.mRoot);
+    mRoot = other.mRoot;
     }
 
 }
