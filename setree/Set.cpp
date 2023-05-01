@@ -1,13 +1,23 @@
 #include "Set.h"
+
+Node* copy_set(const Node* other){
+    if (other == nullptr){
+        return nullptr;
+    }
+    Node* copy_node = new Node;
+    copy_node -> data = other -> data;
+    copy_node->left = copy_set(other->left);
+    copy_node->right = copy_set(other->right);
+    return copy_node;
+}
+
 Set::Set() {
     mRoot = nullptr;
 }
 
 Set::Set(const Set& other){
-    if (other.mRoot == nullptr){
-        mRoot = nullptr;
-    }
-    
+    mRoot = copy_set(other.mRoot);
+
 }
 
 
@@ -17,6 +27,7 @@ Set::Set(Set&& other) {
 
 Set::~Set(){
     //ok
+    //probably call clear here, then delete
 }
 
 size_t Set::clear() {
@@ -57,3 +68,4 @@ size_t Set:: remove(const std::string& value){
     //ok
     return 1;
 }
+
