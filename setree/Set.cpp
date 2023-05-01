@@ -1,10 +1,17 @@
 #include "Set.h"
 
 Node* copy_set(const Node* root){
+    if (root == nullptr){
+        return nullptr;
+    }
     Node* copy_node = new Node;
-    copy_node->left = copy_set(root->left);
+    if (copy_node -> left != nullptr){
+        copy_node->left = copy_set(root->left);
+    }
     copy_node -> data = root -> data;
-    copy_node->right = copy_set(root->right);
+    if (copy_node -> right != nullptr){
+        copy_node->right = copy_set(root->right);
+    }
     return copy_node;
 
 }
@@ -14,12 +21,9 @@ Set::Set() {
 }
 
 Set::Set(const Set& other){
-    if (other.mRoot == nullptr){
-        mRoot =  nullptr;
-    } else {
     //mRoot = copy_set(other.mRoot);
     mRoot = copy_set(other.mRoot);
-    }
+    
 
 }
 
@@ -58,6 +62,9 @@ size_t Set::insert(const std::string& value){
     if (mRoot == nullptr){
         mRoot = new Node;
         mRoot ->data = value;
+    }
+    if (mRoot-> data == value){
+        mRoot->count = 0;
     } 
     if (value < mRoot->data){
         if (mRoot -> left == nullptr){
