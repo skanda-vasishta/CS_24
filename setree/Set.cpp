@@ -14,8 +14,8 @@ Set::Set() {
 }
 
 Set::Set(const Set& other){
-    if (other.mRoot == NULL){
-        mRoot =  NULL;
+    if (other.mRoot == nullptr){
+        mRoot =  nullptr;
     } else {
     //mRoot = copy_set(other.mRoot);
     mRoot = copy_set(other.mRoot);
@@ -53,8 +53,29 @@ void debug(){
 }
 
 size_t Set::insert(const std::string& value){
-    //set
-    return 1;
+    if (mRoot == nullptr){
+        mRoot = new Node;
+        mRoot ->data = value;
+    } 
+    if (value < mRoot->data){
+        if (mRoot -> left == nullptr){
+            mRoot->left = new Node();
+            mRoot->left->data = value;
+        } else {
+            insert(mRoot->left->data);
+        }
+    }
+    if (value > mRoot->data){
+        if (mRoot -> right == nullptr){
+            mRoot->right = new Node();
+            mRoot->right->data = value;
+        } else {
+            insert(mRoot->right->data);
+        }
+    }
+    mRoot->count ++;
+
+    return mRoot->count;
 }
 
 const std::string& Set::lookup(size_t n) const{
@@ -69,7 +90,7 @@ void inOrder(Node* root){
         std::cout << root->data;
         inOrder(root->right);
     } else {
-        std::cout<<"-"<<std::endl;
+        std::cout<<"-";
     }
 }
 void Set::print() const{
