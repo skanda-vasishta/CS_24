@@ -31,6 +31,9 @@ Set::Set(Set&& other) {
 Set::~Set(){
     //ok
     //probably call clear here, then delete
+    delete mRoot;
+    delete mRoot->left;
+    delete mRoot->right;
 }
 
 size_t Set::clear() {
