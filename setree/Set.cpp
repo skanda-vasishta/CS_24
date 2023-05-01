@@ -99,6 +99,7 @@ void inOrder(Node* root){
             inOrder(root->left);
             std::cout  << root->data ;
             inOrder(root->right);
+            std::cout << std::endl;
         } else if (root->count == 0){
             std::cout<< " ";
         }
@@ -108,7 +109,6 @@ void inOrder(Node* root){
 }
 void Set::print() const{
     inOrder(mRoot);
-    std::cout << std::endl;
 }
 
 size_t Set:: remove(const std::string& value){
