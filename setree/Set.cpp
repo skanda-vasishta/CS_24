@@ -68,6 +68,8 @@ void inOrder(Node* root){
         inOrder(root->left);
         std::cout << root->data;
         inOrder(root->right);
+    } else {
+        std::cout<<"-";
     }
 }
 void Set::print() const{
