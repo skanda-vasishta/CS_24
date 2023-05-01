@@ -59,35 +59,6 @@ void debug(){
 }
 
 
-size_t insert_help(const std::string& value, Node*& node){
-       if (node == nullptr){
-        node = new Node;
-        node ->data = value;
-    }
-    if (node-> data == value){
-        node->count = 0;
-    } 
-    if (value < node->data){
-        if (node -> left == nullptr){
-            node->left = new Node();
-            node->left->data = value;
-        } else {
-            insert_help(value, node);
-        }
-    }
-    if (value > node->data){
-        if (node -> right == nullptr){
-            node->right = new Node();
-            node->right->data = value;
-        } else {
-            insert_help(value, node);
-
-        }
-    }
-    node->count ++;
-
-    return node->count;
-}
 
 size_t Set::insert(const std::string& value){
     if (mRoot == nullptr){
@@ -102,7 +73,7 @@ size_t Set::insert(const std::string& value){
             mRoot->left = new Node();
             mRoot->left->data = value;
         } else {
-            insert_help(value, mRoot->left);
+            insert(mRoot->left->data);
         }
     }
     if (value > mRoot->data){
@@ -110,7 +81,7 @@ size_t Set::insert(const std::string& value){
             mRoot->right = new Node();
             mRoot->right->data = value;
         } else {
-            insert_help(value, mRoot->right);
+            insert(mRoot->right->data);
         }
     }
     mRoot->count ++;
