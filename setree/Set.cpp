@@ -108,13 +108,14 @@ size_t Set::insert(const std::string& value){
     
 }*/
 size_t Set::insert(const std::string& value) {
+    // If the tree is empty, create a new node and make it the root
     if (mRoot == nullptr) {
         mRoot = new Node;
         mRoot->data = value;
         mRoot->count = 1;
         return 1;
     }
-
+    size_t count_track = 0;
     Node* currentNode = mRoot;
     while (true) {
         if (value == currentNode->data) {
@@ -125,7 +126,8 @@ size_t Set::insert(const std::string& value) {
                 currentNode->left = new Node;
                 currentNode->left->data = value;
                 currentNode->left->count =1;
-                return currentNode->count+1;
+                //return currentNode->count+1;
+                count_track++;
             }
             currentNode = currentNode->left;
         }
@@ -134,12 +136,13 @@ size_t Set::insert(const std::string& value) {
                 currentNode->right = new Node;
                 currentNode->right->data = value;
                 currentNode->right->count++;
-                return currentNode->count+1;
+                //return currentNode->count+1;
+                count_track++;
             }
             currentNode = currentNode->right;
         }
     }
-    return currentNode->count;
+    return count_track;
 }
 
 
@@ -151,9 +154,9 @@ const std::string& Set::lookup(size_t n) const{
 
 void inOrder(Node* root){
     if (root != nullptr) {
-        if (root->size == 1){
+        if (root->count == 1){
             inOrder(root->left);
-            std::cout  << root->data;
+            std::cout  << root->data ;
             inOrder(root->right);
             std::cout << std::endl;
         } else if (root->count == 0){
@@ -173,4 +176,3 @@ size_t Set:: remove(const std::string& value){
     //ok
     return 1;
 }
-
