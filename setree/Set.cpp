@@ -60,7 +60,7 @@ void debug(){
 }
 
 
-size_t insert_help(const std::string& value, Node* node){
+size_t insert_help(const std::string& value, Node*& node){
     if (node == nullptr){
         node = new Node;
         node ->data = value;
