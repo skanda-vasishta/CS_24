@@ -18,9 +18,6 @@ Node* copy_set(const Node* root){
 }
 
 Set::Set() {
-    mRoot->left = nullptr;
-    mRoot->right = nullptr;
-    mRoot->data = nullptr;
     mRoot = nullptr;
 
 
@@ -48,19 +45,25 @@ Set::~Set(){
     
     
 }
-void clear_help(Node*& node){
-    if (node != nullptr){
+size_t clear_help(Node*& node){
+    /*if (node != nullptr){
         clear_help(node->left);
         clear_help(node->right);
         delete node;
         node = nullptr;
     }
-    //
+    */
+    if (node == nullptr){
+        return 0;
+    }
+    size_t count = clear_help(node->left)+1+clear_help(node->right);
+    delete node;
+    return count;
 }
 
 size_t Set::clear() {
-    size_t tree_size = count();
-    clear_help(mRoot);
+    size_t tree_size = clear_help(mRoot);
+    mRoot = nullptr;
     return tree_size;
 }
 
