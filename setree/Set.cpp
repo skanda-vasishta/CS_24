@@ -66,7 +66,7 @@ bool Set::contains(const std::string& value) const {
 
 size_t Set::count() const{
     //ok
-    return 1;
+    return mRoot->count;
 }
 
 void debug(){
@@ -134,11 +134,12 @@ size_t Set::insert(const std::string& value){
                 parent = current;
                 current = current->right;
             }
+            current->count++;
         }
         Node* new_node = new Node;
         new_node->data = value;
-        new_node->count = 1;
-        new_node->size = 1;
+        new_node->count = current->count;
+        //new_node->size = 1;
         new_node->left = nullptr;
         new_node->right = nullptr;
         if (value < parent->data) {
