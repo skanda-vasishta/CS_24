@@ -67,7 +67,8 @@ size_t Set::insert(const std::string& value) {
     Node* currentNode = mRoot;
     while (true) {
         if (value == currentNode->data) {
-            return mRoot->countNodes(currentNode);
+            //return mRoot->countNodes(currentNode);
+            return 0;
         }
         else if (value < currentNode->data) {
             if (currentNode->left == nullptr) {
