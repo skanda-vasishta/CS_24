@@ -131,7 +131,7 @@ size_t Set::insert(const std::string& value) {
     return count_track;
 }
 
-std::string lookup_helper(Node* node, size_t& count, size_t n) {
+const std::string lookup_helper(Node* node, size_t& count, size_t n) {
     if (node == nullptr) {
         throw std::out_of_range("lookup: index out of range");
     }
