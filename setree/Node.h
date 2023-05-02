@@ -10,7 +10,6 @@ class Node {
     public:
     std::string data;
     size_t count;
-    size_t size;
     Node* left;
     Node* right;
     

@@ -8,7 +8,6 @@ Node* copy_set(const Node* root){
     Node* copy_node = new Node;
     copy_node->data = root->data;
     copy_node->count = root->count;
-    copy_node->size = root->size;
 
     copy_node->left = copy_set(root->left);
     copy_node->right = copy_set(root->right);
@@ -46,9 +45,6 @@ Set::~Set(){
     
 }
 void clear_help(Node* node){ //fix here
-    if (node == nullptr){
-        return;
-    }
     if (node != nullptr){
         clear_help(node->left);
         clear_help(node->right);
