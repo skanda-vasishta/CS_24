@@ -168,6 +168,9 @@ void Set::print() const{
 }
 
 bool remove_helper(Node*& node, const std::string& value) {
+    if (countNodes(node) == 1){
+        delete node;
+    }
     if (node == nullptr) {
         return false; 
     }
