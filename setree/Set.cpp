@@ -87,6 +87,8 @@ size_t Set::insert(const std::string& value){
     if (mRoot == nullptr){
         mRoot = new Node;
         mRoot ->data = value;
+        mRoot->left = nullptr;
+        mRoot->right = nullptr;
     }
     if (mRoot-> data == value){
         mRoot->count = 0;
