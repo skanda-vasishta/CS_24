@@ -89,9 +89,10 @@ size_t Set::insert(const std::string& value){
         mRoot ->data = value;
         mRoot->left = nullptr;
         mRoot->right = nullptr;
+        //mRoot->count = 1;
     }
     if (mRoot-> data == value){
-        mRoot->count = 0;
+        //mRoot->count = 0;
     } 
     if (value < mRoot->data){
         mRoot->count = insert_help(value, mRoot->left);
