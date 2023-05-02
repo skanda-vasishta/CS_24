@@ -5,6 +5,10 @@ Node* copy_set(const Node* root){
         return nullptr;
     }
     Node* copy_node = new Node;
+    copy_node->data = root->data;
+    copy_node->count = root->count;
+    copy_node->size = root->size;
+
     if (copy_node -> left != nullptr){
         copy_node->left = copy_set(root->left);
     }
@@ -22,7 +26,6 @@ Set::Set() {
 
 
 Set::Set(const Set& other){
-    //mRoot = copy_set(other.mRoot);
     mRoot = copy_set(other.mRoot);
     
 
