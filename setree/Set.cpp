@@ -191,11 +191,13 @@ void print_helper(Node* root){
     }
     print_helper(root->left); 
     std::cout << " " << root->data << " "; 
-    if (root->right == nullptr){
+    if (root->right == nullptr ){
         std::cout << "-";
+    } else if (root->right == nullptr && root->left == nullptr ) {
+        std::cout << "-" << ")";
     }
     print_helper(root->right); 
-    std::cout << ")"; 
+    //std::cout << ")"; 
 }
 
 void Set::print() const{
