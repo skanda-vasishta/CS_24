@@ -12,9 +12,6 @@ class Node {
     //size_t count;
     Node* left;
     Node* right;
-    
-    //Node();
-    //Node* copy_set(const Node* root);
     Node* copy_set(const Node* root);
     size_t clear_help(Node* node);
     size_t countNodes(Node* node);
