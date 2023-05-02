@@ -66,7 +66,7 @@ size_t insert_help(const std::string& value, Node* node){
         node ->data = value;
         node->left = nullptr;
         node->right = nullptr;
-        node->count = 1;
+        node->count++;
         return node->count;
     }
     if (node-> data == value){
