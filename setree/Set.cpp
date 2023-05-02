@@ -116,7 +116,7 @@ const std::string& Set::lookup(size_t n) const {
 
 void Set::print() const{
      if (mRoot->countNodes(mRoot)==0){
-        std::cout<<"-";
+        std::cout<<"-"<<std::endl;
         return;
     }
     mRoot->print_helper(mRoot);
