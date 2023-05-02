@@ -131,24 +131,24 @@ size_t Set::insert(const std::string& value) {
     return count_track;
 }
 
-const std::string lookup_helper(Node* node, size_t& count, size_t n) {
+const std::string lookup_helper(const Node* node, size_t& count, size_t n) {
     if (node == nullptr) {
-        throw std::out_of_range("lookup: index out of range");
+        throw std::out_of_range("n is out of range");
     }
     size_t left_count = countNodes(node->left);
-    if (left_count == n) {
+    if (n == left_count) {
         return node->data;
-    } else if (left_count < n) {
-        count = left_count + 1;
-        return lookup_helper(node->right, count, n - left_count - 1);
-    } else {
+    } else if (n < left_count) {
         return lookup_helper(node->left, count, n);
+    } else {
+        count = count - left_count - 1;
+        return lookup_helper(node->right, count, n - left_count - 1);
     }
 }
 
 const std::string& Set::lookup(size_t n) const{
     //set
-    size_t count = 0;
+    size_t count = n;
     return lookup_helper(mRoot, count, n);
 }
 
