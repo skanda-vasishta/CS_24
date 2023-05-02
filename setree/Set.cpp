@@ -44,18 +44,20 @@ Set::~Set(){
     
     
 }
-void clear_help(Node* node){ //fix here
-    if (node != nullptr){
-        clear_help(node->left);
-        clear_help(node->right);
-        delete node;
+size_t clear_help(Node* node){ //fix here
+    if (node == nullptr){
+        return 0;
     }
+    size_t count = clear_help(node->left) + clear_help(node->right) + 1;
+    delete node;
+    return count;
+
     //
 }
 
 size_t Set::clear() {
-    size_t tree_size = count();
-    clear_help(mRoot);
+    size_t tree_size = clear_help(mRoot);
+    mRoot = nullptr;
     return tree_size;
 }
 
