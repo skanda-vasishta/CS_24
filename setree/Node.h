@@ -15,11 +15,11 @@ class Node {
     
     //Node();
     //Node* copy_set(const Node* root);
-    /*Node* copy_set(const Node* root);
+    Node* copy_set(const Node* root);
     size_t clear_help(Node* node);
     size_t countNodes(Node* node);
     void print_helper(Node* root);
-    bool remove_helper(Node*& node, const std::string& value);*/
-
+    bool remove_helper(Node*& node, const std::string& value);
+    
 };
 #endif
