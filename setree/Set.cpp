@@ -9,7 +9,7 @@ Set::Set() {
 
 
 Set::Set(const Set& other){
-    mRoot = nullptr;
+    //mRoot = nullptr;
     mRoot = mRoot->copy_set(other.mRoot);
 }
 
