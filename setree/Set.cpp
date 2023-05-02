@@ -178,7 +178,7 @@ const std::string& Set::lookup(size_t n) const{
 }*/
 void print_helper(Node* root){
     if (countNodes(root)==1){
-        std::cout << root->data << std::endl;
+        std::cout << root->data ;
         return;
     }
     if (root == nullptr) {
