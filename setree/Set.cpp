@@ -7,8 +7,6 @@ Node* copy_set(const Node* root){
     else {
     Node* copy_node = new Node;
     copy_node->data = root->data;
-    //copy_node->count = root->count;
-
     copy_node->left = copy_set(root->left);
     copy_node->right = copy_set(root->right);
 
@@ -18,7 +16,8 @@ Node* copy_set(const Node* root){
 
 Set::Set() {
     mRoot = nullptr;
-
+    mRoot->left = nullptr;
+    mRoot->right = nullptr;
 
 
 }
@@ -26,8 +25,6 @@ Set::Set() {
 
 Set::Set(const Set& other){
     mRoot = copy_set(other.mRoot);
-    
-
 }
 
 
@@ -40,9 +37,7 @@ Set::Set(Set&& other) {
 Set::~Set(){
     //ok
     //probably call clear here, then delete
-    clear();
-    
-    
+    clear(); 
 }
 size_t clear_help(Node* node){ //fix here
     if (node == nullptr){
@@ -85,7 +80,6 @@ size_t countNodes(Node* node) { //fix here
 }
 
 size_t Set::count() const{
-    //ok
     return countNodes(mRoot);
 }
 
@@ -94,11 +88,9 @@ void debug(){
 }
 
 size_t Set::insert(const std::string& value) {
-    // If the tree is empty, create a new node and make it the root
     if (mRoot == nullptr) {
         mRoot = new Node;
         mRoot->data = value;
-        //mRoot->count = 1;
         return 1;
     }
     size_t count_track = 0;
@@ -111,8 +103,6 @@ size_t Set::insert(const std::string& value) {
             if (currentNode->left == nullptr) {
                 currentNode->left = new Node;
                 currentNode->left->data = value;
-                //currentNode->left->count =1;
-                //return currentNode->count+1;
                 count_track++;
             }
             currentNode = currentNode->left;
@@ -121,8 +111,6 @@ size_t Set::insert(const std::string& value) {
             if (currentNode->right == nullptr) {
                 currentNode->right = new Node;
                 currentNode->right->data = value;
-                //currentNode->right->count++;
-                //return currentNode->count+1;
                 count_track++;
             }
             currentNode = currentNode->right;
@@ -150,7 +138,6 @@ const std::string& Set::lookup(size_t n) const {
             node = node->left;
         }
     }
-
     throw std::out_of_range("n is out of range");
 }
 
@@ -186,10 +173,6 @@ void Set::print() const{
 }
 
 bool remove_helper(Node*& node, const std::string& value) {
-    /*if (countNodes(node) == 1){
-        delete node;
-        node == nullptr;
-    }*/
     if (node == nullptr) {
         return false; 
     }
