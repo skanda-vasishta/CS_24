@@ -22,11 +22,6 @@ Node* copy_set(const Node* root){
 
 Set::Set() {
     mRoot = nullptr;
-    mRoot->left = nullptr;
-    mRoot->right = nullptr;
-    mRoot->size = 0;
-    mRoot->count = 0;
-    mRoot->data = nullptr;
 
 }
 
@@ -123,7 +118,7 @@ const std::string& Set::lookup(size_t n) const{
 }
 
 void inOrder(Node* root){
-    if (root != NULL) {
+    if (root != nullptr) {
         if (root->count == 1){
             inOrder(root->left);
             std::cout  << root->data ;
