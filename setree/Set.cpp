@@ -64,8 +64,8 @@ size_t insert_help(const std::string& value, Node* node){
     if (node == nullptr){
         node = new Node;
         node ->data = value;
-        node->left = nullptr;
-        node->right = nullptr;
+        //node->left = nullptr;
+        //node->right = nullptr;
         node->count++;
         return node->count;
     }
@@ -89,8 +89,8 @@ size_t Set::insert(const std::string& value){
     if (mRoot == nullptr){
         mRoot = new Node;
         mRoot ->data = value;
-        mRoot->left = nullptr;
-        mRoot->right = nullptr;
+        //mRoot->left = nullptr;
+        //mRoot->right = nullptr;
         //mRoot->count = 1;
     }
     if (mRoot-> data == value){
