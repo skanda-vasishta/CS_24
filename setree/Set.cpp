@@ -22,6 +22,12 @@ Node* copy_set(const Node* root){
 
 Set::Set() {
     mRoot = nullptr;
+    mRoot->left = nullptr;
+    mRoot->right = nullptr;
+    mRoot->size = NULL;
+    mRoot->count = NULL;
+    mRoot->data = nullptr;
+
 }
 
 
