@@ -39,13 +39,27 @@ Set::Set(Set&& other) {
 Set::~Set(){
     //ok
     //probably call clear here, then delete
+    clear();
     delete mRoot;
     
 }
+size_t clear_help(Node*& node){
+    if (node != nullptr){
+        clear_help(node->left);
+        clear_help(node->right);
+        delete node;
+    }
+    //
+}
 
 size_t Set::clear() {
-    //ok
-    return 1;
+    clear_help(mRoot);
+    mRoot = nullptr;
+    size_t tree_size = mRoot->size;
+    mRoot->size = 0;
+    mRoot->count = 0;
+
+    return tree_size;
 }
 
 bool Set::contains(const std::string& value) const {
