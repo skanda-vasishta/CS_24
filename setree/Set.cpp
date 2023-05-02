@@ -1,5 +1,6 @@
 #include "Set.h"
 #include "Node.h"
+#include "Node.cpp"
 
 
 
