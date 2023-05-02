@@ -107,50 +107,42 @@ size_t Set::insert(const std::string& value){
 
     
 }*/
-size_t Set::insert(const std::string& value){
-    if (mRoot == nullptr){
+size_t Set::insert(const std::string& value) {
+    // If the tree is empty, create a new node and make it the root
+    if (mRoot == nullptr) {
         mRoot = new Node;
         mRoot->data = value;
-        mRoot->count = 1;
-        mRoot->size = 1;
-        mRoot->left = nullptr;
-        mRoot->right = nullptr;
         return 1;
     }
-    else {
-        Node* current = mRoot;
-        Node* parent = nullptr;
-        while (current != nullptr) {
-            if (value == current->data) {
-                current->count++;
-                current->size++;
-                return current->count;
-            }
-            else if (value < current->data) {
-                parent = current;
-                current = current->left;
-            }
-            else {
-                parent = current;
-                current = current->right;
-            }
-            current->count++;
+
+    Node* currentNode = mRoot;
+    currentNode->count = 0;
+    while (true) {
+        if (value == currentNode->data) {
+            return currentNode->count;
         }
-        Node* new_node = new Node;
-        new_node->data = value;
-        new_node->count = current->count;
-        //new_node->size = 1;
-        new_node->left = nullptr;
-        new_node->right = nullptr;
-        if (value < parent->data) {
-            parent->left = new_node;
+        else if (value < currentNode->data) {
+            if (currentNode->left == nullptr) {
+                currentNode->left = new Node;
+                currentNode->left->data = value;
+                currentNode->count++;
+                return currentNode->count;
+            }
+            currentNode = currentNode->left;
         }
         else {
-            parent->right = new_node;
+            if (currentNode->right == nullptr) {
+                currentNode->right = new Node;
+                currentNode->right->data = value;
+                currentNode->count++;
+                return currentNode->count;
+            }
+            currentNode = currentNode->right;
         }
-        return new_node->count;
     }
+    return currentNode->count;
 }
+
 
 const std::string& Set::lookup(size_t n) const{
     //set
