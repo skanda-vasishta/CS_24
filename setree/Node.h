@@ -9,7 +9,7 @@
 class Node {
     public:
     std::string data;
-    size_t count;
+    //size_t count;
     Node* left;
     Node* right;
     

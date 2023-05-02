@@ -7,7 +7,7 @@ Node* copy_set(const Node* root){
     else {
     Node* copy_node = new Node;
     copy_node->data = root->data;
-    copy_node->count = root->count;
+    //copy_node->count = root->count;
 
     copy_node->left = copy_set(root->left);
     copy_node->right = copy_set(root->right);
@@ -98,20 +98,20 @@ size_t Set::insert(const std::string& value) {
     if (mRoot == nullptr) {
         mRoot = new Node;
         mRoot->data = value;
-        mRoot->count = 1;
+        //mRoot->count = 1;
         return 1;
     }
     size_t count_track = 0;
     Node* currentNode = mRoot;
     while (true) {
         if (value == currentNode->data) {
-            return currentNode->count;
+            return countNodes(currentNode);
         }
         else if (value < currentNode->data) {
             if (currentNode->left == nullptr) {
                 currentNode->left = new Node;
                 currentNode->left->data = value;
-                currentNode->left->count =1;
+                //currentNode->left->count =1;
                 //return currentNode->count+1;
                 count_track++;
             }
@@ -121,7 +121,7 @@ size_t Set::insert(const std::string& value) {
             if (currentNode->right == nullptr) {
                 currentNode->right = new Node;
                 currentNode->right->data = value;
-                currentNode->right->count++;
+                //currentNode->right->count++;
                 //return currentNode->count+1;
                 count_track++;
             }
@@ -132,28 +132,28 @@ size_t Set::insert(const std::string& value) {
 }
 
 const std::string& Set::lookup(size_t n) const {
-    if (n >= countNodes(mRoot)) {
-        throw std::out_of_range("Set lookup failed: index out of range");
+    if (n >= count()) {
+        throw std::out_of_range("n is out of range");
     }
 
-    const Node* current = mRoot;
-    size_t left_size = 0;
+    Node* node = mRoot;
+    size_t index = 0;
 
-    while (current != nullptr) {
-        left_size = (current->left != nullptr) ? current->left->count : 0;
-
-        if (n == left_size) {
-            return current->data;
-        } else if (n < left_size) {
-            current = current->left;
+    while (node != nullptr) {
+        size_t left_count = (node->left != nullptr) ? countNodes(node->left) : 0;
+        if (index + left_count == n) {
+            return node->data;
+        } else if (index + left_count < n) {
+            index += left_count + 1;
+            node = node->right;
         } else {
-            n -= (left_size + 1);
-            current = current->right;
+            node = node->left;
         }
     }
 
-    throw std::out_of_range("Set lookup failed: index out of range");
+    throw std::out_of_range("n is out of range");
 }
+
 
 
 void print_helper(Node* root){ 
