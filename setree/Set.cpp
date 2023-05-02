@@ -24,8 +24,8 @@ Set::Set() {
     mRoot = nullptr;
     mRoot->left = nullptr;
     mRoot->right = nullptr;
-    mRoot->size = NULL;
-    mRoot->count = NULL;
+    mRoot->size = 0;
+    mRoot->count = 0;
     mRoot->data = nullptr;
 
 }
