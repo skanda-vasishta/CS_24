@@ -1,21 +1,18 @@
 #include "Set.h"
 
 Node* copy_set(const Node* root){
-    if (root == nullptr){
+    if (root == nullptr) {
         return nullptr;
     }
+
     Node* copy_node = new Node;
     copy_node->data = root->data;
     copy_node->count = root->count;
     copy_node->size = root->size;
 
-    if (copy_node -> left != nullptr){
-        copy_node->left = copy_set(root->left);
-    }
-    copy_node -> data = root -> data;
-    if (copy_node -> right != nullptr){
-        copy_node->right = copy_set(root->right);
-    }
+    copy_node->left = copy_set(root->left);
+    copy_node->right = copy_set(root->right);
+
     return copy_node;
 
 }
@@ -35,15 +32,15 @@ Set::Set(const Set& other){
 
 Set::Set(Set&& other) {
     //ok
+    mRoot = other.mRoot;
+    other.mRoot = nullptr;
 }
 
 Set::~Set(){
     //ok
     //probably call clear here, then delete
     clear();
-    if (mRoot != nullptr) {
-        delete mRoot;
-    }
+    
     
 }
 void clear_help(Node*& node){
@@ -51,6 +48,7 @@ void clear_help(Node*& node){
         clear_help(node->left);
         clear_help(node->right);
         delete node;
+        node = nullptr;
     }
     //
 }
@@ -58,7 +56,6 @@ void clear_help(Node*& node){
 size_t Set::clear() {
     size_t tree_size = count();
     clear_help(mRoot);
-    mRoot = nullptr;
     return tree_size;
 }
 
