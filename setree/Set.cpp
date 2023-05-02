@@ -112,11 +112,11 @@ size_t Set::insert(const std::string& value) {
     if (mRoot == nullptr) {
         mRoot = new Node;
         mRoot->data = value;
+        mRoot->count = 1;
         return 1;
     }
 
     Node* currentNode = mRoot;
-    currentNode->count = 0;
     while (true) {
         if (value == currentNode->data) {
             return currentNode->count;
@@ -125,8 +125,8 @@ size_t Set::insert(const std::string& value) {
             if (currentNode->left == nullptr) {
                 currentNode->left = new Node;
                 currentNode->left->data = value;
-                currentNode->count++;
-                return currentNode->count;
+                currentNode->left->count =1;
+                return currentNode->count+1;
             }
             currentNode = currentNode->left;
         }
@@ -134,8 +134,8 @@ size_t Set::insert(const std::string& value) {
             if (currentNode->right == nullptr) {
                 currentNode->right = new Node;
                 currentNode->right->data = value;
-                currentNode->count++;
-                return currentNode->count;
+                currentNode->right->count++;
+                return currentNode->count+1;
             }
             currentNode = currentNode->right;
         }
