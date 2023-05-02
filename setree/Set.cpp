@@ -61,6 +61,7 @@ size_t Set::clear() {
     return tree_size;
 }
 
+
 bool Set::contains(const std::string& value) const {
     Node* root = mRoot;
     while (root != nullptr) {
@@ -167,6 +168,73 @@ void Set::print() const{
 }
 
 size_t Set:: remove(const std::string& value){
-    //ok
-    return 1;
+    size_t removed = 0;
+    Node* parent = nullptr;
+    Node* node = mRoot;
+    while (node != nullptr) {
+        if (value < node->data) {
+            parent = node;
+            node = node->left;
+        } else if (node->data < value) {
+            parent = node;
+            node = node->right;
+        } else {
+            removed++;
+            if (node->count > 1) {
+                node->count--;
+                break;
+            }
+            if (node->left == nullptr && node->right == nullptr) {
+                if (parent == nullptr) {
+                    mRoot = nullptr;
+                } else if (node == parent->left) {
+                    parent->left = nullptr;
+                } else {
+                    parent->right = nullptr;
+                }
+                delete node;
+                break;
+            } else if (node->left == nullptr) {
+                if (parent == nullptr) {
+                    mRoot = node->right;
+                } else if (node == parent->left) {
+                    parent->left = node->right;
+                } else {
+                    parent->right = node->right;
+                }
+                node->right = nullptr;
+                delete node;
+                break;
+            } else if (node->right == nullptr) {
+                if (parent == nullptr) {
+                    mRoot = node->left;
+                } else if (node == parent->left) {
+                    parent->left = node->left;
+                } else {
+                    parent->right = node->left;
+                }
+                node->left = nullptr;
+                delete node;
+                break;
+            } else {
+                Node* min_right_node = node->right;
+                Node* min_right_parent = node;
+                while (min_right_node->left != nullptr) {
+                    min_right_parent = min_right_node;
+                    min_right_node = min_right_node->left;
+                }
+                node->data = min_right_node->data;
+                node->count = min_right_node->count;
+                if (min_right_parent == node) {
+                    node->right = min_right_node->right;
+                } else {
+                    min_right_parent->left = min_right_node->right;
+                }
+                min_right_node->right = nullptr;
+                delete min_right_node;
+                break;
+            }
+        }
+    }
+    return removed;
 }
