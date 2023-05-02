@@ -160,7 +160,7 @@ const std::string& Set::lookup(size_t n) const{
     return s;
 }
 
-void inOrder(Node* root){
+/*void inOrder(Node* root){
     if (root != nullptr) {
         if (root->count == 1){
             inOrder(root->left);
@@ -175,9 +175,21 @@ void inOrder(Node* root){
     } else {
         //std::cout<<"-";
     }
+}*/
+void print_helper(Node* root){
+    if (root == nullptr) {
+        std::cout << "-"; 
+        return;
+    }
+    std::cout << "("; 
+    print_helper(root->left); 
+    std::cout << " " << root->data << " "; 
+    print_helper(root->right); 
+    std::cout << ")"; 
 }
+
 void Set::print() const{
-    inOrder(mRoot);
+    print_helper(mRoot);
 }
 
 size_t Set:: remove(const std::string& value){
