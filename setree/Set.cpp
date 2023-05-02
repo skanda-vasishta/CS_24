@@ -108,7 +108,6 @@ size_t Set::insert(const std::string& value){
     
 }*/
 size_t Set::insert(const std::string& value) {
-    // If the tree is empty, create a new node and make it the root
     if (mRoot == nullptr) {
         mRoot = new Node;
         mRoot->data = value;
@@ -152,11 +151,11 @@ const std::string& Set::lookup(size_t n) const{
 
 void inOrder(Node* root){
     if (root != nullptr) {
-        if (root->count == 1){
+        if (root->size == 1){
             inOrder(root->left);
-            std::cout  << root->data ;
+            std::cout  << root->data << " " ;
             inOrder(root->right);
-            std::cout << std::endl;
+            std::cout << " ";
         } else if (root->count == 0){
             //
         } else {
