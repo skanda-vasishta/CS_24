@@ -73,7 +73,7 @@ void debug(){
     //ok
 }
 
-
+/*
 size_t insert_help(const std::string& value, Node*& node){
     if (node == nullptr){
         node = new Node;
@@ -106,6 +106,49 @@ size_t Set::insert(const std::string& value){
     }
 
     
+}*/
+size_t Set::insert(const std::string& value){
+    if (mRoot == nullptr){
+        mRoot = new Node;
+        mRoot->data = value;
+        mRoot->count = 1;
+        mRoot->size = 1;
+        mRoot->left = nullptr;
+        mRoot->right = nullptr;
+        return 1;
+    }
+    else {
+        Node* current = mRoot;
+        Node* parent = nullptr;
+        while (current != nullptr) {
+            if (value == current->data) {
+                current->count++;
+                current->size++;
+                return current->count;
+            }
+            else if (value < current->data) {
+                parent = current;
+                current = current->left;
+            }
+            else {
+                parent = current;
+                current = current->right;
+            }
+        }
+        Node* new_node = new Node;
+        new_node->data = value;
+        new_node->count = 1;
+        new_node->size = 1;
+        new_node->left = nullptr;
+        new_node->right = nullptr;
+        if (value < parent->data) {
+            parent->left = new_node;
+        }
+        else {
+            parent->right = new_node;
+        }
+        return new_node->count;
+    }
 }
 
 const std::string& Set::lookup(size_t n) const{
