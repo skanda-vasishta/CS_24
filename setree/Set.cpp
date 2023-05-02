@@ -73,10 +73,11 @@ size_t insert_help(const std::string& value, Node* node){
     }
     if (value > node->data){
         insert_help(value, node->right);
+    }
     node->count++;
-    
+
     return node->count;
-}
+
 }
 size_t Set::insert(const std::string& value){
     if (mRoot == nullptr){
