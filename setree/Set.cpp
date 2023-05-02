@@ -178,12 +178,18 @@ const std::string& Set::lookup(size_t n) const{
 }*/
 void print_helper(Node* root){
     if (root == nullptr) {
-        std::cout << "-"; 
+        std::cout << ""; 
         return;
     }
     std::cout << "("; 
+    if (root->left == nullptr){
+        std::cout << "-";
+    }
     print_helper(root->left); 
     std::cout << " " << root->data << " "; 
+    if (root->right == nullptr){
+        std::cout << "-";
+    }
     print_helper(root->right); 
     std::cout << ")"; 
 }
