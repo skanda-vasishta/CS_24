@@ -36,12 +36,16 @@ size_t Node::countNodes(Node* node) const { //fix here
 
 //helper function for print
 void Node::print_helper(Node* root){ 
+    if (countNodes(root)==0){
+        std::cout<<"-";
+        return;
+    }
     if (countNodes(root)==1){
         std::cout << root->data ;
         return;
     }
     if (root == nullptr) {
-        std::cout << "-"; 
+        std::cout << ""; 
         return;
     }
     std::cout << "("; 
