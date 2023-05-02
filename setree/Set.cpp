@@ -20,6 +20,7 @@ Set::Set() {
     mRoot = nullptr;
 }
 
+
 Set::Set(const Set& other){
     //mRoot = copy_set(other.mRoot);
     mRoot = copy_set(other.mRoot);
@@ -59,7 +60,24 @@ void debug(){
 }
 
 
-
+size_t insert_help(const std::string& value, Node* node){
+    if (node == nullptr){
+        node = new Node;
+        node ->data = value;
+    }
+    if (node-> data == value){
+        node->count = 0;
+    } 
+    if (value < node->data){
+        insert_help(value, node->left);
+    }
+    if (value > node->data){
+        insert_help(value, node->right);
+    node->count++;
+    
+    return node->count;
+}
+}
 size_t Set::insert(const std::string& value){
     if (mRoot == nullptr){
         mRoot = new Node;
@@ -69,22 +87,12 @@ size_t Set::insert(const std::string& value){
         mRoot->count = 0;
     } 
     if (value < mRoot->data){
-        if (mRoot -> left == nullptr){
-            mRoot->left = new Node();
-            mRoot->left->data = value;
-        } else {
-            insert(mRoot->left->data);
-        }
+        mRoot->count = insert_help(value, mRoot->left);
     }
     if (value > mRoot->data){
-        if (mRoot -> right == nullptr){
-            mRoot->right = new Node();
-            mRoot->right->data = value;
-        } else {
-            insert(mRoot->right->data);
-        }
+        mRoot->count = insert_help(value, mRoot->right);
     }
-    mRoot->count ++;
+    //mRoot->count ++;
 
     return mRoot->count;
 }

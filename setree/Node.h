@@ -9,10 +9,11 @@
 class Node {
     public:
     std::string data;
-    size_t count = 0;
-    Node* left = nullptr;
-    Node* right = nullptr;
-
+    size_t count;
+    Node* left;
+    Node* right;
+    
+    Node();
     //Node* copy_set(const Node* root);
 
 };
