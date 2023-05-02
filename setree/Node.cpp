@@ -64,10 +64,6 @@ bool Node::remove_helper(Node*& node, const std::string& value) {
     if (node == nullptr) {
         return false; 
     }
-    if (countNodes(node) == 1){
-        delete node;
-        return true;
-    }
     if (value < node->data) {
         return remove_helper(node->left, value);
     } else if (value > node->data) {
@@ -76,14 +72,17 @@ bool Node::remove_helper(Node*& node, const std::string& value) {
         if (node->left == nullptr && node->right == nullptr) { 
             delete node;
             node = nullptr;
+            return true;
         } else if (node->left == nullptr) { 
             Node* temp = node;
             node = node->right;
             delete temp;
+            return true;
         } else if (node->right == nullptr) { 
             Node* temp = node;
             node = node->left;
             delete temp;
+            return true;
         } else { 
             Node* current = node->left;
             while (current->right != nullptr) {
