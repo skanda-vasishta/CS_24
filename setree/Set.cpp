@@ -43,7 +43,7 @@ Set::~Set(){
     delete mRoot;
     
 }
-size_t clear_help(Node*& node){
+void clear_help(Node*& node){
     if (node != nullptr){
         clear_help(node->left);
         clear_help(node->right);
