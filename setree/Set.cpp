@@ -64,9 +64,17 @@ bool Set::contains(const std::string& value) const {
     return false;
 }
 
+size_t countNodes(Node* node) {
+    if (node == nullptr) {
+        return 0;
+    } else {
+        return (countNodes(node->left) + 1 + countNodes(node->right));
+    }
+}
+
 size_t Set::count() const{
     //ok
-    return 1;
+    return countNodes(mRoot);
 }
 
 void debug(){
