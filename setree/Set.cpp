@@ -18,10 +18,11 @@ Node* copy_set(const Node* root){
 }
 
 Set::Set() {
-    mRoot = nullptr;
     mRoot->left = nullptr;
     mRoot->right = nullptr;
     mRoot->data = nullptr;
+    mRoot = nullptr;
+
 
 
 }
