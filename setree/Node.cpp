@@ -25,7 +25,7 @@ size_t Node::clear_help(Node* node){ //fix here
 }
 
 //helper function for count
-size_t countNodes(Node* node) { //fix here
+size_t Node::countNodes(Node* node) const { //fix here
     if (node == nullptr) {
         return 0;
     } else {
@@ -34,7 +34,7 @@ size_t countNodes(Node* node) { //fix here
 }
 
 //helper function for print
-void print_helper(Node* root){ 
+void Node::print_helper(Node* root){ 
     if (countNodes(root)==1){
         std::cout << root->data ;
         return;
@@ -59,7 +59,7 @@ void print_helper(Node* root){
 }
 
 //helper for remove
-bool remove_helper(Node*& node, const std::string& value) {
+bool Node::remove_helper(Node*& node, const std::string& value) {
     if (node == nullptr) {
         return false; 
     }

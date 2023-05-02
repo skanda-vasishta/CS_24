@@ -14,7 +14,7 @@ class Node {
     Node* right;
     Node* copy_set(const Node* root);
     size_t clear_help(Node* node);
-    size_t countNodes(Node* node);
+    size_t countNodes(Node* node) const;
     void print_helper(Node* root);
     bool remove_helper(Node*& node, const std::string& value);
     
