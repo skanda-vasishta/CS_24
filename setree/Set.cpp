@@ -19,6 +19,10 @@ Node* copy_set(const Node* root){
 
 Set::Set() {
     mRoot = nullptr;
+    mRoot->left = nullptr;
+    mRoot->right = nullptr;
+    mRoot->data = nullptr;
+
 
 }
 
@@ -180,9 +184,6 @@ void print_helper(Node* root){
     if (countNodes(root)==1){
         std::cout << root->data ;
         return;
-    }
-    if (countNodes(root)==3){
-        //
     }
     if (root == nullptr) {
         std::cout << ""; 
