@@ -82,7 +82,7 @@ size_t insert_help(const std::string& value, Node* node){
     }
     //node->count++;
 
-    //return node->count;
+    return node->count;
 
 }
 size_t Set::insert(const std::string& value){
