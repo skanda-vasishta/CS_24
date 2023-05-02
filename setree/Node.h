@@ -8,10 +8,10 @@
 
 class Node {
     public:
-    std::string data = 0;
+    std::string data = "";
     //size_t count;
-    Node* left = nullptr;
-    Node* right = nullptr;
+    Node* left = NULL;
+    Node* right = NULL;
     Node* copy_set(const Node* root);
     size_t clear_help(Node* node);
     size_t countNodes(Node* node) const;
