@@ -55,7 +55,7 @@ void clear_help(Node*& node){
 }
 
 size_t Set::clear() {
-    size_t tree_size = mRoot->size;
+    size_t tree_size = count();
     clear_help(mRoot);
     mRoot = nullptr;
     return tree_size;
