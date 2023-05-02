@@ -41,7 +41,7 @@ void Node::print_helper(Node* root){
         return;
     }
     if (root == nullptr) {
-        std::cout << ""; 
+        std::cout << "-"; 
         return;
     }
     std::cout << "("; 
