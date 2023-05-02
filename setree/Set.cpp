@@ -66,13 +66,11 @@ size_t insert_help(const std::string& value, Node*& node) {
         node->data = value;
         node->left = nullptr;
         node->right = nullptr;
-        node->count = 1;
-        return 1; 
+        node->count = 1; 
     }
 
     if (node->data == value) {
-        node->count++;
-        return node->count;
+        //;   
     } 
 
     if (value < node->data) {
@@ -82,6 +80,8 @@ size_t insert_help(const std::string& value, Node*& node) {
         node->count++;
         return insert_help(value, node->right);
     }
+
+    return node->count;
 }
 
 size_t Set::insert(const std::string& value){
