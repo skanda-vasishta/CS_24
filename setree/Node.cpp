@@ -21,6 +21,7 @@ size_t Node::clear_help(Node* node){ //fix here
     }
     size_t count = clear_help(node->left) + clear_help(node->right) + 1;
     delete node;
+    node = nullptr;
     return count;
 }
 
