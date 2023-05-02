@@ -15,11 +15,7 @@ Node* copy_set(const Node* root){
 }
 
 Set::Set() {
-    mRoot = nullptr;
-    mRoot->left = nullptr;
-    mRoot->right = nullptr;
-
-
+    mRoot = nullptr;            
 }
 
 
@@ -34,11 +30,6 @@ Set::Set(Set&& other) {
     other.mRoot = nullptr;
 }
 
-Set::~Set(){
-    //ok
-    //probably call clear here, then delete
-    clear(); 
-}
 size_t clear_help(Node* node){ //fix here
     if (node == nullptr){
         return 0;
@@ -55,6 +46,12 @@ size_t Set::clear() {
     mRoot = nullptr;
     return tree_size;
 }
+Set::~Set(){
+    //ok
+    //probably call clear here, then delete
+    clear(); 
+}
+
 
 
 bool Set::contains(const std::string& value) const {
