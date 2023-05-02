@@ -1,5 +1,5 @@
 #include "Node.h"
-
+/*
 //helper function for copy
 Node* Node::copy_set(const Node* root){
     if (root == nullptr) {
@@ -89,4 +89,4 @@ bool remove_helper(Node*& node, const std::string& value) {
         }
         return true; 
     }
-}
+}*/
