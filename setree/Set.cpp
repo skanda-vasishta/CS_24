@@ -64,6 +64,8 @@ size_t insert_help(const std::string& value, Node* node){
     if (node == nullptr){
         node = new Node;
         node ->data = value;
+        node->left = nullptr;
+        node->right = nullptr;
     }
     if (node-> data == value){
         //
