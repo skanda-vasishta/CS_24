@@ -181,6 +181,9 @@ void print_helper(Node* root){
         std::cout << root->data ;
         return;
     }
+    if (countNodes(root)==3){
+        //
+    }
     if (root == nullptr) {
         std::cout << ""; 
         return;
@@ -202,6 +205,7 @@ void print_helper(Node* root){
 
 void Set::print() const{
     print_helper(mRoot);
+    std::cout << std::endl;
 }
 
 size_t Set:: remove(const std::string& value){
