@@ -45,7 +45,7 @@ Set::~Set(){
     
     
 }
-size_t clear_help(Node*& node){
+size_t clear_help(Node* node){
     /*if (node != nullptr){
         clear_help(node->left);
         clear_help(node->right);
