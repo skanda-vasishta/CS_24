@@ -13,7 +13,7 @@ class Node {
     Node* left;
     Node* right;
     
-    Node();
+    //Node();
     //Node* copy_set(const Node* root);
 
 };
