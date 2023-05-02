@@ -40,7 +40,9 @@ Set::~Set(){
     //ok
     //probably call clear here, then delete
     clear();
-    delete mRoot;
+    if (mRoot != nullptr) {
+        delete mRoot;
+    }
     
 }
 void clear_help(Node*& node){
@@ -53,12 +55,9 @@ void clear_help(Node*& node){
 }
 
 size_t Set::clear() {
+    size_t tree_size = mRoot->size;
     clear_help(mRoot);
     mRoot = nullptr;
-    size_t tree_size = mRoot->size;
-    mRoot->size = 0;
-    mRoot->count = 0;
-
     return tree_size;
 }
 
