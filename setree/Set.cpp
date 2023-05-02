@@ -6,7 +6,7 @@ Node* copy_set(const Node* root){
     }
 
     Node* copy_node = new Node;
-    //copy_node->data = root->data;
+    copy_node->data = root->data;
     copy_node->count = root->count;
     copy_node->size = root->size;
 
@@ -45,9 +45,7 @@ Set::~Set(){
     
     
 }
-void clear_help(Node* root){ //fix here
-    Node * node = new Node;
-    node = root;
+void clear_help(Node*& node){ //fix here
     if (node != nullptr){
         clear_help(node->left);
         clear_help(node->right);
@@ -64,7 +62,16 @@ size_t Set::clear() {
 }
 
 bool Set::contains(const std::string& value) const {
-    //ok
+    Node* root = mRoot;
+    while (root != nullptr) {
+        if (value == root->data) {
+            return true;
+        } else if (value < root->data) {
+            root = root->left;
+        } else {
+            root = root->right;
+        }
+    }
     return false;
 }
 
