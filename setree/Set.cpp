@@ -4,7 +4,7 @@ Node* copy_set(const Node* root){
     if (root == nullptr) {
         return nullptr;
     }
-
+    else {
     Node* copy_node = new Node;
     copy_node->data = root->data;
     copy_node->count = root->count;
@@ -12,7 +12,7 @@ Node* copy_set(const Node* root){
     copy_node->left = copy_set(root->left);
     copy_node->right = copy_set(root->right);
 
-    return copy_node;
+    return copy_node; }
 
 }
 
