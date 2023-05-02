@@ -46,6 +46,9 @@ Set::~Set(){
     
 }
 void clear_help(Node*& node){ //fix here
+    if (node == nullptr){
+        return;
+    }
     if (node != nullptr){
         clear_help(node->left);
         clear_help(node->right);
