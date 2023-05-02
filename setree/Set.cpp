@@ -123,6 +123,11 @@ void Set::print() const{
 
 size_t Set:: remove(const std::string& value){
     size_t count = 0;
+    if (mRoot->countNodes(mRoot) == 1){
+        delete mRoot;
+        return 1;
+
+    }
     while (mRoot->remove_helper(mRoot, value)) {
         count++;
     }
