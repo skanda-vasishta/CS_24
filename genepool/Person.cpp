@@ -1,5 +1,13 @@
 #include "Person.h"
 
+
+Person::Person(const std::string& name, Gender& gender, Person* mother, Person* father) {
+   this->personName = name;
+    this->personGender = gender;
+    this->momName = mother;
+    this->dadName = father;
+}
+
 // Person Member Functions
  const std::string& Person::name()   const{
 
@@ -95,5 +103,5 @@
   }
 
   std::set<Person*> Person::uncles(PMod pmod = PMod::ANY, SMod smod = SMod::ANY){
-    
+
   }
