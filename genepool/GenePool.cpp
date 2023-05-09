@@ -50,9 +50,19 @@ GenePool:: ~GenePool(){
 
 // GenePool Member Functions
  std::set<Person*> GenePool::everyone() const {
-
+    std::set<Person*> result;
+    for(auto& p : pool) {
+        result.insert(p.second);
+    }
+    return result;
  }
 
 Person* GenePool::find(const std::string& name) const{
+    for (auto person : pool) {
+        if (person.second->name() == name) {
+            return person.second;
+        }
+    }
+    return nullptr;
     
 }
