@@ -36,17 +36,27 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
   }
 
   // Required Relationship Functions
-  std::set<Person*> Person::ancestors(PMod pmod){
+ std::set<Person*> Person::ancestors(PMod pmod) {
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
+    std::set<Person*> parent;
+    
+    if (pmod == PMod::MATERNAL || pmod == PMod::ANY) {
+        if (this->mother() != nullptr) {
+            parent = this->mother()->ancestors(PMod::MATERNAL);
+            result.insert(parent.begin(), parent.end());
+            result.insert(this->mother());
+        }
     }
-    if (this->father() != nullptr){
-        result.insert(this->father());
+    if (pmod == PMod::PATERNAL || pmod == PMod::ANY) {
+        if (this->father() != nullptr) {
+            parent = this->father()->ancestors(PMod::PATERNAL);
+            result.insert(parent.begin(), parent.end());
+            result.insert(this->father());
+        }
     }
     return result;
+}
 
-  }
 
   std::set<Person*> Person::aunts(PMod pmod, SMod smod){
     std::set<Person*> result;
