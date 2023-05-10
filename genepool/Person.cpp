@@ -87,7 +87,7 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
     for (Person* par : parent){
       std::set<Person*>sibling = par->siblings(pmod, smod);
       for (Person* sib : sibling){
-        std::set<Person*>kids = this->children();
+        std::set<Person*>kids = sib->children();
         for (Person* kid : kids){
           result.insert(kid);
         }
