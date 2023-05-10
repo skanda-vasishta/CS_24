@@ -284,8 +284,9 @@ std::set<Person*> Person::siblings(PMod pmod, SMod smod) {
                             result.insert(child);
                         }
                     } else if (smod == SMod::HALF) {
-                        if ((child->mother() == this->mother() && (child->father() == nullptr || child->father() != this->father()))
-                                || (child->father() == this->father() && (child->mother() == nullptr || child->mother() != this->mother()))) {
+                        if (((child->mother() == this->mother() && child->father() != this->father())
+                              || (child->father() == this->father() && child->mother() != nullptr && child->mother()->gender() == Gender::FEMALE))
+                              && child->mother() != nullptr && child->mother() != this->mother()) {
                             result.insert(child);
                         }
                     } else {  
@@ -297,6 +298,7 @@ std::set<Person*> Person::siblings(PMod pmod, SMod smod) {
     }
     return result;
 }
+
 
 
 
