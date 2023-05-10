@@ -38,30 +38,39 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
   // Required Relationship Functions
  std::set<Person*> Person::ancestors(PMod pmod) {
     std::set<Person*> result;
-    std::set<Person*> parent;
     
     if (pmod == PMod::MATERNAL || pmod == PMod::ANY) {
         if (this->mother() != nullptr) {
-            parent = this->mother()->ancestors(PMod::MATERNAL);
-            result.insert(parent.begin(), parent.end());
+            std::set<Person*> maternalAncestors = this->mother()->ancestors(PMod::MATERNAL);
+            result.insert(maternalAncestors.begin(), maternalAncestors.end());
             result.insert(this->mother());
         }
     }
+    
     if (pmod == PMod::PATERNAL || pmod == PMod::ANY) {
         if (this->father() != nullptr) {
-            parent = this->father()->ancestors(PMod::PATERNAL);
-            result.insert(parent.begin(), parent.end());
+            std::set<Person*> paternalAncestors = this->father()->ancestors(PMod::PATERNAL);
+            result.insert(paternalAncestors.begin(), paternalAncestors.end());
             result.insert(this->father());
         }
     }
+    
     if (pmod == PMod::ANY) {
-        for (auto p : result) {
-            parent = p->ancestors(PMod::ANY);
-            result.insert(parent.begin(), parent.end());
+        size_t previousSize = 0;
+        while (result.size() > previousSize) {
+            previousSize = result.size();
+            std::set<Person*> ancestorsToAdd;
+            for (Person* p : result) {
+                std::set<Person*> moreAncestors = p->ancestors(PMod::ANY);
+                ancestorsToAdd.insert(moreAncestors.begin(), moreAncestors.end());
+            }
+            result.insert(ancestorsToAdd.begin(), ancestorsToAdd.end());
         }
     }
+    
     return result;
 }
+
 
 
 
