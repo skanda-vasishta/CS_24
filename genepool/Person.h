@@ -17,6 +17,7 @@ class Person {
   Gender personGender;
   Person *momName;
   Person *dadName;
+  
   // Helper Functions
 
 public:

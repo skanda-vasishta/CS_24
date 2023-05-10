@@ -16,6 +16,8 @@
 class GenePool {
   // Member Variables
   std::map<std::string,Person*> pool;
+
+
   // Helper Functions
 
 public:
@@ -31,6 +33,7 @@ public:
   // Find a person in the database by name.
   // Return nullptr if there is no such person.
   Person* find(const std::string& name) const;
+  
 };
 
 #endif
