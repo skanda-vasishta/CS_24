@@ -49,15 +49,15 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
   }
 
   std::set<Person*> Person::aunts(PMod pmod, SMod smod){
-    std::set<Person*> result;   
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
-    }
-    if (this->father() != nullptr){
-        result.insert(this->father());
+    std::set<Person*> result;
+    std::set<Person*> parent = this->parents(pmod);
+    for (Person* par : parent){
+      std::set<Person*> sister = this->sisters(pmod, smod);
+      for (Person* sis : sister){
+        result.insert(sis);
+      }
     }
     return result;
-
   }
 
   std::set<Person*> Person::brothers(PMod pmod, SMod smod ){
@@ -131,7 +131,7 @@ std::set<Person*> Person::grandchildren() {
   std::set<Person*> Person::granddaughters(){
     std::set<Person*> result;
     std::set<Person*> grandkids = this->grandchildren();
-    for (auto kid : grandkids){
+    for (Person* kid : grandkids){
       if (kid->gender() == Gender::FEMALE){
         result.insert(kid);
       }
@@ -193,7 +193,7 @@ std::set<Person*> Person::grandmothers(PMod pmod){
   std::set<Person*> Person::grandsons(){
     std::set<Person*> result;
     std::set<Person*> grandkids = this->grandchildren();
-    for (auto kid : grandkids){
+    for (Person* kid : grandkids){
       if (kid->gender() == Gender::MALE){
         result.insert(kid);
       }
@@ -204,26 +204,26 @@ std::set<Person*> Person::grandmothers(PMod pmod){
 
   std::set<Person*> Person::nephews(PMod pmod , SMod smod){
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
-    }
-    if (this->father() != nullptr){
-        result.insert(this->father());
+    std::set<Person*> sibs = this->siblings(pmod,smod);
+    for (Person* sib : sibs){
+      std::set<Person*> kids = this->sons();
+      for (Person* kid : kids){
+        result.insert(kid);
+      }
     }
     return result;
-
   }
 
   std::set<Person*> Person::nieces(PMod pmod , SMod smod){
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
-    }
-    if (this->father() != nullptr){
-        result.insert(this->father());
+    std::set<Person*> sibs = this->siblings(pmod,smod);
+    for (Person* sib : sibs){
+      std::set<Person*> kids = this->daughters();
+      for (Person* kid : kids){
+        result.insert(kid);
+      }
     }
     return result;
-
   }
 
   std::set<Person*> Person::parents(PMod pmod) {
@@ -325,11 +325,12 @@ std::set<Person*> Person::siblings(PMod pmod, SMod smod) {
 
   std::set<Person*> Person::uncles(PMod pmod , SMod smod ){
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
-    }
-    if (this->father() != nullptr){
-        result.insert(this->father());
+    std::set<Person*> parent = this->parents(pmod);
+    for (Person* par : parent){
+      std::set<Person*> brother = this->brothers(pmod, smod);
+      for (Person* bro : brother){
+        result.insert(bro);
+      }
     }
     return result;
 
