@@ -144,23 +144,16 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
 
   std::set<Person*> Person::grandfathers(PMod pmod){
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
-    }
-    if (this->father() != nullptr){
-        result.insert(this->father());
+    if (this->father()->father() != nullptr){
+        result.insert(this->father()->father());
     }
     return result;
-
   }
 
   std::set<Person*> Person::grandmothers(PMod pmod){
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
-    }
-    if (this->father() != nullptr){
-        result.insert(this->father());
+    if (this->mother()->mother() != nullptr){
+        result.insert(this->mother()->mother());
     }
     return result;
 
@@ -168,12 +161,7 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
 
   std::set<Person*> Person::grandparents(PMod pmod ){
     std::set<Person*> result;
-    if (this->mother()->mother() != nullptr){
-        result.insert(this->mother()->mother());
-    }
-    if (this->father() != nullptr){
-        result.insert(this->father()->father());
-    }
+    
     return result;
 
   }
