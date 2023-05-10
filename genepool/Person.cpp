@@ -117,28 +117,26 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
 
   }
 
-  std::set<Person*> Person::grandchildren(){
+std::set<Person*> Person::grandchildren() {
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
-    }
-    if (this->father() != nullptr){
-        result.insert(this->father());
+    std::set<Person*> children_set = this->children();
+    for (Person* child : children_set) {
+        std::set<Person*> grandchildren_set = child->children();
+        result.insert(grandchildren_set.begin(), grandchildren_set.end());
     }
     return result;
+}
 
-  }
 
   std::set<Person*> Person::granddaughters(){
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
-    }
-    if (this->father() != nullptr){
-        result.insert(this->father());
+    std::set<Person*> grandkids = this->grandchildren();
+    for (auto kid : grandkids){
+      if (kid->gender() == Gender::FEMALE){
+        result.insert(kid);
+      }
     }
     return result;
-
   }
 
 std::set<Person*> Person::grandfathers(PMod pmod){
@@ -194,15 +192,15 @@ std::set<Person*> Person::grandmothers(PMod pmod){
 
   std::set<Person*> Person::grandsons(){
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
-    }
-    if (this->father() != nullptr){
-        result.insert(this->father());
+    std::set<Person*> grandkids = this->grandchildren();
+    for (auto kid : grandkids){
+      if (kid->gender() == Gender::MALE){
+        result.insert(kid);
+      }
     }
     return result;
-
   }
+
 
   std::set<Person*> Person::nephews(PMod pmod , SMod smod){
     std::set<Person*> result;
@@ -228,7 +226,7 @@ std::set<Person*> Person::grandmothers(PMod pmod){
 
   }
 
-    std::set<Person*> Person::parents(PMod pmod) {
+  std::set<Person*> Person::parents(PMod pmod) {
     std::set<Person*> result;
     if (pmod == PMod::MATERNAL || pmod == PMod::ANY) {
         if (this->mother() != nullptr) {
@@ -243,7 +241,8 @@ std::set<Person*> Person::grandmothers(PMod pmod){
     return result;
 }
 
-  std::set<Person*> Person::siblings(PMod pmod, SMod smod) {
+
+std::set<Person*> Person::siblings(PMod pmod, SMod smod) {
     std::set<Person*> result;
     std::set<Person*> parent_set = this->parents();
     for (Person* parent : parent_set) {
@@ -298,6 +297,7 @@ std::set<Person*> Person::grandmothers(PMod pmod){
     }
     return result;
 }
+
 
 
   std::set<Person*> Person::sisters(PMod pmod , SMod smod ){
