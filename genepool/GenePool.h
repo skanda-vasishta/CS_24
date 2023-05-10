@@ -8,6 +8,7 @@
 #include <set>
 #include <string>
 #include <map>
+#include <algorithm>
 
 // This is the database class you need to implement.
 // It stores a collection of people and supports lookup by name.

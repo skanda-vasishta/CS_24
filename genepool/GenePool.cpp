@@ -28,6 +28,7 @@ GenePool::GenePool(std::istream& stream) {
         Person*dad = nullptr;
         if (momName != "???"){
             mom = pool[momName];
+            //mom->
         }
         if (dadName != "???"){
             dad = pool[dadName];
@@ -37,12 +38,13 @@ GenePool::GenePool(std::istream& stream) {
         Person *p = new Person(personName, personGender, mom, dad);
         pool[personName] = p;
 
-        /*if(mom){
-            pool[momName]->add_child(p);
+        if(mom){
+            mom->addchild(p);
         }
         if(dad){
-            pool[dadName]->add_child(p);
-        }*/
+            dad->addchild(p);
+        }
+
     }
 }
 
