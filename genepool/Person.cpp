@@ -43,8 +43,8 @@ std::set<Person*> Person::ancestors(PMod pmod) {
         Person* mother = this->mother();
         if (mother != nullptr) {
             std::set<Person*> maternalAncestors = mother->ancestors(PMod::MATERNAL);
-            result.insert(maternalAncestors.begin(), maternalAncestors.end());
             result.insert(mother);
+            result.insert(maternalAncestors.begin(), maternalAncestors.end());
         }
     }
     
@@ -52,20 +52,14 @@ std::set<Person*> Person::ancestors(PMod pmod) {
         Person* father = this->father();
         if (father != nullptr) {
             std::set<Person*> paternalAncestors = father->ancestors(PMod::PATERNAL);
-            result.insert(paternalAncestors.begin(), paternalAncestors.end());
             result.insert(father);
+            result.insert(paternalAncestors.begin(), paternalAncestors.end());
         }
-    }
-    
-    if (pmod == PMod::ANY && this->mother() != nullptr && this->father() != nullptr) {
-        std::set<Person*> maternalAncestors = this->mother()->ancestors(PMod::MATERNAL);
-        std::set<Person*> paternalAncestors = this->father()->ancestors(PMod::PATERNAL);
-        result.insert(maternalAncestors.begin(), maternalAncestors.end());
-        result.insert(paternalAncestors.begin(), paternalAncestors.end());
     }
     
     return result;
 }
+
 
 
 
