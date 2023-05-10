@@ -132,17 +132,18 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
 
   }
 
-  std::set<Person*> Person::descendants(){
+  std::set<Person*> Person::descendants() {
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
+    std::set<Person*> kids = this->children();
+    for (Person* kid : kids) {
+        result.insert(kid);
+        std::set<Person*> next_kid = kid->descendants();
+        result.insert(next_kid.begin(), next_kid.end());
     }
-    if (this->father() != nullptr){
-        result.insert(this->father());
-    }
-    return result;
 
-  }
+    return result;
+}
+
 
 std::set<Person*> Person::grandchildren() {
     std::set<Person*> result;
