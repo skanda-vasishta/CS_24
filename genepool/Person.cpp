@@ -54,8 +54,15 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
             result.insert(this->father());
         }
     }
+    if (pmod == PMod::ANY) {
+        for (auto p : result) {
+            parent = p->ancestors(PMod::ANY);
+            result.insert(parent.begin(), parent.end());
+        }
+    }
     return result;
 }
+
 
 
   std::set<Person*> Person::aunts(PMod pmod, SMod smod){
