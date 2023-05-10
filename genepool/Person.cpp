@@ -54,19 +54,15 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
             result.insert(this->father());
         }
     }
-    
     if (pmod == PMod::ANY) {
-        size_t previousSize = 0;
-        while (result.size() > previousSize) {
-            previousSize = result.size();
-            std::set<Person*> ancestorsToAdd;
-            for (Person* p : result) {
-                std::set<Person*> moreAncestors = p->ancestors(PMod::ANY);
-                ancestorsToAdd.insert(moreAncestors.begin(), moreAncestors.end());
-            }
-            result.insert(ancestorsToAdd.begin(), ancestorsToAdd.end());
+        if (this->father() != nullptr) {
+            std::set<Person*> paternalAncestors = this->father()->ancestors(PMod::ANY);
+            result.insert(paternalAncestors.begin(), paternalAncestors.end());
+            result.insert(this->father());
         }
     }
+    
+  
     
     return result;
 }
