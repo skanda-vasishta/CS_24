@@ -142,25 +142,51 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
 
   }
 
-  std::set<Person*> Person::grandfathers(PMod pmod){
+std::set<Person*> Person::grandfathers(PMod pmod){
     std::set<Person*> result;
-    if (this->father()->father() != nullptr){
-        result.insert(this->father()->father());
+    if (pmod ==  PMod::MATERNAL || pmod == PMod::ANY){
+        if (this->mother() != nullptr){
+            if (this->mother()->father() != nullptr){
+                result.insert(this->mother()->father());
+            }
+        }
+    }
+    if (pmod ==  PMod::PATERNAL || pmod == PMod::ANY){
+        if (this->father() != nullptr){
+            if (this->father()->father() != nullptr){
+                result.insert(this->father()->father());
+            }
+        }
     }
     return result;
-  }
+}
 
-  std::set<Person*> Person::grandmothers(PMod pmod){
+std::set<Person*> Person::grandmothers(PMod pmod){
     std::set<Person*> result;
-    if (this->mother()->mother() != nullptr){
-        result.insert(this->mother()->mother());
+    if (pmod ==  PMod::MATERNAL || pmod == PMod::ANY){
+        if (this->mother() != nullptr){
+            if (this->mother()->mother() != nullptr){
+                result.insert(this->mother()->mother());
+            }
+        }
+    }
+    if (pmod ==  PMod::PATERNAL || pmod == PMod::ANY){
+        if (this->father() != nullptr){
+            if (this->father()->mother() != nullptr){
+                result.insert(this->father()->mother());
+            }
+        }
     }
     return result;
+}
 
-  }
 
   std::set<Person*> Person::grandparents(PMod pmod ){
     std::set<Person*> result;
+    std::set<Person*> grandfathers = this->grandfathers();
+    std::set<Person*> grandmothers = this->grandmothers();
+
+    std::merge(grandfathers.begin(), grandfathers.end(), grandmothers.begin(), grandmothers.end(), std::inserter(result, result.end()));
     
     return result;
 
