@@ -42,18 +42,18 @@ std::set<Person*> Person::ancestors(PMod pmod) {
     if (pmod == PMod::MATERNAL || pmod == PMod::ANY) {
         Person* mother = this->mother();
         if (mother != nullptr) {
-            result.insert(mother);
             std::set<Person*> maternalAncestors = mother->ancestors(PMod::MATERNAL);
             result.insert(maternalAncestors.begin(), maternalAncestors.end());
+            result.insert(mother);
         }
     }
     
     if (pmod == PMod::PATERNAL || pmod == PMod::ANY) {
         Person* father = this->father();
         if (father != nullptr) {
-            result.insert(father);
             std::set<Person*> paternalAncestors = father->ancestors(PMod::PATERNAL);
             result.insert(paternalAncestors.begin(), paternalAncestors.end());
+            result.insert(father);
         }
     }
     
@@ -66,6 +66,7 @@ std::set<Person*> Person::ancestors(PMod pmod) {
     
     return result;
 }
+
 
 
   std::set<Person*> Person::aunts(PMod pmod, SMod smod){
