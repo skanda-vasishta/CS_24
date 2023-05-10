@@ -228,18 +228,20 @@ std::set<Person*> Person::grandmothers(PMod pmod){
 
   }
 
-  std::set<Person*> Person::parents(PMod pmod){
+    std::set<Person*> Person::parents(PMod pmod) {
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
+    if (pmod == PMod::MATERNAL || pmod == PMod::ANY) {
+        if (this->mother() != nullptr) {
+            result.insert(this->mother());
+        }
     }
-    if (this->father() != nullptr){
-        result.insert(this->father());
+    if (pmod == PMod::PATERNAL || pmod == PMod::ANY) {
+        if (this->father() != nullptr) {
+            result.insert(this->father());
+        }
     }
     return result;
-
-
-  }
+}
 
   std::set<Person*> Person::siblings(PMod pmod, SMod smod) {
     std::set<Person*> result;
