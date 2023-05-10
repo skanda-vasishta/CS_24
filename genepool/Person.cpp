@@ -83,11 +83,16 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
 
   std::set<Person*> Person::cousins(PMod pmod, SMod smod ){
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
-    }
-    if (this->father() != nullptr){
-        result.insert(this->father());
+    std::set<Person*>parent = this->parents(pmod);
+    for (Person* par : parent){
+      std::set<Person*>sibling = par->siblings(pmod, smod);
+      for (Person* sib : sibling){
+        std::set<Person*>kids = this->children();
+        for (Person* kid : kids){
+          result.insert(kid);
+        }
+      }
+
     }
     return result;
 
