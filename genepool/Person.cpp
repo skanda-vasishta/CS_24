@@ -42,7 +42,7 @@ std::set<Person*> Person::ancestors(PMod pmod) {
     
     for (Person* parent : parents) {
         result.insert(parent);
-        std::set<Person*> ancestors_of_parent = parent->ancestors(pmod);
+        std::set<Person*> ancestors_of_parent = parent->ancestors(PMod::ANY);
         result.insert(ancestors_of_parent.begin(), ancestors_of_parent.end());
     }
     
