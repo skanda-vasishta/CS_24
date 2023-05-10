@@ -1,3 +1,4 @@
+
 #include "Person.h"
 
 
@@ -24,6 +25,13 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
   Person*            Person::father(){
     return this->dadName;
   }
+
+  /*void Person::add_child(Person* child) const{
+    getchild->insert(child);
+  }
+  const std::set<Person*>* Person::get_children() const {
+    return this->getchild;
+}*/
 
   // Required Relationship Functions
   std::set<Person*> Person::ancestors(PMod pmod){
@@ -64,15 +72,15 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
 
   std::set<Person*> Person::children(){
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
-    }
-    if (this->father() != nullptr){
-        result.insert(this->father());
-    }
-    return result;
-
-  }
+    /*if (getchild){
+      for (auto child: *getchild){
+        if (child){
+          result.insert(child);
+        }
+      }  
+  }*/
+  return result;
+}
 
   std::set<Person*> Person::cousins(PMod pmod, SMod smod ){
     std::set<Person*> result;
@@ -160,11 +168,11 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
 
   std::set<Person*> Person::grandparents(PMod pmod ){
     std::set<Person*> result;
-    if (this->mother() != nullptr){
-        result.insert(this->mother());
+    if (this->mother()->mother() != nullptr){
+        result.insert(this->mother()->mother());
     }
     if (this->father() != nullptr){
-        result.insert(this->father());
+        result.insert(this->father()->father());
     }
     return result;
 
