@@ -36,38 +36,36 @@ Person::Person(const std::string& name, Gender& gender, Person* mother, Person* 
   }
 
   // Required Relationship Functions
- std::set<Person*> Person::ancestors(PMod pmod) {
+std::set<Person*> Person::ancestors(PMod pmod) {
     std::set<Person*> result;
     
     if (pmod == PMod::MATERNAL || pmod == PMod::ANY) {
-        if (this->mother() != nullptr) {
-            std::set<Person*> maternalAncestors = this->mother()->ancestors(PMod::MATERNAL);
+        Person* mother = this->mother();
+        if (mother != nullptr) {
+            result.insert(mother);
+            std::set<Person*> maternalAncestors = mother->ancestors(PMod::MATERNAL);
             result.insert(maternalAncestors.begin(), maternalAncestors.end());
-            result.insert(this->mother());
         }
     }
     
     if (pmod == PMod::PATERNAL || pmod == PMod::ANY) {
-        if (this->father() != nullptr) {
-            std::set<Person*> paternalAncestors = this->father()->ancestors(PMod::PATERNAL);
+        Person* father = this->father();
+        if (father != nullptr) {
+            result.insert(father);
+            std::set<Person*> paternalAncestors = father->ancestors(PMod::PATERNAL);
             result.insert(paternalAncestors.begin(), paternalAncestors.end());
-            result.insert(this->father());
-        }
-    }
-    if (pmod == PMod::ANY) {
-        if (this->father() != nullptr) {
-            std::set<Person*> paternalAncestors = this->father()->ancestors(PMod::ANY);
-            result.insert(paternalAncestors.begin(), paternalAncestors.end());
-            result.insert(this->father());
         }
     }
     
-  
+    if (pmod == PMod::ANY && this->mother() != nullptr && this->father() != nullptr) {
+        std::set<Person*> maternalAncestors = this->mother()->ancestors(PMod::MATERNAL);
+        std::set<Person*> paternalAncestors = this->father()->ancestors(PMod::PATERNAL);
+        result.insert(maternalAncestors.begin(), maternalAncestors.end());
+        result.insert(paternalAncestors.begin(), paternalAncestors.end());
+    }
     
     return result;
 }
-
-
 
 
   std::set<Person*> Person::aunts(PMod pmod, SMod smod){
