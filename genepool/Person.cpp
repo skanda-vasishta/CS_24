@@ -250,12 +250,13 @@ std::set<Person*> Person::grandmothers(PMod pmod){
             if (child != this) {  
                 if (pmod == PMod::MATERNAL && parent == this->mother()) {
                     if (smod == SMod::FULL) {
-                        if (child->mother() == this->mother() && child->father() == this->father()) {
+                        if (child->mother() == this->mother() && child->father() == this->father()
+                                && child->mother() != nullptr && child->father() != nullptr) {
                             result.insert(child);
                         }
                     } else if (smod == SMod::HALF) {
-                        if ((child->mother() == this->mother() && child->father() != this->father())
-                                || (child->mother() != this->mother() && child->father() == this->father())) {
+                        if ((child->mother() == this->mother() && (child->father() == nullptr || child->father() != this->father()))
+                                || (child->father() == this->father() && (child->mother() == nullptr || child->mother() != this->mother()))) {
                             result.insert(child);
                         }
                     } else {  
@@ -263,12 +264,13 @@ std::set<Person*> Person::grandmothers(PMod pmod){
                     }
                 } else if (pmod == PMod::PATERNAL && parent == this->father()) {
                     if (smod == SMod::FULL) {
-                        if (child->mother() == this->mother() && child->father() == this->father()) {
+                        if (child->mother() == this->mother() && child->father() == this->father()
+                                && child->mother() != nullptr && child->father() != nullptr) {
                             result.insert(child);
                         }
                     } else if (smod == SMod::HALF) {
-                        if ((child->mother() == this->mother() && child->father() != this->father())
-                                || (child->mother() != this->mother() && child->father() == this->father())) {
+                        if ((child->mother() == this->mother() && (child->father() == nullptr || child->father() != this->father()))
+                                || (child->father() == this->father() && (child->mother() == nullptr || child->mother() != this->mother()))) {
                             result.insert(child);
                         }
                     } else {  
@@ -276,12 +278,13 @@ std::set<Person*> Person::grandmothers(PMod pmod){
                     }
                 } else if (pmod == PMod::ANY && (parent == this->mother() || parent == this->father())) {
                     if (smod == SMod::FULL) {
-                        if (child->mother() == this->mother() && child->father() == this->father()) {
+                        if (child->mother() == this->mother() && child->father() == this->father()
+                                && child->mother() != nullptr && child->father() != nullptr) {
                             result.insert(child);
                         }
                     } else if (smod == SMod::HALF) {
-                        if ((child->mother() == this->mother() && child->father() != this->father())
-                                || (child->mother() != this->mother() && child->father() == this->father())) {
+                        if ((child->mother() == this->mother() && (child->father() == nullptr || child->father() != this->father()))
+                                || (child->father() == this->father() && (child->mother() == nullptr || child->mother() != this->mother()))) {
                             result.insert(child);
                         }
                     } else {  
