@@ -14,7 +14,7 @@
   size_t Counter::count() const{
     size_t count = 0;
     Node* node = counter->returnHead();
-    while (node){
+    while (node!=nullptr){
       count++;
       node = node->next;
     }
@@ -24,7 +24,7 @@
   int    Counter::total() const{
     int size = 0;
     Node* node = counter->returnHead();
-    while (node){
+    while (node!=nullptr){
       size+=node->value;
       node = node->next;
     }
@@ -81,5 +81,5 @@ Counter::Iterator Counter::begin() const {
 }
 
 Counter::Iterator Counter::end() const {
-  return Iterator(counter->returnHead());
+  return Iterator(nullptr);
 }
