@@ -3,6 +3,8 @@
 
 #include <cstddef>
 #include <string>
+#include "DataStore.h"
+
 
 // This is the Counter class you need to implement.
 // It includes the Counter::Iterator as a nested class.
@@ -28,6 +30,7 @@ private:
 
 private:
   // Helper Functions
+  DataStore* counter;
 
 public:
   Counter();
