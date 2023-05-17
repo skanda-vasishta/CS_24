@@ -41,12 +41,7 @@ void DataStore::push_back(const std::string& key, int value){
 
 }
 void DataStore::remove(const std::string& key){
-    struct Node* current = head;
-
-    while (current != nullptr && current->key != key) {
-        current = current->next;
-    }
-    
+    struct Node* current = lookup(key);
     if (current != nullptr) {
         if (current->prev != nullptr) {
             current->prev->next = current->next;
