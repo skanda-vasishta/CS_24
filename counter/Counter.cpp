@@ -12,13 +12,26 @@
   }
 
   size_t Counter::count() const{
-
+    size_t count = 0;
+    Node* node = counter->returnHead();
+    while (node){
+      count++;
+      node = node->next;
+    }
+    return count;
   }
+
   int    Counter::total() const{
-
+    int size = 0;
+    Node* node = counter->returnHead();
+    while (node){
+      size+=node->value;
+      node = node->next;
+    }
+    return size;
   }
 
-  void Counter::inc(const std::string& key, int by = 1){
+  void Counter::inc(const std::string& key, int by){
     Node* node = counter->lookup(key);
     if (node != nullptr){
       node->value +=by;
@@ -28,7 +41,7 @@
     }
   }
 
-  void Counter::dec(const std::string& key, int by = 1){
+  void Counter::dec(const std::string& key, int by){
     Node* node = counter->lookup(key);
     if (node != nullptr){
       node->value -=by;
@@ -64,9 +77,9 @@
   }
 
 Counter::Iterator Counter::begin() const {
-
+  return Iterator(counter->returnHead());
 }
 
 Counter::Iterator Counter::end() const {
-
+  return Iterator(counter->returnHead());
 }

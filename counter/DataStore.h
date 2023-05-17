@@ -26,6 +26,7 @@ class DataStore{
     void push_back(const std::string& key, int value);
     void remove(const std::string& key);
     Node* lookup(const std::string& key) const;
+    Node* returnHead() const;
 };
 
 #endif

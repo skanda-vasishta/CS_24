@@ -77,3 +77,7 @@ void DataStore::remove(const std::string& key){
     return nullptr;
 
  }
+
+ Node* DataStore::returnHead() const{
+    return this->head;
+ }
