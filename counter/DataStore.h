@@ -3,6 +3,8 @@
 #define DATASTORE_H
 using namespace std;
 #include <string>
+#include <vector>
+
 
 // Space to implement a separate datastore class, if you choose to do so.
 // This can make things simpler by clearly separating functionality.
@@ -18,7 +20,11 @@ class DataStore{
     private:
     Node* head;
     Node* tail;
+    Node** hashTable;  
+    int tableSize;            
     //int count;
+
+    int hashFunction(const std::string& key) const;
 
     public:
     DataStore();
