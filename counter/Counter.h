@@ -2,13 +2,13 @@
 #ifndef COUNTER_H
 #define COUNTER_H
 
-#include "DataStore.h"
-#include "Index.h"
+
 #include <cstddef>
 #include <string>
 
 
-
+class DataStore;
+class Index;
 
 // This is the Counter class you need to implement.
 // It includes the Counter::Iterator as a nested class.

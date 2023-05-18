@@ -1,4 +1,5 @@
 #include "Index.h"
+#include "DataStore.h"
 
 // Index Member Functions
 Index::Index() {

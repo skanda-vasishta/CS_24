@@ -3,11 +3,12 @@
 #define DATASTORE_H
 using namespace std;
 #include <string>
-#include "Index.h"
 
 // Space to implement a separate datastore class, if you choose to do so.
 // This can make things simpler by clearly separating functionality.
 // The DataStore is in charge of storing pairs in insertion order.
+class Index;
+
 struct Node {
     std::string key;
     int value = 0;
