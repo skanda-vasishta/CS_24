@@ -10,9 +10,8 @@ Counter::Iterator::Iterator( Node* node){
 
 }
 const std::string& Counter::Iterator::key() const{
-    if (this->node != nullptr) {
         return this->node->key;
-    } 
+    
 
 }
 int Counter::Iterator::value() const{
