@@ -3,6 +3,7 @@
 #define DATASTORE_H
 using namespace std;
 #include <string>
+#include "Index.h"
 
 // Space to implement a separate datastore class, if you choose to do so.
 // This can make things simpler by clearly separating functionality.
@@ -19,6 +20,7 @@ class DataStore{
     Node* head;
     Node* tail;
     //int count;
+    Index* table;
 
     public:
     DataStore();

@@ -7,6 +7,8 @@
 DataStore::DataStore(){
     head = nullptr;
     tail = nullptr;
+    table = new Index();
+
     //count = 0;
 }
 
@@ -23,7 +25,7 @@ DataStore::~DataStore() {
 }
 
 void DataStore::push_back(const std::string& key, int value){
-    struct Node* pushNode = new Node;
+    /*struct Node* pushNode = new Node;
     pushNode->key = key;
     pushNode->value = value;
 
@@ -38,11 +40,11 @@ void DataStore::push_back(const std::string& key, int value){
         temp = temp->next;
     }
     temp->next = pushNode;
-    pushNode->prev = temp;
-
+    pushNode->prev = temp;*/
+    table->hash_insert(key, value);
 }
 void DataStore::remove(const std::string& key){
-    struct Node* current = lookup(key);
+    /*struct Node* current = lookup(key);
     if (current != nullptr) {
         if (current->prev != nullptr) {
             current->prev->next = current->next;
@@ -58,11 +60,12 @@ void DataStore::remove(const std::string& key){
         }
 
         delete current;
-    } 
+    }*/
+    table->hash_remove(key);
 
 }
  Node* DataStore::lookup(const std::string& key) const{
-    struct Node* look = head;
+    /*struct Node* look = head;
     while (look!=nullptr){
         if (look->key == key){
             return look;
@@ -70,7 +73,8 @@ void DataStore::remove(const std::string& key){
         look = look->next;
     }
 
-    return nullptr;
+    return nullptr;*/
+    return table->hash_lookup(key);
 
  }
 
