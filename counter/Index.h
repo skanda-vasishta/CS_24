@@ -17,7 +17,7 @@ private:
 
 public:
     Index();
-    ~Index();
+    ~Index( );
     size_t hashFunction(const std::string& key);
     Node** getHash();
     void hash_insert(const std::string& key, int value);

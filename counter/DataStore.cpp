@@ -46,7 +46,7 @@ void DataStore::push_back(const std::string& key, int value){
     table->hash_insert(key, value);
 }
 void DataStore::remove(const std::string& key){
-    struct Node* current = lookup(key);
+    /*  struct Node* current = lookup(key);
     if (current != nullptr) {
         if (current->prev != nullptr) {
             current->prev->next = current->next;
@@ -62,7 +62,7 @@ void DataStore::remove(const std::string& key){
         }
 
         delete current;
-    }
+    }*/
     table->hash_remove(key);
 
 }
