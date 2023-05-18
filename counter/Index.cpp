@@ -70,7 +70,7 @@ void Index::hash_remove(const std::string& key) {
     }
 }
 
-Node* Index::hash_lookup(const std::string& key) {
+/*Node* Index::hash_lookup(const std::string& key) {
     int index = hashFunction(key);
     Node* currentNode = hashTable[index];
 
@@ -82,4 +82,4 @@ Node* Index::hash_lookup(const std::string& key) {
     }
 
     return nullptr;
-}
+}*/

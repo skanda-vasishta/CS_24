@@ -67,7 +67,7 @@ void DataStore::remove(const std::string& key){
 
 }
  Node* DataStore::lookup(const std::string& key) const{
-    /*struct Node* look = head;
+    struct Node* look = head;
     while (look!=nullptr){
         if (look->key == key){
             return look;
@@ -75,8 +75,8 @@ void DataStore::remove(const std::string& key){
         look = look->next;
     }
 
-    return nullptr;*/
-    return table->hash_lookup(key);
+    return nullptr;
+    //return table->hash_lookup(key);
 
  }
 
