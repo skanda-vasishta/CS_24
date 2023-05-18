@@ -8,6 +8,7 @@
 // This can make things simpler by clearly separating functionality.
 // The Index is in charge of getting pairs from the DataStore by key.
 
+struct Node;
 
 class Index {
 private:
