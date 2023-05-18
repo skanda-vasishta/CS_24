@@ -87,3 +87,26 @@ Node* Index::hash_lookup(const std::string& key) {
 
     return nullptr;
 }
+size_t Index::count() const {
+  size_t count = 0;
+  for (size_t i = 0; i < size; ++i) {
+    Node* currentNode = hashTable[i];
+    while (currentNode != nullptr) {
+      count++;
+      currentNode = currentNode->next;
+    }
+  }
+  return count;
+}
+
+int Index::total() const {
+  int total = 0;
+  for (size_t i = 0; i < size; ++i) {
+    Node* currentNode = hashTable[i];
+    while (currentNode != nullptr) {
+      total += currentNode->value;
+      currentNode = currentNode->next;
+    }
+  }
+  return total;
+}

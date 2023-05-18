@@ -85,21 +85,9 @@ void DataStore::remove(const std::string& key){
  }
 
  size_t DataStore::count() const {
-  size_t count = 0;
-  Node* currentNode = head;
-  while (currentNode != nullptr) {
-    count++;
-    currentNode = currentNode->next;
-  }
-  return count;
+  return table->count();
 }
 
 int DataStore::total() const {
-  int total = 0;
-  Node* currentNode = head;
-  while (currentNode != nullptr) {
-    total += currentNode->value;
-    currentNode = currentNode->next;
-  }
-  return total;
+  return table->count();
 }
