@@ -25,6 +25,6 @@ size_t Index::hashFunction(const std::string& key){
     return hasher(key); 
 }
 
-Node** Index::getHash(){
+struct Node** Index::getHash(){
     return hashTable;
 }

@@ -10,13 +10,13 @@
 class Index {
 private:
     int size = 10000;
-    Node** hashTable;
+    struct Node** hashTable;
 
 public:
     Index();
     ~Index();
     size_t hashFunction(const std::string& key);
-    Node** getHash();
+    struct Node** getHash();
 
 
 
