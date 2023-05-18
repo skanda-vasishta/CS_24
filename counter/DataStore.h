@@ -19,7 +19,7 @@ class DataStore{
     private:
     Node* head;
     Node* tail;
-    Index index;
+    Index* index;
     //int count;
     
 
