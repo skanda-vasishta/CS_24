@@ -23,6 +23,7 @@ DataStore::~DataStore() {
     }
     head = nullptr;
     tail = nullptr;
+    delete table;
     //count = 0;
 }
 
