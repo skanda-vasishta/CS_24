@@ -1,5 +1,6 @@
 #include "Counter.h"
 #include "DataStore.h"
+#include "Index.h"
 
 // Counter Member Functions
 
