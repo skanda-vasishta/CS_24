@@ -12,7 +12,7 @@ struct Node;
 
 class Index {
 private:
-    int size = 10000;
+    int size = 100000;
      Node** hashTable;
 
 public:
