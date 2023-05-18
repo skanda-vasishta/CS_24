@@ -1,3 +1,4 @@
+
 #include "Counter.h"
 #include "DataStore.h"
 
@@ -26,5 +27,3 @@ int Counter::Iterator::value() const{
 bool      Counter::Iterator::operator != (const Iterator& other) const{
     return this->node != other.node;
 }
-
-

@@ -1,5 +1,4 @@
 
-
 #include "DataStore.h"
 
 // DataStore Member Functions
@@ -24,45 +23,54 @@ DataStore::~DataStore() {
 }
 
 void DataStore::push_back(const std::string& key, int value){
-    Node* newNode = new Node;
-    newNode->key = key;
-    newNode->value = value;
+    struct Node* pushNode = new Node;
+    pushNode->key = key;
+    pushNode->value = value;
 
-    if (head == nullptr) {
-        head = newNode;
-        tail = newNode;
-    } else {
-        newNode->prev = tail;
-        tail->next = newNode;
-        tail = newNode;
+    struct Node* temp = head;
+    if (head == nullptr){
+        pushNode->prev = nullptr;
+        head = pushNode;
+        return;
     }
 
-    index.insert(key, newNode);
+    while (temp->next != nullptr){
+        temp = temp->next;
+    }
+    temp->next = pushNode;
+    pushNode->prev = temp;
 
 }
 void DataStore::remove(const std::string& key){
-    Node* node = index.lookup(key);
-    if (node != nullptr) {
-        if (node->prev != nullptr) {
-            node->prev->next = node->next;
+    struct Node* current = lookup(key);
+    if (current != nullptr) {
+        if (current->prev != nullptr) {
+            current->prev->next = current->next;
         } else {
-            head = node->next;
+            head = current->next;
             if (head != nullptr) {
                 head->prev = nullptr;
             }
         }
 
-        if (node->next != nullptr) {
-            node->next->prev = node->prev;
+        if (current->next != nullptr) {
+            current->next->prev = current->prev;
         }
 
-        index.remove(key);
-        delete node;
+        delete current;
     } 
 
 }
  Node* DataStore::lookup(const std::string& key) const{
-    return index.lookup(key);
+    struct Node* look = head;
+    while (look!=nullptr){
+        if (look->key == key){
+            return look;
+        }
+        look = look->next;
+    }
+
+    return nullptr;
 
  }
 

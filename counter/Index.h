@@ -10,21 +10,18 @@
 
 
 class Index {
+private:
+    int size = 1000;
+     Node** hashTable;
+
 public:
     Index();
     ~Index();
+    size_t hashFunction(const std::string& key);
+     Node** getHash();
 
-    void insert(const std::string& key, Node* node);
-    void remove(const std::string& key);
-    Node* lookup(const std::string& key) const;
-    Node** getHash();
 
-private:
-    int size = 1000;  // Adjust the table size as needed
-    Node** hashTable;
 
-    size_t hashFunction(const std::string& key) const;
+
 };
-
-
 #endif
