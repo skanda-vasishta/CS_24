@@ -3,7 +3,6 @@
 #define DATASTORE_H
 using namespace std;
 #include <string>
-#include <vector>
 
 
 // Space to implement a separate datastore class, if you choose to do so.
