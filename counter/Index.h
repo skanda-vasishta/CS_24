@@ -13,7 +13,7 @@ struct Node;
 class Index {
 private:
     int size = 1000;
-     Node** hashTable = new Node*[size];
+     Node** hashTable;
 
 public:
     Index();
@@ -22,7 +22,7 @@ public:
     Node** getHash();
     void hash_insert(const std::string& key, int value);
     void hash_remove(const std::string& key);
-    //Node* hash_lookup(const std::string& key) ;
+    Node* hash_lookup(const std::string& key) ;
 
 
 
