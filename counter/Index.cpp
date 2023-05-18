@@ -55,9 +55,9 @@ void Index::hash_insert(const std::string& key, int value){
 void Index::hash_remove(const std::string& key) {
     int index = hashFunction(key);
     Node* currentNode = hashTable[index];
-    Node* prevNode = nullptr;
+    Node* prevNode = currentNode->prev;
 
-    while (currentNode != nullptr) {
+    //while (currentNode != nullptr) {
         if (currentNode->key == key) {
             if (prevNode == nullptr) {
                 hashTable[index] = currentNode->next;
@@ -74,7 +74,7 @@ void Index::hash_remove(const std::string& key) {
         currentNode = currentNode->next;
         currentNode->next = nullptr;
     }
-}
+//}
 
 Node* Index::hash_lookup(const std::string& key) {
     int index = hashFunction(key);
