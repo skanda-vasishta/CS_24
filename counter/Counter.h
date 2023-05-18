@@ -5,6 +5,7 @@
 
 #include <cstddef>
 #include <string>
+#include "DataStore.h"
 
 
 class DataStore;
