@@ -8,8 +8,6 @@
 #include "DataStore.h"
 
 
-class DataStore;
-class Index;
 
 // This is the Counter class you need to implement.
 // It includes the Counter::Iterator as a nested class.

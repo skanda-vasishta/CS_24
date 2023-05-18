@@ -1,5 +1,7 @@
 
 #include "DataStore.h"
+#include "Index.h"
+
 
 // DataStore Member Functions
  // function for inserting at end of linked list
