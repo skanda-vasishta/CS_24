@@ -31,6 +31,8 @@ class DataStore{
     void remove(const std::string& key);
     Node* lookup(const std::string& key) const;
     Node* returnHead() const;
+    size_t count() const;
+    int total() const;
 };
 
 #endif

@@ -14,23 +14,11 @@
   }
 
   size_t Counter::count() const{
-    size_t count = 0;
-    Node* node = counter->returnHead();
-    while (node!=nullptr){
-      count++;
-      node = node->next;
-    }
-    return count;
+     return counter->count();
   }
 
   int    Counter::total() const{
-    int size = 0;
-    Node* node = counter->returnHead();
-    while (node!=nullptr){
-      size+=node->value;
-      node = node->next;
-    }
-    return size;
+    return counter->total();
   }
 
   void Counter::inc(const std::string& key, int by){
