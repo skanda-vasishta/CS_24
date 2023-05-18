@@ -10,7 +10,7 @@ Index::Index() {
 }
 
 Index::~Index() {
-  for (int i = 0; i < size; ++i) {
+  /*for (int i = 0; i < size; ++i) {
     Node* node = hashTable[i];
     while (node != nullptr) {
       Node* next = node->next;
@@ -18,7 +18,7 @@ Index::~Index() {
       node = next;
     }
   }
-  delete[] hashTable;
+  delete[] hashTable;*/
 }
 
 size_t Index::hashFunction(const std::string& key){
@@ -31,8 +31,8 @@ Node** Index::getHash(){
 }
 
 void Index::hash_insert(const std::string& key, int value){
-    Node* newNode = new Node();
     int index = hashFunction(key);
+    Node* newNode = new Node();
     newNode->key = key;
     newNode->value = value;
     if (hashTable[index] == nullptr) {
