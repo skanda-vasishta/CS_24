@@ -1,104 +1,85 @@
+#include "Counter.h"
 #include "DataStore.h"
 
-// DataStore Member Functions
- // function for inserting at end of linked list
+// Counter Member Functions
 
-DataStore::DataStore(){
-    head = nullptr;
-    tail = nullptr;
-    tableSize = 1000;
-    hashTable = new Node*[tableSize];
-    for (int i = 0; i < tableSize; i++) {
-        hashTable[i] = nullptr;
+ Counter::Counter(){
+   counter = new DataStore();
+ }
+
+  Counter::~Counter(){
+    delete counter;
+  }
+
+  size_t Counter::count() const{
+    size_t count = 0;
+    Node* node = counter->returnHead();
+    while (node!=nullptr){
+      count++;
+      node = node->next;
     }
-    //count = 0;
-}
+    return count;
+  }
 
-DataStore::~DataStore() {
-    Node* current = head;
-    while (current != nullptr) {
-        Node* next = current->next;
-        delete current;
-        current = next;
+  int    Counter::total() const{
+    int size = 0;
+    Node* node = counter->returnHead();
+    while (node!=nullptr){
+      size+=node->value;
+      node = node->next;
     }
-    head = nullptr;
-    tail = nullptr;
-    //count = 0;
-}
+    return size;
+  }
 
-void DataStore::push_back(const std::string& key, int value){
-    struct Node* pushNode = new Node;
-    pushNode->key = key;
-    pushNode->value = value;
+  void Counter::inc(const std::string& key, int by){
+    Node* node = counter->lookup(key);
+    if (node != nullptr){
+      node->value +=by;
+    }
+    else {
+      counter->push_back(key, by);
+    }
+  }
 
-    int index = hashFunction(key);
+  void Counter::dec(const std::string& key, int by){
+    Node* node = counter->lookup(key);
+    if (node != nullptr){
+      node->value -=by;
+    }
+    else {
+      counter->push_back(key, -by);
+    }
+  }
 
-    if (hashTable[index] == nullptr) {
-        hashTable[index] = pushNode;
+  void Counter::del(const std::string& key){
+    Node* node = counter->lookup(key);
+    if (node != nullptr){
+      counter->remove(key);
+    }
+  }
+
+  int  Counter::get(const std::string& key) const{
+    Node* node = counter->lookup(key);
+    if (node!=nullptr){
+      return node->value;
     } else {
-        struct Node* temp = hashTable[index];
-        while (temp->next != nullptr) {
-            temp = temp->next;
-        }
-        temp->next = pushNode;
-        pushNode->prev = temp;
+      return 0;
+    }
+  }
+  void Counter::set(const std::string& key, int count){
+    Node* node = counter->lookup(key);
+    if (node!=nullptr){
+      node->value = count;
+    } else {
+      counter->push_back(key, count);
     }
 
-    if (head == nullptr) {
-        head = pushNode;
-    }
+  }
 
-    tail = pushNode;
-
+Counter::Iterator Counter::begin() const {
+  return Iterator(counter->returnHead());
 }
-void DataStore::remove(const std::string& key){
-    int index = hashFunction(key);
-    struct Node* current = hashTable[index];
 
-    while (current != nullptr) {
-        if (current->key == key) {
-            if (current->prev != nullptr) {
-                current->prev->next = current->next;
-            } else {
-                hashTable[index] = current->next;
-            }
-
-            if (current->next != nullptr) {
-                current->next->prev = current->prev;
-            }
-
-            delete current;
-            break;
-        }
-
-        current = current->next;
-    }
-
-}
- Node* DataStore::lookup(const std::string& key) const{
-    int index = hashFunction(key);
-    struct Node* current = hashTable[index];
-
-    while (current != nullptr) {
-        if (current->key == key) {
-            return current;
-        }
-
-        current = current->next;
-    }
-
-    return nullptr;
-
- }
-
- Node* DataStore::returnHead() const{
-    return this->head;
- }
-
- int DataStore::hashFunction(const std::string& key) const {
-    int sum = 0;
-    for (char c : key) {
-        sum += static_cast<int>(c);
-    }
-    return sum % tableSize;
+Counter::Iterator Counter::end() const {
+  return Iterator(nullptr);
 }
