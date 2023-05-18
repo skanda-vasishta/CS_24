@@ -27,7 +27,7 @@ size_t Index::hashFunction(const std::string& key){
     for (char c : key) {
         hashValue = (hashValue * prime) + c;
     }
-    return hashValue; 
+    return hashValue % size; 
 }
 
 Node** Index::getHash(){
