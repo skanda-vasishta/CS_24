@@ -7,11 +7,6 @@
 DataStore::DataStore(){
     head = nullptr;
     tail = nullptr;
-    tableSize = 10000;
-    hashTable = new Node*[tableSize];
-    for (int i = 0; i < tableSize; i++) {
-        hashTable[i] = nullptr;
-    }
     //count = 0;
 }
 
@@ -32,60 +27,47 @@ void DataStore::push_back(const std::string& key, int value){
     pushNode->key = key;
     pushNode->value = value;
 
-    int index = hashFunction(key);
-
-    if (hashTable[index] == nullptr) {
-        hashTable[index] = pushNode;
-    } else {
-        struct Node* temp = hashTable[index];
-        while (temp->next != nullptr) {
-            temp = temp->next;
-        }
-        temp->next = pushNode;
-        pushNode->prev = temp;
-    }
-
-    if (head == nullptr) {
+    struct Node* temp = head;
+    if (head == nullptr){
+        pushNode->prev = nullptr;
         head = pushNode;
+        return;
     }
 
-    tail = pushNode;
+    while (temp->next != nullptr){
+        temp = temp->next;
+    }
+    temp->next = pushNode;
+    pushNode->prev = temp;
 
 }
 void DataStore::remove(const std::string& key){
-    int index = hashFunction(key);
-    struct Node* current = hashTable[index];
-
-    while (current != nullptr) {
-        if (current->key == key) {
-            if (current->prev != nullptr) {
-                current->prev->next = current->next;
-            } else {
-                hashTable[index] = current->next;
+    struct Node* current = lookup(key);
+    if (current != nullptr) {
+        if (current->prev != nullptr) {
+            current->prev->next = current->next;
+        } else {
+            head = current->next;
+            if (head != nullptr) {
+                head->prev = nullptr;
             }
-
-            if (current->next != nullptr) {
-                current->next->prev = current->prev;
-            }
-
-            delete current;
-            break;
         }
 
-        current = current->next;
-    }
+        if (current->next != nullptr) {
+            current->next->prev = current->prev;
+        }
+
+        delete current;
+    } 
 
 }
  Node* DataStore::lookup(const std::string& key) const{
-    int index = hashFunction(key);
-    struct Node* current = hashTable[index];
-
-    while (current != nullptr) {
-        if (current->key == key) {
-            return current;
+    struct Node* look = head;
+    while (look!=nullptr){
+        if (look->key == key){
+            return look;
         }
-
-        current = current->next;
+        look = look->next;
     }
 
     return nullptr;
@@ -95,11 +77,3 @@ void DataStore::remove(const std::string& key){
  Node* DataStore::returnHead() const{
     return this->head;
  }
-
- int DataStore::hashFunction(const std::string& key) const {
-    int sum = 0;
-    for (char c : key) {
-        sum += static_cast<int>(c);
-    }
-    return sum % tableSize;
-}
