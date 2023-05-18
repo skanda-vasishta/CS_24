@@ -16,7 +16,7 @@ public:
     Index();
     ~Index();
     size_t hashFunction(const std::string& key);
-    struct Node** getHash();
+     Node** getHash();
 
 
 
