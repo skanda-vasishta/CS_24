@@ -31,8 +31,8 @@ Node** Index::getHash(){
 }
 
 void Index::hash_insert(const std::string& key, int value){
-    int index = hashFunction(key);
     Node* newNode = new Node();
+    int index = hashFunction(key);
     newNode->key = key;
     newNode->value = value;
     if (hashTable[index] == nullptr) {
