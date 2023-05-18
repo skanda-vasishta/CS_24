@@ -10,15 +10,26 @@ Counter::Iterator::Iterator( Node* node){
 
 }
 const std::string& Counter::Iterator::key() const{
-    return this->node->key;
+    if (this->node != nullptr) {
+        return this->node->key;
+    } else {
+        return nullptr;
+    }
 
 }
 int Counter::Iterator::value() const{
-    return this->node->value;
+    if (this->node != nullptr) {
+        return this->node->value;
+    } else {
+        return 0;
+    }
+
 }
 
  Counter::Iterator& Counter::Iterator::operator ++ (){
-    this->node = this->node->next;
+    if (this->node != nullptr) {
+        this->node = this->node->next;
+    }
     return *this;
  }
  bool      Counter::Iterator::operator == (const Iterator& other) const{
