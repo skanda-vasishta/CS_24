@@ -10,7 +10,7 @@ Index::Index() {
 }
 
 Index::~Index() {
-  /*for (int i = 0; i < size; ++i) {
+  for (int i = 0; i < size; ++i) {
     Node* node = hashTable[i];
     while (node != nullptr) {
       Node* next = node->next;
@@ -18,12 +18,16 @@ Index::~Index() {
       node = next;
     }
   }
-  delete[] hashTable;*/
+  delete[] hashTable;
 }
 
 size_t Index::hashFunction(const std::string& key){
-    std::hash<std::string> hasher;
-    return hasher(key); 
+    const size_t prime = 31;  
+    size_t hashValue = 0;
+    for (char c : key) {
+        hashValue = (hashValue * prime) + c;
+    }
+    return hashValue; 
 }
 
 Node** Index::getHash(){
