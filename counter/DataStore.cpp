@@ -41,13 +41,13 @@ void DataStore::push_back(const std::string& key, int value){
     }
 }
 void DataStore::remove(const std::string& key){
-    if (table->hash_lookup(key) == returnHead()){
+    /*if (table->hash_lookup(key) == returnHead()){
         //case for removing from head
     } else if (table->hash_lookup(key) == returnTail()){
         //case for removing from tail
     } else if (table->hash_lookup(key) == returnHead() && table->hash_lookup(key) == returnTail()){
         //case if head = tail:
-    } 
+    } */
     table->hash_remove(key);
 
 }
