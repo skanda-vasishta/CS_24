@@ -40,17 +40,29 @@ void DataStore::push_back(const std::string& key, int value){
         tail->next = NULL;
     }
 }
-void DataStore::remove(const std::string& key){
-    /*if (table->hash_lookup(key) == returnHead()){
-        //case for removing from head
-    } else if (table->hash_lookup(key) == returnTail()){
-        //case for removing from tail
-    } else if (table->hash_lookup(key) == returnHead() && table->hash_lookup(key) == returnTail()){
-        //case if head = tail:
-    } */
-    table->hash_remove(key);
+void DataStore::remove(const std::string& key) {
+    Node* nodeToRemove = table->hash_lookup(key);
 
+
+    if (nodeToRemove == head) {
+        head = nodeToRemove->next;
+    }
+
+    if (nodeToRemove == tail) {
+        tail = nodeToRemove->prev;
+    }
+
+    if (nodeToRemove->prev != nullptr) {
+        nodeToRemove->prev->next = nodeToRemove->next;
+    }
+
+    if (nodeToRemove->next != nullptr) {
+        nodeToRemove->next->prev = nodeToRemove->prev;
+    }
+
+    table->hash_remove(key);
 }
+
  Node* DataStore::lookup(const std::string& key) const{
     return table->hash_lookup(key);
 
