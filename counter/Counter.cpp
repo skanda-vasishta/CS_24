@@ -65,6 +65,7 @@
   void Counter::set(const std::string& key, int count){
     Node* node = counter->lookup(key);
     if (node){
+      count_ -= node->value;
       node->value = 0;
       node->value +=count;
     } else {
