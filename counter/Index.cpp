@@ -10,14 +10,14 @@ Index::Index() {
 }
 
 Index::~Index() {
-  for (int i = 0; i < size; ++i) {
+  /*for (int i = 0; i < size; ++i) {
     Node* node = hashTable[i];
     while (node != nullptr) {
       Node* next = node->next;
       delete node;
       node = next;
     }
-  }
+  }*/
   delete[] hashTable;
 }
 
@@ -101,7 +101,7 @@ int Index::total()  {
   for (int i = 0; i < size; ++i) {
     Node* currentNode = hashTable[i];
     while (currentNode != nullptr) {
-      count++;
+      count+= currentNode->value;
       currentNode = currentNode->next;
     }
   }
