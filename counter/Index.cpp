@@ -4,9 +4,9 @@
 // Index Member Functions
 Index::Index() {
     hashTable = new Node*[size];
-    for (int i = 0; i < size; ++i) {
+    /*for (int i = 0; i < size; ++i) {
         hashTable[i] = nullptr;
-  }
+  }*/
 }
 
 Index::~Index() {
