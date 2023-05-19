@@ -58,12 +58,11 @@
   }
   void Counter::set(const std::string& key, int count){
     Node* node = counter->lookup(key);
-    if (node!=nullptr){
-      node->value = count;
+    if (node){
+      node->value +=count;
     } else {
       counter->push_back(key, count);
     }
-
   }
 
 Counter::Iterator Counter::begin() const {
