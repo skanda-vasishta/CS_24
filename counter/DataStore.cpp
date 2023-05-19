@@ -49,10 +49,12 @@ void DataStore::remove(const std::string& key) {
     }
     else if (nodeToRemove == head) {
         head = nodeToRemove->next;
+        head->prev = nullptr;
     }
 
     else if (nodeToRemove == tail) {
         tail = nodeToRemove->prev;
+        tail->next = nullptr;
     }
     else {
         nodeToRemove->prev->next = nodeToRemove->next;
