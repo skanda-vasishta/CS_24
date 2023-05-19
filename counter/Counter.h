@@ -37,6 +37,7 @@ private:
 private:
   // Helper Functions
   DataStore* counter;
+  int count_;
 
 public:
   Counter();

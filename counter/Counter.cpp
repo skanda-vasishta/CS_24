@@ -7,6 +7,7 @@
 
  Counter::Counter(){
    counter = new DataStore();
+   count_= 0;
  }
 
   Counter::~Counter(){
@@ -18,7 +19,7 @@
   }
 
   int    Counter::total() const{
-    return counter->total();
+    return count_;
   }
 
   void Counter::inc(const std::string& key, int by){
@@ -29,6 +30,8 @@
     else {
       counter->push_back(key, by);
     }
+    count_ +=by;
+
   }
 
   void Counter::dec(const std::string& key, int by){
@@ -39,6 +42,7 @@
     else {
       counter->push_back(key, -by);
     }
+    count_ -=by;
   }
 
   void Counter::del(const std::string& key){
@@ -64,6 +68,7 @@
     } else {
       counter->push_back(key, count);
     }
+    count_ +=count;
   }
 
 Counter::Iterator Counter::begin() const {
