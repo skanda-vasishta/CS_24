@@ -48,8 +48,9 @@
   void Counter::del(const std::string& key){
     Node* node = counter->lookup(key);
     if (node != nullptr){
-      counter->remove(key);
       count_ -= node->value;
+      counter->remove(key);
+      
     }
     
   }
