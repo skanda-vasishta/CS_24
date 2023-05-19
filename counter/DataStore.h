@@ -14,7 +14,7 @@ struct Node {
     int value = 0;
     struct Node* next = nullptr;
     struct Node* prev = nullptr;
-    struct Node* next_hash = nullptr;
+    
 };
 
 class DataStore{
@@ -32,6 +32,7 @@ class DataStore{
     void remove(const std::string& key);
     Node* lookup(const std::string& key) const;
     Node* returnHead() const;
+    Node* returnTail() const;
     size_t count() const;
     int total() const;
 };

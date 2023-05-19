@@ -15,10 +15,12 @@
 // you can use the DataStore.* and Index.* files.
 /**/
 class Counter {
+private:
+
 public:
   class Iterator {
     // Member Variables:
-    Node* node;
+    Node* currentNode;
   public:
     Iterator( Node* node);
     const std::string& key() const;

@@ -6,32 +6,24 @@
 // Counter::Iterator Member Functions
 //lol
 Counter::Iterator::Iterator( Node* node){
-    this->node = node;
+    currentNode = node;
 
 }
 const std::string& Counter::Iterator::key() const{
-        return this->node->key;
-    
+    return currentNode->key;
 
 }
 int Counter::Iterator::value() const{
-    if (this->node != nullptr) {
-        return this->node->value;
-    } else {
-        return 0;
-    }
-
+    return currentNode->value;
 }
 
  Counter::Iterator& Counter::Iterator::operator ++ (){
-    if (this->node != nullptr) {
-        this->node = this->node->next;
-    }
+    currentNode = currentNode->next;
     return *this;
  }
  bool      Counter::Iterator::operator == (const Iterator& other) const{
-    return this->node == other.node;
+    return currentNode == other.currentNode;
  }
 bool      Counter::Iterator::operator != (const Iterator& other) const{
-    return this->node != other.node;
+    return currentNode != other.currentNode;
 }
