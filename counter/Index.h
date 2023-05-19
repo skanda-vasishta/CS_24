@@ -1,37 +1,31 @@
 #ifndef INDEX_H
 #define INDEX_H
-using namespace std;
+
 #include <string>
-#include "functional"
 
-// Space to implement a separate index class, if you choose to do so.
-// This can make things simpler by clearly separating functionality.
-// The Index is in charge of getting pairs from the DataStore by key.
-
-struct Node; 
+struct Node {
+    std::string key;
+    int value;
+    Node* next;
+    Node* prev;
+};
 
 class Index {
 private:
     int size = 100001;
-     Node** hashTable;
-    size_t count_;
-    int total_;
+    Node** hashTable;
+    int* statusArray;
 
 public:
     Index();
-    ~Index( );
+    ~Index();
     size_t hashFunction(const std::string& key);
     Node** getHash();
     void hash_insert(const std::string& key, int value);
     void hash_remove(const std::string& key);
-    Node* hash_lookup(const std::string& key) ;
-    size_t count() ;
+    Node* hash_lookup(const std::string& key);
+    size_t count();
     int total();
-
-
-
-
-
 };
 
 #endif
