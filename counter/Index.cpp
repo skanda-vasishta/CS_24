@@ -11,14 +11,14 @@ Index::Index() {
 }
 
 Index::~Index() {
-  for (int i = 0; i < size; ++i) {
+  /*for (int i = 0; i < size; ++i) {
     Node* node = hashTable[i];
     while (node != nullptr) {
       Node* next = node->next;
       delete node;
       node = next;
     }
-  }
+  }*/
   delete[] hashTable;
 }
 
@@ -57,6 +57,26 @@ void Index::hash_remove(const std::string& key) {
     size_t index = hashFunction(key);
     Node* currentNode = hashTable[index];
 
+    while (currentNode != nullptr) {
+        if (currentNode->key == key) {
+            if (currentNode->prev != nullptr) {
+                currentNode->prev->next = currentNode->next;
+            }
+            if (currentNode->next != nullptr) {
+                currentNode->next->prev = currentNode->prev;
+            }
+            if (currentNode == hashTable[index]) {
+                hashTable[index] = currentNode->next;
+            }
+            delete currentNode;
+            return;
+        }
+        currentNode = currentNode->next;
+    }
+
+    /*size_t index = hashFunction(key);
+    Node* currentNode = hashTable[index];
+
     if (currentNode != nullptr && currentNode->key == key) {
          hashTable[index] = currentNode->next;
         Node* travel = currentNode->next;
@@ -69,7 +89,7 @@ void Index::hash_remove(const std::string& key) {
         // }
         // delete currentNode;
         return;
-    }
+    }*/
 
     // while (currentNode != nullptr) {
     //     if (currentNode->key == key) {
