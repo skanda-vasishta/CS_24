@@ -3,6 +3,7 @@
 
 // Index Member Functions
 Index::Index() {
+    size = 100001;
     hashTable = new Node*[size];
     for (int i = 0; i < size; ++i) {
         hashTable[i] = nullptr;
@@ -61,7 +62,7 @@ void Index::hash_remove(const std::string& key) {
         if (currentNode->next != nullptr) {
             currentNode->next->prev = nullptr;
         }
-        //delete currentNode;
+        delete currentNode;
         return;
     }
 
@@ -76,7 +77,7 @@ void Index::hash_remove(const std::string& key) {
             if (currentNode->next == nullptr && currentNode->prev != nullptr) {
                 currentNode->prev->next = nullptr;
             }
-            //delete currentNode;
+            delete currentNode;
             return;
         }
         currentNode = currentNode->next;
