@@ -3,12 +3,7 @@
 
 #include <string>
 
-struct Node {
-    std::string key;
-    int value;
-    Node* next;
-    Node* prev;
-};
+struct Node ;
 
 class Index {
 private:
