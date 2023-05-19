@@ -14,9 +14,9 @@ Index::~Index() {
   /*for (int i = 0; i < size; ++i) {
     Node* node = hashTable[i];
     while (node != nullptr) {
-      Node* next = node->next;
+      Node* buck = node->buck;
       delete node;
-      node = next;
+      node = buck;
     }
   }*/
   delete[] hashTable;
@@ -44,12 +44,12 @@ void Index::hash_insert(const std::string& key, int value){
         hashTable[index] = newNode;
     } else {
         Node* currentNode = hashTable[index];
-        while (currentNode->next != nullptr) {
-            currentNode = currentNode->next;
+        while (currentNode->buck != nullptr) {
+            currentNode = currentNode->buck;
         }
-        currentNode->next = newNode;
+        currentNode->buck = newNode;
         newNode->prev = currentNode;
-        newNode->next = nullptr;
+        newNode->buck = nullptr;
         } 
 }
 
@@ -58,36 +58,16 @@ void Index::hash_remove(const std::string& key) {
     Node* currentNode = hashTable[index];
 
     if (currentNode != nullptr && currentNode->key == key) {
-        hashTable[index] = currentNode->next;
-        Node* travel = currentNode->next;
+        hashTable[index] = currentNode->buck;
+        Node* travel = currentNode->buck;
         while(travel && hashFunction(travel->key) != index){
-            travel = travel->next;
+            travel = travel->buck;
         }
         hashTable[index] = travel;
-        // if (currentNode->next != nullptr) {
-        //     currentNode->next->prev = nullptr;
-        // }
         delete currentNode;
         currentNode = nullptr;
         return;
     }
-
-    // while (currentNode != nullptr) {
-    //     if (currentNode->key == key) {
-    //         if (currentNode->prev != nullptr) {
-    //             currentNode->prev->next = currentNode->next;
-    //         }
-    //         if (currentNode->next != nullptr) {
-    //             currentNode->next->prev = currentNode->prev;
-    //         }
-    //         if (currentNode->next == nullptr && currentNode->prev != nullptr) {
-    //             currentNode->prev->next = nullptr;
-    //         }
-    //         delete currentNode;
-    //         return;
-    //     }
-    //     currentNode = currentNode->next;
-    // }
 }
 
 Node* Index::hash_lookup(const std::string& key) {
@@ -98,7 +78,7 @@ Node* Index::hash_lookup(const std::string& key) {
         if (currentNode->key == key) {
             return currentNode;
         }
-        currentNode = currentNode->next;
+        currentNode = currentNode->buck;
     }
 
     return nullptr;
@@ -109,7 +89,7 @@ Node* Index::hash_lookup(const std::string& key) {
     Node* currentNode = hashTable[i];
     while (currentNode != nullptr) {
       count+=currentNode->value;
-      currentNode = currentNode->next;
+      currentNode = currentNode->buck;
     }
   }
   return count;

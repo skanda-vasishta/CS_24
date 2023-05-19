@@ -4,7 +4,7 @@
 
 
 // Counter::Iterator Member Functions
-//lol
+//lol   
 Counter::Iterator::Iterator( Node* node){
     currentNode = node;
 

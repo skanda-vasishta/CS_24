@@ -14,7 +14,7 @@ struct Node {
     int value = 0;
     struct Node* next = nullptr;
     struct Node* prev = nullptr;
-    
+    struct Node* buck = nullptr;
 };
 
 class DataStore{
