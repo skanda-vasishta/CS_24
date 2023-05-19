@@ -101,7 +101,7 @@ int Index::total()  {
   for (int i = 0; i < size; ++i) {
     Node* currentNode = hashTable[i];
     while (currentNode != nullptr) {
-      count+= currentNode->value;
+      count++;
       currentNode = currentNode->next;
     }
   }
