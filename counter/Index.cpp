@@ -50,38 +50,35 @@ void Index::hash_insert(const std::string& key, int value){
         newNode->prev = currentNode;
         newNode->next = nullptr;
         } 
+    count_++;
+    total_ += value;
 }
 
 void Index::hash_remove(const std::string& key) {
     int index = hashFunction(key);
     Node* currentNode = hashTable[index];
+    Node* prevNode = currentNode->prev;
 
-    if (currentNode != nullptr && currentNode->key == key) {
-        hashTable[index] = currentNode->next;
+    //while (currentNode != nullptr) {
+      if (currentNode->key == key) {
+        if (prevNode == nullptr) {
+          hashTable[index] = currentNode->next;
+        } else {
+          prevNode->next = currentNode->next;
+        }
         if (currentNode->next != nullptr) {
-            currentNode->next->prev = nullptr;
+            currentNode->next->prev = prevNode;
         }
-        delete currentNode;
-        return;
-    }
-
-    while (currentNode != nullptr) {
-        if (currentNode->key == key) {
-            if (currentNode->prev != nullptr) {
-                currentNode->prev->next = currentNode->next;
-            }
-            if (currentNode->next != nullptr) {
-                currentNode->next->prev = currentNode->prev;
-            }
-            if (currentNode->next == nullptr && currentNode->prev != nullptr) {
-                currentNode->prev->next = nullptr;
-            }
-            delete currentNode;
-            return;
+          delete currentNode;
+          return;
         }
+        prevNode = currentNode; 
         currentNode = currentNode->next;
+        currentNode->next = nullptr;
+        count_--;
+        total_ -= currentNode->value;
     }
-}
+//}
 
 Node* Index::hash_lookup(const std::string& key) {
     int index = hashFunction(key);
@@ -97,19 +94,19 @@ Node* Index::hash_lookup(const std::string& key) {
     return nullptr;
 }
 size_t Index::count()  {
-  size_t count = 0;
+  /*size_t count = 0;
   for (int i = 0; i < size; ++i) {
     Node* currentNode = hashTable[i];
     while (currentNode != nullptr) {
       count++;
       currentNode = currentNode->next;
     }
-  }
-  return count;
+  }*/
+  return count_;
 }
 
 int Index::total()  {
-  int total = 0;
+  /*int total = 0;
   for (int i = 0; i < size; ++i) {
     Node* currentNode = hashTable[i];
     while (currentNode != nullptr) {
@@ -117,5 +114,6 @@ int Index::total()  {
       currentNode = currentNode->next;
     }
   }
-  return total;
+  return total;*/
+  return total_;
 }

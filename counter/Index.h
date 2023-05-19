@@ -14,6 +14,8 @@ class Index {
 private:
     int size = 100001;
      Node** hashTable;
+    size_t count_;
+    int total_;
 
 public:
     Index();
