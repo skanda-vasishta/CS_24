@@ -49,8 +49,9 @@
     Node* node = counter->lookup(key);
     if (node != nullptr){
       counter->remove(key);
+      count_ -= node->value;
     }
-    count_ -= node->value;
+    
   }
 
   int  Counter::get(const std::string& key) const{
