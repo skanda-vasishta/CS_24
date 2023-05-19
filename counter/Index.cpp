@@ -36,7 +36,7 @@ Node** Index::getHash(){
 }
 
 void Index::hash_insert(const std::string& key, int value){
-    int index = hashFunction(key);
+    size_t index = hashFunction(key);
     Node* newNode = new Node();
     newNode->key = key;
     newNode->value = value;
@@ -54,7 +54,7 @@ void Index::hash_insert(const std::string& key, int value){
 }
 
 void Index::hash_remove(const std::string& key) {
-    int index = hashFunction(key);
+    size_t index = hashFunction(key);
     Node* currentNode = hashTable[index];
 
     if (currentNode != nullptr && currentNode->key == key) {
@@ -90,7 +90,7 @@ void Index::hash_remove(const std::string& key) {
 }
 
 Node* Index::hash_lookup(const std::string& key) {
-    int index = hashFunction(key);
+    size_t index = hashFunction(key);
     Node* currentNode = hashTable[index];
 
     while (currentNode != nullptr) {
