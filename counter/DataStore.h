@@ -34,7 +34,7 @@ class DataStore{
     Node* returnHead() const;
     Node* returnTail() const;
     size_t count() const;
-    int total() const;
+    //int total() const;
 };
 
 #endif

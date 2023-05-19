@@ -85,6 +85,6 @@ void DataStore::remove(const std::string& key) {
     return answer;
 }
 
-int DataStore::total() const {
+/*int DataStore::total() const {
   return table->total();
-}
+}*/

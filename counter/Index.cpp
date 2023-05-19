@@ -96,16 +96,16 @@ Node* Index::hash_lookup(const std::string& key) {
 
     return nullptr;
 }
-int Index::total()  {
+/*int Index::total()  {
   int count = 0;
   for (int i = 0; i < size; ++i) {
     Node* currentNode = hashTable[i];
     while (currentNode != nullptr) {
-      count++;
+      count+=currentNode->value;
       currentNode = currentNode->next;
     }
   }
   return count;
-}
+}*/
 
 

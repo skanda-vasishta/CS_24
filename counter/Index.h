@@ -25,7 +25,7 @@ public:
     void hash_remove(const std::string& key);
     Node* hash_lookup(const std::string& key) ;
     size_t count() ;
-    int total();
+    //int total();
 
 
 
