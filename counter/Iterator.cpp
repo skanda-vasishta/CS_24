@@ -18,10 +18,10 @@ int Counter::Iterator::value() const{
 }
 
  Counter::Iterator& Counter::Iterator::operator ++ (){
-    if (currentNode == nullptr) {
-        return;
+    if (currentNode) {
+        currentNode = currentNode->next;
     }
-    currentNode = currentNode->next;
+    //currentNode = currentNode->next;
     return *this;
  }
  bool      Counter::Iterator::operator == (const Iterator& other) const{
