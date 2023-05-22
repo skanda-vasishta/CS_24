@@ -23,7 +23,11 @@ Heap::Heap(const Heap& other){
 
 Heap::Heap(Heap&& other){
     mData = other.mData;
+    mCapacity = other.mCapacity;
+    mCount = other.mCount;
     other.mData = nullptr;
+    other.mCapacity = 0;
+    other.mCount = 0;
 }
 
 Heap::~Heap(){
