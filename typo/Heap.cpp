@@ -51,13 +51,13 @@ const Heap::Entry& Heap::lookup(size_t index) const{
 }
 
 Heap::Entry Heap::pop(){
-    if (mCount = 0){
+    if (mCount == 0){
         throw std::underflow_error("empty heap");
     } else if (mCount ==1){
         mCount--;
         return mData[0];
     } else {
-        
+
     }
 }
 
