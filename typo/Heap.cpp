@@ -20,11 +20,11 @@ Heap::~Heap(){
 }
 
 size_t Heap::capacity() const{
-    return 1;
+    return mCapacity;
 }
 
 size_t Heap::count() const{
-    return 1;
+    return mCount;
 }
 
 const Heap::Entry& Heap::lookup(size_t index) const{
