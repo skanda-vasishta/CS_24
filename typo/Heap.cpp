@@ -8,9 +8,9 @@ Heap::Heap(size_t capacity){
 
 }
 
- Heap::Entry* copy_helper(const Heap& other){
+//  Heap::Entry* copy_helper(const Heap& other){
 
- }
+//  }
 Heap::Heap(const Heap& other){ 
     mData = other.mData; 
 }
