@@ -72,7 +72,8 @@ Heap::Entry Heap::pop(){
     Entry min = mData[0];
     mData[0] = mData[mCount-1];
     mCount--;
-    pop_help(0, mCount, mData);
+    size_t idx = 0;
+    pop_help(idx, mCount, mData);
     return min;
 }
 
