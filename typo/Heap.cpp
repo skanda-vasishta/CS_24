@@ -33,7 +33,11 @@ size_t Heap::count() const{
 }
 
 const Heap::Entry& Heap::lookup(size_t index) const{
-    return *mData;
+    if (index>mCapacity){
+        throw std::out_of_range("index is out of range");
+    } else {
+        return mData[index];
+    }
 }
 
 Heap::Entry Heap::pop(){
