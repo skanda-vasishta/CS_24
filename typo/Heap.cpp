@@ -2,6 +2,7 @@
 #include <iostream>
 
 Heap::Heap(size_t capacity){
+    mData = new Entry;
     mCapacity = capacity;
     mCount = 0;
 }
