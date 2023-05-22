@@ -2,15 +2,15 @@
 #include <iostream>
 
 Heap::Heap(size_t capacity){
-    mData = new Entry;
     mCapacity = capacity;
     mCount = 0;
+    mData = new Entry[capacity];
 
 }
 
-// Heap::Entry* copy_helper(const Heap& other){
+ Heap::Entry* copy_helper(const Heap& other){
 
-// }
+ }
 Heap::Heap(const Heap& other){ 
     mData = other.mData; 
 }
@@ -20,11 +20,12 @@ Heap::Heap(Heap&& other){
 }
 
 Heap::~Heap(){
-    delete mData;   
+    delete[] mData;   
 }
 
 size_t Heap::capacity() const{
     return mCapacity;
+    \
 }
 
 size_t Heap::count() const{
