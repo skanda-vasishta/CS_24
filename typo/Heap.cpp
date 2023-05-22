@@ -7,8 +7,11 @@ Heap::Heap(size_t capacity){
     mCount = 0;
 }
 
-Heap::Heap(const Heap& other){
+// Heap::Entry* copy_helper(const Heap& other){
 
+// }
+Heap::Heap(const Heap& other){ 
+    mData = other.mData; 
 }
 
 Heap::Heap(Heap&& other){
@@ -16,7 +19,7 @@ Heap::Heap(Heap&& other){
 }
 
 Heap::~Heap(){
-
+    delete[] mData;   
 }
 
 size_t Heap::capacity() const{
