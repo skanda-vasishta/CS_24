@@ -54,6 +54,7 @@ Heap::Entry Heap::pop(){
     Entry min = mData[0];
     if (mCount == 0){
         throw std::underflow_error("empty heap");
+        return;
     } else if (mCount ==1){
         mCount--;
     } else {
