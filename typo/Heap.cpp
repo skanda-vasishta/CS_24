@@ -22,7 +22,8 @@ Heap::Heap(const Heap& other){
 }
 
 Heap::Heap(Heap&& other){
-
+    mData = other.mData;
+    other.mData = nullptr;
 }
 
 Heap::~Heap(){
