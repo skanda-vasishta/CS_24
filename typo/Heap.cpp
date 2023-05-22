@@ -50,6 +50,9 @@ const Heap::Entry& Heap::lookup(size_t index) const{
     }
 }
 void pop_help(size_t index, size_t count, Heap::Entry* other){
+    if (count == 0){
+        throw std::underflow_error("empty heap");
+    }
     size_t small = index;
     if (((index*2)+1) < count && other[(index*2)+1].score < other[index].score){
         small = (index*2) + 1;
