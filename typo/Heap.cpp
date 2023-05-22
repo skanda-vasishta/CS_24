@@ -57,9 +57,9 @@ void Heap::push(const std::string& value, float score){
     mData[idx].score = score;
 
     while (mData[idx].score != 0 && mData[(idx-1)/2].score > mData[idx].score){
-        size_t temp = mData[idx].score;
-        mData[idx].score = mData[(idx-1)/2].score;
-        mData[(idx-1)/2].score = temp;
+        Entry temp = mData[idx];
+        mData[idx] = mData[(idx-1)/2];
+        mData[(idx-1)/2] = temp;
         idx = (idx-1)/2;
     }
 }
@@ -70,4 +70,4 @@ const Heap::Entry& Heap::top() const{
     } else {
         return mData[0];
     }
-}
+}       
