@@ -25,7 +25,6 @@ Heap::~Heap(){
 
 size_t Heap::capacity() const{
     return mCapacity;
-    \
 }
 
 size_t Heap::count() const{
@@ -49,7 +48,20 @@ Heap::Entry Heap::pushpop(const std::string& value, float score){
 }
 
 void Heap::push(const std::string& value, float score){
+    if (mCount == mCapacity){
+        throw std::overflow_error("No space for pushing item");
+    }
+    mCount++;
+    size_t idx = mCapacity;
+    mData[idx].value = value;
+    mData[idx].score = score;
 
+    while (mData[idx].score != 0 && mData[idx-1/2].score > mData[idx].score){
+        size_t temp = mData[idx].score;
+        mData[idx].score = mData[idx/2].score;
+        mData[idx/2].score = temp;
+        idx = idx-1/2;
+    }
 }
 
 const Heap::Entry& Heap::top() const{
