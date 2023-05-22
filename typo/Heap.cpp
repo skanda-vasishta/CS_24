@@ -65,5 +65,9 @@ void Heap::push(const std::string& value, float score){
 }
 
 const Heap::Entry& Heap::top() const{
-    return mData[0];
+    if (mCount == 0){
+        throw std::underflow_error("empty heap");
+    } else {
+        return mData[0];
+    }
 }
