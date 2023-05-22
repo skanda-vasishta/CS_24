@@ -49,6 +49,21 @@ const Heap::Entry& Heap::lookup(size_t index) const{
         return mData[index];
     }
 }
+void pop_help(size_t index, size_t count, Heap::Entry* other){
+    size_t small = index;
+    if (((index*2)+1) < count && other[(index*2)+1].score < other[index].score){
+        small = (index*2) + 1;
+    }
+    if (((index*2)+2) < count && other[(index*2)+2].score < other[index].score){
+        small = (index*2) + 2;
+    }
+    if (small != index){
+        Heap::Entry temp = other[index];
+        other[index] = other[small];
+        other[small] = temp;
+        pop_help(small, count, other);
+    }
+}
 
 Heap::Entry Heap::pop(){
     if (mCount == 0){
@@ -56,11 +71,12 @@ Heap::Entry Heap::pop(){
     } else if (mCount == 1){
         mCount--;
         return mData[0];
-    } else {
-        Entry min = mData[0];
-        return mData[0];
-    }
-    
+    } 
+    Entry min = mData[0];
+    mData[0] = mData[mCount-1];
+    mCount--;
+    pop_help(0, mCount, mData);
+    return min;
 }
 
 Heap::Entry Heap::pushpop(const std::string& value, float score){
