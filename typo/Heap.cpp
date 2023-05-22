@@ -12,7 +12,7 @@ Heap::Heap(size_t capacity){
 
 //  }
 Heap::Heap(const Heap& other){ 
-    
+
 }
 
 Heap::Heap(Heap&& other){
@@ -52,7 +52,7 @@ void Heap::push(const std::string& value, float score){
         throw std::overflow_error("No space for pushing item");
     }
     mCount++;
-    size_t idx = mCapacity;
+    size_t idx = mCount-1;
     mData[idx].value = value;
     mData[idx].score = score;
 
@@ -65,5 +65,5 @@ void Heap::push(const std::string& value, float score){
 }
 
 const Heap::Entry& Heap::top() const{
-    return *mData;
+    return mData[0];
 }
