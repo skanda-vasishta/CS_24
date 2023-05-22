@@ -12,6 +12,12 @@ Heap::Heap(size_t capacity){
 
 //  }
 Heap::Heap(const Heap& other){ 
+    mData = new Entry[other.mCapacity];
+     for (size_t i = 0; i < other.mCount; i++){
+        mData[i] = other.mData[i];
+    }
+    mCapacity = other.mCapacity;
+    mCount = other.mCount;
 
 }
 
