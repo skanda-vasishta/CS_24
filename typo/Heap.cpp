@@ -12,7 +12,7 @@ Heap::Heap(size_t capacity){
 
 //  }
 Heap::Heap(const Heap& other){ 
-    mData = other.mData; 
+    
 }
 
 Heap::Heap(Heap&& other){
