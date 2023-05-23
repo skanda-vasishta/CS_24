@@ -5,6 +5,9 @@ Heap::Heap(size_t capacity){
     mCapacity = capacity;
     mCount = 0;
     mData = new Entry[capacity];
+     for (size_t i = 0; i < capacity; i++) {
+        mData[i].score = 0; 
+    }
 
 }
 
@@ -92,17 +95,10 @@ Heap::Entry Heap::pushpop(const std::string& value, float score){
     if (mCount == 0){
         throw std::underflow_error("empty heap");
     }
-    // push(value, score);
-    // size_t idx = push_help(mCount-1, mData);
-    // Entry min = mData[0];
-    // mData[0] = mData[idx];
-    // mCount--;
-    // mData[0].value = value;
-    // mData[0].score = score;
-    // pop_help(0, mCount, mData);
-    // return min;
-    Entry min = pop();
-    push(value,score);
+    Entry min = mData[0];
+    mData[0].value = value;
+    mData[0].score = score;
+    pop_help(0, mCount, mData);
     return min;
 }
 
