@@ -80,11 +80,14 @@ Heap::Entry Heap::pushpop(const std::string& value, float score){
     if (mCount == 0){
         throw std::underflow_error("empty heap");
     }
+    push(value, score);
     Entry min = mData[0];
-    return *mData;
-
-
+    mData[0] = mData[push_help(mCount-1, mData)];
+    mCount--;
+    pop_help(0, mCount, mData);
+    return min;
 }
+
 size_t push_help(size_t idx, Heap::Entry* other){
     while (other[idx].score != 0 && other[(idx-1)/2].score > other[idx].score){
         Heap::Entry temp = other[idx];
@@ -94,6 +97,7 @@ size_t push_help(size_t idx, Heap::Entry* other){
     }
     return idx;
 }
+
 void Heap::push(const std::string& value, float score){
     if (mCount == mCapacity){
         throw std::overflow_error("No space for pushing item");
@@ -102,13 +106,6 @@ void Heap::push(const std::string& value, float score){
     size_t idx = mCount-1;
     mData[idx].value = value;
     mData[idx].score = score;
-
-    // while (mData[idx].score != 0 && mData[(idx-1)/2].score > mData[idx].score){
-    //     Entry temp = mData[idx];
-    //     mData[idx] = mData[(idx-1)/2];
-    //     mData[(idx-1)/2] = temp;
-    //     idx = (idx-1)/2;
-    // }
     idx = push_help(idx, mData);
 }
 
