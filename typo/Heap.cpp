@@ -70,11 +70,11 @@ Heap::Entry Heap::pop(){
         throw std::underflow_error("empty heap");
     } 
     Entry min = mData[0];
-    mData[0] = mData[mCount-1];
-    mCount--;
-    if (mCount == 0){
+     if (mCount == 0){
         return min;
     }
+    mData[0] = mData[mCount-1];
+    mCount--;
     pop_help(0, mCount, mData);
     return min;
 }
