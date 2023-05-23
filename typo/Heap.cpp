@@ -68,13 +68,13 @@ void pop_help(size_t index, size_t count, Heap::Entry* other){
 Heap::Entry Heap::pop(){
     if (mCount == 0){
         throw std::underflow_error("empty heap");
+    }
+    if (mCount == 1){
+        return mData[0];
     } 
     Entry min = mData[0];
-    mCount--;
-    if (mCount == 0){
-        return min;
-    }
     mData[0] = mData[mCount-1];
+    mCount--;
     pop_help(0, mCount, mData);
     return min;
 }
