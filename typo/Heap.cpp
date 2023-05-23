@@ -44,10 +44,7 @@ size_t Heap::count() const{
 }
 
 size_t push_help(size_t idx, Heap::Entry* other){
-    if (idx == 0){
-        return idx;
-    }
-    while (other[idx].score != 0 && other[(idx-1)/2].score > other[idx].score){
+    while (other[idx].score != 0.0 && other[(idx-1)/2].score > other[idx].score){
         Heap::Entry temp = other[idx];
         other[idx] = other[(idx-1)/2];
         other[(idx-1)/2] = temp;
