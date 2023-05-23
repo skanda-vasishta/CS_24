@@ -110,7 +110,7 @@ void Heap::push(const std::string& value, float score){
     size_t idx = mCount-1;
     mData[idx].value = value;
     mData[idx].score = score;
-    idx = push_help(idx, mData);
+    //idx = push_help(idx, mData);
 }
 
 const Heap::Entry& Heap::top() const{
