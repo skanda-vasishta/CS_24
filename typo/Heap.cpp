@@ -81,6 +81,7 @@ Heap::Entry Heap::pushpop(const std::string& value, float score){
         throw std::underflow_error("empty heap");
     }
     Entry min = mData[0];
+    return *mData;
 
 
 }
