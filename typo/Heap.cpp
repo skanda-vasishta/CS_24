@@ -92,12 +92,14 @@ Heap::Entry Heap::pushpop(const std::string& value, float score){
     if (mCount == 0){
         throw std::underflow_error("empty heap");
     }
-    push(value, score);
-    size_t idx = push_help(mCount, mData);
+    // push(value, score);
+    // size_t idx = push_help(mCount-1, mData);
     Entry min = mData[0];
-    mData[0] = mData[idx];
-    mCount--;
-    pop_help(idx, mCount, mData);
+    // mData[0] = mData[idx];
+    // mCount--;
+    mData[0].value = value;
+    mData[0].score = score;
+    pop_help(0, mCount, mData);
     return min;
 }
 
