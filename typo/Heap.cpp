@@ -42,13 +42,16 @@ size_t Heap::count() const{
     return mCount;
 }
 
-const Heap::Entry& Heap::lookup(size_t index) const{
-    if (index>=mCount){
-        throw std::out_of_range("index is out of range");
-    } else {
-        return mData[index];
+size_t push_help(size_t idx, Heap::Entry* other){
+    while (other[idx].score != 0 && other[(idx-1)/2].score > other[idx].score){
+        Heap::Entry temp = other[idx];
+        other[idx] = other[(idx-1)/2];
+        other[(idx-1)/2] = temp;
+        idx = (idx-1)/2;
     }
+    return idx;
 }
+
 void pop_help(size_t index, size_t count, Heap::Entry* other){
     size_t small = index;
     if (((index*2)+1) < count && other[(index*2)+1].score < other[small].score){
@@ -64,6 +67,15 @@ void pop_help(size_t index, size_t count, Heap::Entry* other){
         pop_help(small, count, other);
     }
 }
+
+const Heap::Entry& Heap::lookup(size_t index) const{
+    if (index>=mCount){
+        throw std::out_of_range("index is out of range");
+    } else {
+        return mData[index];
+    }
+}
+
 
 Heap::Entry Heap::pop(){
     if (mCount == 0){
@@ -82,21 +94,14 @@ Heap::Entry Heap::pushpop(const std::string& value, float score){
     }
     push(value, score);
     Entry min = mData[0];
-    mData[0] = mData[push_help(mCount-1, mData)];
+    size_t idx = push_help(mCount-1, mData);
+    mData[0] = mData[idx];
     mCount--;
-    pop_help(0, mCount, mData);
+    pop_help(idx, mCount, mData);
     return min;
 }
 
-size_t push_help(size_t idx, Heap::Entry* other){
-    while (other[idx].score != 0 && other[(idx-1)/2].score > other[idx].score){
-        Heap::Entry temp = other[idx];
-        other[idx] = other[(idx-1)/2];
-        other[(idx-1)/2] = temp;
-        idx = (idx-1)/2;
-    }
-    return idx;
-}
+
 
 void Heap::push(const std::string& value, float score){
     if (mCount == mCapacity){
