@@ -11,9 +11,7 @@ Heap::Heap(size_t capacity){
 
 }
 
-//  Heap::Entry* copy_helper(const Heap& other){
 
-//  }
 Heap::Heap(const Heap& other){ 
     mData = new Entry[other.mCapacity];
      for (size_t i = 0; i < other.mCount; i++){
@@ -50,6 +48,7 @@ size_t push_help(size_t idx, Heap::Entry* other){
         Heap::Entry temp = other[idx];
         other[idx] = other[(idx-1)/2];
         other[(idx-1)/2] = temp;
+        other[idx].value = temp.value;
         idx = (idx-1)/2;
     }
     return idx;
