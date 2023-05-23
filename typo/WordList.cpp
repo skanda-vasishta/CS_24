@@ -5,7 +5,8 @@ WordList::WordList(std::istream& stream){
     while (stream>>stream_string)
     {
         bool lower = true;
-        for (int i = 0; i < stream_string.size(); i ++){
+        int str_len = stream_string.length();
+        for (int i = 0; i < str_len; i ++){
             if (!islower(stream_string[i])){
                 lower = false;
                 break;
