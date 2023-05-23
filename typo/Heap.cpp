@@ -43,15 +43,15 @@ size_t Heap::count() const{
     return mCount;
 }
 
-// size_t push_help(size_t idx, Heap::Entry* other){
-//     while (other[idx].score != 0 && other[(idx-1)/2].score > other[idx].score){
-//         Heap::Entry temp = other[idx];
-//         other[idx] = other[(idx-1)/2];
-//         other[(idx-1)/2] = temp;
-//         idx = (idx-1)/2;
-//     }
-//     return idx;
-// }
+size_t push_help(size_t idx, Heap::Entry* other){
+    while (other[idx].score != 0 && other[(idx-1)/2].score > other[idx].score){
+        Heap::Entry temp = other[idx];
+        other[idx] = other[(idx-1)/2];
+        other[(idx-1)/2] = temp;
+        idx = (idx-1)/2;
+    }
+    return idx;
+}
 
 void pop_help(size_t index, size_t count, Heap::Entry* other){
     size_t small = index;
@@ -110,7 +110,7 @@ void Heap::push(const std::string& value, float score){
     size_t idx = mCount-1;
     mData[idx].value = value;
     mData[idx].score = score;
-    //idx = push_help(idx, mData);
+    idx = push_help(idx, mData);
 }
 
 const Heap::Entry& Heap::top() const{
