@@ -5,9 +5,7 @@ Heap::Heap(size_t capacity){
     mCapacity = capacity;
     mCount = 0;
     mData = new Entry[capacity];
-     for (size_t i = 0; i < capacity; i++) {
-        mData[i].score = 0; 
-    }
+
 
 }
 
@@ -44,7 +42,7 @@ size_t Heap::count() const{
 }
 
 size_t push_help(size_t idx, Heap::Entry* other){
-    while (other[idx].score != 0 && other[(idx-1)/2].score > other[idx].score){
+    while (idx != 0 && other[(idx-1)/2].score > other[idx].score){
         Heap::Entry temp = other[idx];
         other[idx] = other[(idx-1)/2];
         other[(idx-1)/2] = temp;
