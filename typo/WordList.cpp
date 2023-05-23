@@ -1,4 +1,6 @@
 #include "WordList.h"
+#include <math.h> 
+
 WordList::WordList(std::istream& stream){
     std::string stream_string;
     while (stream>>stream_string)

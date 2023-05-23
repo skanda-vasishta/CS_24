@@ -5,7 +5,6 @@
 #include <istream>
 #include <string>
 #include <vector>
-#include <math.h> 
 
 #include "Heap.h"
 #include "Point.h"
