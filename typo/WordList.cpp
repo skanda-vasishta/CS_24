@@ -35,16 +35,7 @@ Heap WordList::correct(const std::vector<Point>& points, size_t maxcount, float 
         if (strLen != pLen) {
             continue;
         }
-        bool isRepeated = false;
-        for (int j = 0; j < i; j++) {
-            if (mWords[i] == mWords[j]) {
-                isRepeated = true;
-                break;
-            }
-        }
-        if (isRepeated) {
-            continue;
-        }
+        
         for (int j = 0; j < strLen; j++){
             int index = mWords[i][j] - 'a';
             Point alphabet = QWERTY[index];
@@ -59,7 +50,17 @@ Heap WordList::correct(const std::vector<Point>& points, size_t maxcount, float 
                     wordlist.pushpop(mWords[i], avg);
                 } 
             } else {
-                    wordlist.push(mWords[i], avg);
+                    bool isRepeated = false;
+                    for (int j = 0; j < i; j++) {
+                        if (mWords[i] == mWords[j]) {
+                            isRepeated = true;
+                            break;
+                        }
+                    }
+                    if (isRepeated) {
+                        wordlist.push(mWords[i], avg);
+                    }
+                    // wordlist.push(mWords[i], avg);
             }   
         }
     }
