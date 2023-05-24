@@ -45,9 +45,10 @@ Heap WordList::correct(const std::vector<Point>& points, size_t maxcount, float 
         float avg = total/strLen;
         if (avg > cutoff){
             if (wordlist.count() == maxcount){
-                wordlist.pop();
-            }
-            wordlist.push(mWords[i], avg);
+                wordlist.pushpop(mWords[i], avg);
+            } else {
+                wordlist.push(mWords[i], avg);
+            } 
         }
     }
 
