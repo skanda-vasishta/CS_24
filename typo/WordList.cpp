@@ -27,13 +27,14 @@ Heap WordList::correct(const std::vector<Point>& points, size_t maxcount, float 
     Heap wordlist = Heap(maxcount);
     int mLen = mWords.size();
     for (int i = 0; i < mLen; i++){
-        if (mWords[i].length() == points.size() ){
+        Point point = points.at(i);
+        if (mWords[i].length() == sizeof(point) ){
             float total = 0;
             int strLen = mWords[i].length();
-            for (int j = 0; i < strLen; j++){
+            for (int j = 0; j < strLen; j++){
                 int index = mWords[i][j] - 65;
                 Point alphabet = QWERTY[index];
-                float euclid = sqrt(pow(alphabet.x - points[j].x, 2)+pow(alphabet.y - points[j].y, 2));
+                float euclid = sqrt(pow(alphabet.x - point.x, 2)+pow(alphabet.y - point.y, 2));
                 float score = 1/(10 * pow(euclid, 2) +1);
                 total+=score;
             }
