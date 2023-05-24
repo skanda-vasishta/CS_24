@@ -25,29 +25,29 @@ WordList::WordList(std::istream& stream){
 Heap WordList::correct(const std::vector<Point>& points, size_t maxcount, float cutoff) const{
     //given vector of points, make sure words from mWords is of the same length, and
     // then score using euclidean distance and scoring equation 
-    Heap wordlist = Heap(maxcount);
-    int mLen = mWords.size();
-    int pLen = points.size();
-    
-    for (int i = 0; i < mLen; i++){
-        float total = 0;
-        int strLen = mWords[i].length();
-        if (strLen != pLen) {
+   Heap wordlist(maxcount);
+    size_t pointsLen = points.size();
+
+    for (const auto& word : mWords) {
+        size_t wordLen = word.length();
+        if (wordLen != pointsLen) {
             continue;
         }
-        for (int j = 0; j < strLen; j++){
-            int index = mWords[i][j] - 'a';
+
+        float totalScore = 0.0;
+        for (size_t i = 0; i < wordLen; i++) {
+            int index = word[i] - 'a';
             Point alphabet = QWERTY[index];
-            float euclid = sqrt(pow(alphabet.x - points.at(j).x, 2)+pow(alphabet.y - points.at(j).y, 2));
-            float score = 1/(10 * pow(euclid, 2) +1);
-            total+=score;
+            float euclidean = sqrt(pow(alphabet.x - points[i].x, 2) + pow(alphabet.y - points[i].y, 2));
+            float score = 1.0 / (10 * pow(euclidean, 2) + 1);
+            totalScore += score;
         }
-        float avg = total/strLen;
-        if (avg > cutoff){
-            wordlist.push(mWords[i], avg);
+
+        float avgScore = totalScore / wordLen;
+        if (avgScore > cutoff) {
+            wordlist.push(word, avgScore);
         }
     }
 
-    
     return wordlist;
 }
