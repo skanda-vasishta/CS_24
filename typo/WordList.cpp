@@ -21,24 +21,21 @@ WordList::WordList(std::istream& stream){
 }
 
 
+
 Heap WordList::correct(const std::vector<Point>& points, size_t maxcount, float cutoff) const{
     //given vector of points, make sure words from mWords is of the same length, and
     // then score using euclidean distance and scoring equation 
     Heap wordlist = Heap(maxcount);
     int mLen = mWords.size();
     for (int i = 0; i < mLen; i++){
-        int size;
-        for (const Point& x : points){
-            size++;
-        }
-        const Point& point = points[i];
-        if (mWords[i].length() == size ){
+        //Point point = points.at(i);
+        //if (mWords[i].length() == sizeof(point) ){
             float total = 0;
             int strLen = mWords[i].length();
             for (int j = 0; j < strLen; j++){
                 int index = mWords[i][j] - 65;
                 Point alphabet = QWERTY[index];
-                float euclid = sqrt(pow(alphabet.x - point.x, 2)+pow(alphabet.y - point.y, 2));
+                float euclid = sqrt(pow(alphabet.x - points.at(j).x, 2)+pow(alphabet.y - points.at(j).y, 2));
                 float score = 1/(10 * pow(euclid, 2) +1);
                 total+=score;
             }
@@ -46,7 +43,7 @@ Heap WordList::correct(const std::vector<Point>& points, size_t maxcount, float 
             if (total > cutoff){
                 wordlist.push(mWords[i], total);
             }
-        }
+        //}
     }
 
     
