@@ -1,4 +1,4 @@
-# Typo
+ # Typo
 
 In this lab, you'll write a touchscreen keyboard typo corrector.  You'll read in
 a  series of points  where the user  touched the screen,  compare these with the

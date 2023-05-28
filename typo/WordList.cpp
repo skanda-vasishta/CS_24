@@ -1,3 +1,4 @@
+
 #include "WordList.h"
 #include <math.h> 
 
@@ -29,12 +30,23 @@ Heap WordList::correct(const std::vector<Point>& points, size_t maxcount, float 
     int mLen = mWords.size();
     int pLen = points.size();
     std::vector<std::string> seenWords;
-   
-    
+
     for (int i = 0; i < mLen; i++){
         float total = 0;
         int strLen = mWords[i].length();
         if (strLen != pLen) {
+            continue;
+        }
+
+        bool seenWord = false;
+        int seen = seenWords.size();
+        for (int k = 0; k < seen; k++) {
+            if (mWords[i] == seenWords[k]) {
+                seenWord = true;
+                break;
+            }
+        }
+        if (seenWord) {
             continue;
         }
         seenWords.push_back(mWords[i]);
@@ -53,17 +65,8 @@ Heap WordList::correct(const std::vector<Point>& points, size_t maxcount, float 
                     wordlist.pushpop(mWords[i], avg);
                 } 
             } else {
-                bool seenWord = false;
-                for (int k = 0; k < seenWords.size(); k++){
-                    if (mWords[i] == seenWords.at(k)){
-                        seenWord = true;
-                    }
-                }
-                if (!seenWord){
-                    wordlist.push(mWords[i], avg);
-                }
-               // wordlist.push(mWords[i], avg);
-            }   
+                wordlist.push(mWords[i], avg);
+            } 
         }
     }
 
