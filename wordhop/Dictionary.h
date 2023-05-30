@@ -7,11 +7,15 @@
 
 class Dictionary {
   // Member Variables
-
+//implement constructor
+ // Dictionary();
   // Helper Functions
 
 public:
+
+  //Dictionary();
   // The create function used by the autograder:
+
   static Dictionary* create(std::istream& stream);
 
 public:
