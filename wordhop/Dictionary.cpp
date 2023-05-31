@@ -42,7 +42,7 @@ std::unordered_set<std::string> Dictionary::validwords(const std::string& word){
                 continue;
             }
             mWord[i] = l;
-            if (newWords.find(mWord) == newWords.end() && words_.find(mWord) == words_.end()){
+            if (newWords.find(mWord) == newWords.end()){
                 newWords.insert(mWord);
             }
         }
