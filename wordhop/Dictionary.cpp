@@ -71,7 +71,7 @@ std::vector<std::string> Dictionary::hop(const std::string& from, const std::str
     if (from == to){
       std::vector<std::string> chain;
       chain.push_back(from);
-      chain.push_back(to);
+      // chain.push_back(to);
       return chain;
     }
 
