@@ -11,6 +11,9 @@
 #include "Errors.h"
 
 class Dictionary {
+  struct graph{
+
+  };
   // Member Variables
 //implement constructor
  // Dictionary();
@@ -31,6 +34,7 @@ public:
 
 private:
   std::unordered_set<std::string> words_;
+  std::vector<bool> visited;
 };
 
 

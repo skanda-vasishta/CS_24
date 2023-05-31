@@ -48,16 +48,22 @@ std::unordered_set<std::string> Dictionary::validwords(const std::string& word){
     int wordlength = word.length();
     for (int i = 0; i < wordlength; i++){
         std::string mWord = word;
-
-        for (char l = 'a'; l <= 'z'; l++){
-            if (mWord[i] == l){
-                continue;
-            }
-            mWord[i] = l;
-            if (newWords.find(mWord) == newWords.end()){
-                newWords.insert(mWord);
-            }
+        if (mWord[i] != word[i]){
+          mWord[i] = word[i];
+          newWords.insert(mWord);
+        } else{
+          continue;
         }
+
+        // for (char l = 'a'; l <= 'z'; l++){
+            // if (mWord[i] == l){
+            //     continue;
+            // }
+            // mWord[i] = l;
+            // if (newWords.find(mWord) == newWords.end()){
+            //     newWords.insert(mWord);
+            // }
+        // }
     }
 
     return newWords;
@@ -77,6 +83,7 @@ std::vector<std::string> Dictionary::hop(const std::string& from, const std::str
 
     std::queue<std::string>wordQueue;
     wordQueue.push(from);
+    
 
     std::unordered_map<std::string, std::string> prevWordMap;
     prevWordMap[from] = "";
