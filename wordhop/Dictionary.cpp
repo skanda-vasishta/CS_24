@@ -45,8 +45,8 @@ Dictionary* Dictionary::create(std::istream& stream){
 
 std::unordered_set<std::string> Dictionary::validwords(const std::string& word){
     std::unordered_set<std::string> newWords;
-
-    for (int i = 0; i < word.length(); i++){
+    int wordlength = word.length();
+    for (int i = 0; i < wordlength; i++){
         std::string mWord = word;
 
         for (char l = 'a'; l <= 'z'; l++){
