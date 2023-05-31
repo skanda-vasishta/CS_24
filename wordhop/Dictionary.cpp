@@ -48,8 +48,9 @@ std::unordered_set<std::string> Dictionary::validwords(const std::string& word){
     int wordlength = word.length();
     for (int i = 0; i < wordlength; i++){
         std::string mWord = word;
+
         for (char l = 'a'; l <= 'z'; l++){
-            if (mWord[i] != l){
+            if (mWord[i] == l){
                 continue;
             }
             mWord[i] = l;
@@ -61,6 +62,7 @@ std::unordered_set<std::string> Dictionary::validwords(const std::string& word){
 
     return newWords;
 }
+
 
 std::vector<std::string> Dictionary::hop(
   const std::string& from, const std::string& to) {
