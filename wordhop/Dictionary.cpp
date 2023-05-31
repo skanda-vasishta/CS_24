@@ -24,7 +24,7 @@ Dictionary::Dictionary(std::istream& stream) {
     }
   }
 
-
+//ok
 
 Dictionary* Dictionary::create(std::istream& stream){
     Dictionary* dictionary = new Dictionary(stream);
