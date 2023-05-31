@@ -48,86 +48,121 @@ std::unordered_set<std::string> Dictionary::validwords(const std::string& word){
     int wordlength = word.length();
     for (int i = 0; i < wordlength; i++){
         std::string mWord = word;
-        if (mWord[i] != word[i]){
-          mWord[i] = word[i];
-          newWords.insert(mWord);
-        } else{
-          continue;
+        for (char l = 'a'; l <= 'z'; l++){
+            if (mWord[i] != l){
+                continue;
+            }
+            mWord[i] = l;
+            if (newWords.find(mWord) == newWords.end()){
+                newWords.insert(mWord);
+            }
         }
-
-        // for (char l = 'a'; l <= 'z'; l++){
-            // if (mWord[i] == l){
-            //     continue;
-            // }
-            // mWord[i] = l;
-            // if (newWords.find(mWord) == newWords.end()){
-            //     newWords.insert(mWord);
-            // }
-        // }
     }
 
     return newWords;
 }
 
-std::vector<std::string> Dictionary::hop(const std::string& from, const std::string& to){
-
+std::vector<std::string> Dictionary::hop(
+  const std::string& from, const std::string& to) {
     if (from.length() != to.length()) {
         throw NoChain();
-        }
-    if (from == to){
-      std::vector<std::string> chain;
-      chain.push_back(from);
-      // chain.push_back(to);
-      return chain;
+    }
+    if (from == to) {
+        std::vector<std::string> chain;
+        chain.push_back(from);
+        return chain;
     }
 
-    std::queue<std::string>wordQueue;
-    wordQueue.push(from);
-    
+    std::unordered_set<std::string> visitedFrom; // Visited set for forward search
+    std::unordered_set<std::string> visitedTo; // Visited set for backward search
+    std::unordered_map<std::string, std::string> prevFrom; // Previous word map for forward search
+    std::unordered_map<std::string, std::string> prevTo; // Previous word map for backward search
 
-    std::unordered_map<std::string, std::string> prevWordMap;
-    prevWordMap[from] = "";
+    std::queue<std::string> queueFrom; // Queue for forward search
+    std::queue<std::string> queueTo; // Queue for backward search
 
-    std::unordered_map<std::string, std::unordered_set<std::string>> validWordsMap;
+    queueFrom.push(from);
+    queueTo.push(to);
 
-    while (!wordQueue.empty()) {
-        std::string currentWord = wordQueue.front();
-        wordQueue.pop();
+    visitedFrom.insert(from);
+    visitedTo.insert(to);
 
-        if (validWordsMap.find(currentWord) == validWordsMap.end()) {
-            validWordsMap[currentWord] = validwords(currentWord);
-        }
-        const std::unordered_set<std::string>& validWords = validWordsMap[currentWord];
+    std::string meetingWord = "";
 
-        for (const std::string& word : validWords) {
-            if (word == to) {
-                std::vector<std::string> wordChain;
-                wordChain.push_back(to);
+    while (!queueFrom.empty() && !queueTo.empty()) {
+        // Forward search
+        std::string currentWordFrom = queueFrom.front();
+        queueFrom.pop();
 
-                std::string prevWord = currentWord;
-                while (!prevWord.empty()) {
-                    wordChain.push_back(prevWord);
-                    prevWord = prevWordMap[prevWord];
-                }
+        const std::unordered_set<std::string>& validWordsFrom = validwords(currentWordFrom);
 
-                std::reverse(wordChain.begin(), wordChain.end());
-                return wordChain;
+        for (const std::string& word : validWordsFrom) {
+            if (visitedTo.find(word) != visitedTo.end()) {
+                meetingWord = word;
+                prevFrom[word] = currentWordFrom;
+                break;
             }
 
-            if (prevWordMap.find(word) == prevWordMap.end()) {
-                wordQueue.push(word);
-                prevWordMap[word] = currentWord;
+            if (visitedFrom.find(word) == visitedFrom.end()) {
+                queueFrom.push(word);
+                visitedFrom.insert(word);
+                prevFrom[word] = currentWordFrom;
             }
         }
+
+        if (!meetingWord.empty()) {
+            break;
+        }
+
+        // Backward search
+        std::string currentWordTo = queueTo.front();
+        queueTo.pop();
+
+        const std::unordered_set<std::string>& validWordsTo = validwords(currentWordTo);
+
+        for (const std::string& word : validWordsTo) {
+            if (visitedFrom.find(word) != visitedFrom.end()) {
+                meetingWord = word;
+                prevTo[word] = currentWordTo;
+                break;
+            }
+
+            if (visitedTo.find(word) == visitedTo.end()) {
+                queueTo.push(word);
+                visitedTo.insert(word);
+                prevTo[word] = currentWordTo;
+            }
+        }
+
+        if (!meetingWord.empty()) {
+            break;
+        }
+    }
+
+    if (!meetingWord.empty()) {
+        std::vector<std::string> wordChainFrom;
+        std::string word = meetingWord;
+
+        while (!word.empty()) {
+            wordChainFrom.push_back(word);
+            word = prevFrom[word];
+        }
+
+        std::reverse(wordChainFrom.begin(), wordChainFrom.end());
+
+        std::vector<std::string> wordChainTo;
+        word = meetingWord;
+
+        while (prevTo[word] != to) {
+            word = prevTo[word];
+            wordChainTo.push_back(word);
+        }
+
+        std::reverse(wordChainTo.begin(), wordChainTo.end());
+
+        wordChainFrom.insert(wordChainFrom.end(), wordChainTo.begin(), wordChainTo.end());
+        return wordChainFrom;
     }
 
     throw NoChain();
-
-
-
-    
-    
-    
-    // std::vector<std::string> hopvec(10);
-    // return hopvec;
 }
