@@ -68,11 +68,17 @@ std::vector<std::string> Dictionary::hop(const std::string& from, const std::str
     if (from.length() != to.length()) {
         throw NoChain();
         }
+    if (from == to){
+      std::vector<std::string> chain;
+      chain.push_back(from);
+      chain.push_back(to);
+      return chain;
+    }
 
     std::queue<std::string>wordQueue;
     wordQueue.push(from);
 
-     std::unordered_map<std::string, std::string> prevWordMap;
+    std::unordered_map<std::string, std::string> prevWordMap;
     prevWordMap[from] = "";
 
     std::unordered_map<std::string, std::unordered_set<std::string>> validWordsMap;
