@@ -56,11 +56,15 @@ std::vector<std::string> Dictionary::hop(const std::string& from, const std::str
   if (from.length() != to.length()) {
     throw NoChain();
   }
+  if (words_.find(from)!=words_.end() || words_.find(to)!=words_.end()){
+    throw NoChain();
+  }
   if (from == to) {
     std::vector<std::string> chain;
     chain.push_back(from);
     return chain;
   }
+
 
   std::queue<std::string> wordQueue;
   wordQueue.push(from);
