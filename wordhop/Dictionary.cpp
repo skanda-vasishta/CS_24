@@ -53,9 +53,15 @@ std::unordered_set<std::string> Dictionary::validWords(const std::string& word) 
 }
 
 std::vector<std::string> Dictionary::hop(const std::string& from, const std::string& to)  {
-  if (from.length() != to.length()) {
+ if (words_.find(from) == words_.end() || words_.find(to) == words_.end()) {
+    throw InvalidWord("fuck");
+  }
+
+ if (from.length() != to.length()) {
     throw NoChain();
   }
+   
+
   if (from == to) {
     std::vector<std::string> chain;
     chain.push_back(from);
