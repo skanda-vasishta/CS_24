@@ -56,15 +56,11 @@ std::vector<std::string> Dictionary::hop(const std::string& from, const std::str
   if (from.length() != to.length()) {
     throw NoChain();
   }
-  if (words_.find(from)!=words_.end() || words_.find(to)!=words_.end()){
-    throw NoChain();
-  }
   if (from == to) {
     std::vector<std::string> chain;
     chain.push_back(from);
     return chain;
   }
-
 
   std::queue<std::string> wordQueue;
   wordQueue.push(from);
@@ -76,29 +72,27 @@ std::vector<std::string> Dictionary::hop(const std::string& from, const std::str
     std::string currentWord = wordQueue.front();
     wordQueue.pop();
 
-    const auto it = validWordsMap_.find(currentWord);
-    if (it != validWordsMap_.end()) {
-      const std::unordered_set<std::string>& validWords = it->second;
 
-      for (const std::string& word : validWords) {
-        if (word == to) {
-          std::vector<std::string> wordChain;
-          wordChain.push_back(to);
+    const std::unordered_set<std::string>& validWords = validWordsMap_[currentWord];
 
-          std::string prevWord = currentWord;
-          while (!prevWord.empty()) {
-            wordChain.push_back(prevWord);
-            prevWord = prevWordMap[prevWord];
-          }
+    for (const std::string& word : validWords) {
+      if (word == to) {
+        std::vector<std::string> wordChain;
+        wordChain.push_back(to);
 
-          std::reverse(wordChain.begin(), wordChain.end());
-          return wordChain;
+        std::string prevWord = currentWord;
+        while (!prevWord.empty()) {
+          wordChain.push_back(prevWord);
+          prevWord = prevWordMap[prevWord];
         }
 
-        if (prevWordMap.find(word) == prevWordMap.end()) {
-          wordQueue.push(word);
-          prevWordMap[word] = currentWord;
-        }
+        std::reverse(wordChain.begin(), wordChain.end());
+        return wordChain;
+      }
+
+      if (prevWordMap.find(word) == prevWordMap.end()) {
+        wordQueue.push(word);
+        prevWordMap[word] = currentWord;
       }
     }
   }
