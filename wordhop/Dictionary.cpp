@@ -72,26 +72,29 @@ std::vector<std::string> Dictionary::hop(const std::string& from, const std::str
     std::string currentWord = wordQueue.front();
     wordQueue.pop();
 
-    const std::unordered_set<std::string>& validWords = validWordsMap_.at(currentWord);
+    const auto it = validWordsMap_.find(currentWord);
+    if (it != validWordsMap_.end()) {
+      const std::unordered_set<std::string>& validWords = it->second;
 
-    for (const std::string& word : validWords) {
-      if (word == to) {
-        std::vector<std::string> wordChain;
-        wordChain.push_back(to);
+      for (const std::string& word : validWords) {
+        if (word == to) {
+          std::vector<std::string> wordChain;
+          wordChain.push_back(to);
 
-        std::string prevWord = currentWord;
-        while (!prevWord.empty()) {
-          wordChain.push_back(prevWord);
-          prevWord = prevWordMap[prevWord];
+          std::string prevWord = currentWord;
+          while (!prevWord.empty()) {
+            wordChain.push_back(prevWord);
+            prevWord = prevWordMap[prevWord];
+          }
+
+          std::reverse(wordChain.begin(), wordChain.end());
+          return wordChain;
         }
 
-        std::reverse(wordChain.begin(), wordChain.end());
-        return wordChain;
-      }
-
-      if (prevWordMap.find(word) == prevWordMap.end()) {
-        wordQueue.push(word);
-        prevWordMap[word] = currentWord;
+        if (prevWordMap.find(word) == prevWordMap.end()) {
+          wordQueue.push(word);
+          prevWordMap[word] = currentWord;
+        }
       }
     }
   }
