@@ -11,15 +11,19 @@
 #include "Errors.h"
 
 class Dictionary {
+  struct graph{};
 public:
+
   Dictionary(std::istream& stream);
   static Dictionary* create(std::istream& stream);
+
+public:
   std::vector<std::string> hop(const std::string& from, const std::string& to);
-  ~Dictionary();
+  std::unordered_set<std::string> validWords(const std::string& word);
 
 private:
   std::unordered_set<std::string> words_;
-  std::unordered_set<std::string> validwords(const std::string& word);
+  std::unordered_map<std::string, std::unordered_set<std::string>> validWordsMap_;
 };
 
 #endif
