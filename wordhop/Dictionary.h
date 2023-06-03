@@ -11,7 +11,9 @@
 #include "Errors.h"
 
 class Dictionary {
-  struct graph{};
+  struct graph{
+    
+  };
 public:
 
   Dictionary(std::istream& stream);
