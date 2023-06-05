@@ -4,10 +4,15 @@
 #include <vector>
 
 #include "Report.h"
+#include <unordered_map>
+#include <string>
+#include <unordered_set>
+#include "Errors.h"
+
 
 class Database {
   // Member Variables
-
+std::unordered_set<Report*> database;
   // Helper Functions
 
 public:
