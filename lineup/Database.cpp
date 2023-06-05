@@ -19,17 +19,16 @@ Database::~Database(){
 }
 
 void Database::insert(const Report* report){
-  for (auto i : database){
-    if (i == report){
-      throw DuplicateReport(report->id);
-    }
+  if (database.find(report) != database.end()){
+    throw DuplicateReport(report->id);
   }
   database.emplace(report);
 }
 
 std::vector<const Report*> Database::search(float age, float height, float weight) const {
-  std::vector<const Report*> temp;
-  return temp;
+  std::vector<const Report*> found;
+
+  return found;
 }
 
 void Database::remove(unsigned int id){
