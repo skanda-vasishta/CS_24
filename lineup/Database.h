@@ -12,7 +12,7 @@
 
 class Database {
   // Member Variables
-std::unordered_set<Report*> database;
+std::unordered_set<const Report*> database;
   // Helper Functions
 
 public:
