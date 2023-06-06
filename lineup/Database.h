@@ -8,6 +8,7 @@
 #include <string>
 #include <unordered_set>
 #include "Errors.h"
+#include <algorithm>
 
 
 class Database {

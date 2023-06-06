@@ -38,7 +38,9 @@ std::vector<const Report*> Database::search(float age, float height, float weigh
   std::vector<const Report*> found;
   for (auto const i : database){
     if (within_range(i, age, height, weight)) {
-        found.push_back(i);
+        if (std::find(found.begin(), found.end(), i) == found.end()){
+          found.push_back(i);
+        }
       }
   }
 
