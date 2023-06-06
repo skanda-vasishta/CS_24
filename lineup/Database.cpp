@@ -19,10 +19,10 @@ Database::~Database(){
 }
 
 void Database::insert(const Report* report){
-  if (database.find(report) == database.end()){
-    database.emplace(report);
+  if (database.find(report) != database.end()){
+    throw DuplicateReport(report->id);
   } else {
-  throw DuplicateReport(report->id);
+  database.emplace(report);
   }
 }
 
