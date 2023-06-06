@@ -25,6 +25,7 @@ public:
   void insert(const Report* report);
   std::vector<const Report*> search(float age, float height, float weight) const;
   void remove(unsigned int id);
+  bool within_range(const Report* report, float age, float height, float weight) const;
 };
 
 #endif

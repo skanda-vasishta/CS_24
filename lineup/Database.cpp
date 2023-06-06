@@ -25,13 +25,19 @@ void Database::insert(const Report* report){
   database.emplace(report);
 }
 
+bool Database::within_range(const Report* report, float age, float height, float weight) const{
+  if (age >= report->age.min && age <= report->age.max && 
+        height >= report->height.min && height <= report->height.max &&
+        weight >= report->weight.min && weight <= report->weight.max) {
+          return true;
+  }
+  return false;
+}
+
 std::vector<const Report*> Database::search(float age, float height, float weight) const {
   std::vector<const Report*> found;
-  for (auto i : database){
-    if (age > i->age.min && age < i->age.max && 
-        height > i->height.min && height < i->height.max &&
-        weight > i->weight.min && weight < i->weight.max) 
-      {
+  for (auto const i : database){
+    if (within_range(i, age, height, weight)) {
         found.push_back(i);
       }
   }
