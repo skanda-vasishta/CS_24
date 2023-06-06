@@ -45,10 +45,9 @@ std::vector<const Report*> Database::search(float age, float height, float weigh
 }
 
 void Database::remove(unsigned int id) {
-  auto iter = database.find(id);
-  if (iter != database.end()) {
-    const Report* report = iter->second;
-    database.erase(iter);
+  if (database.find(id) != database.end()) {
+    const Report* report = database.find(id)->second;
+    database.erase(database.find(id));
     delete report;
   } else {
     throw NoSuchReport(id);
