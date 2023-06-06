@@ -13,7 +13,7 @@
 
 class Database {
   // Member Variables
-std::unordered_set<const Report*> database;
+std::unordered_map<unsigned int, const Report*> database;
   // Helper Functions
 
 public:
