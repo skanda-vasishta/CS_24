@@ -19,6 +19,11 @@ Database::~Database(){
 }
 
 void Database::insert(const Report* report){
+  for (auto const i : database){
+    if (i->id == report->id){
+      throw DuplicateReport(report->id);
+    }
+  }
   if (database.find(report) != database.end()){
     throw DuplicateReport(report->id);
   }
@@ -38,9 +43,9 @@ std::vector<const Report*> Database::search(float age, float height, float weigh
   std::vector<const Report*> found;
   for (auto const i : database){
     if (within_range(i, age, height, weight)) {
-        //if (std::find(found.begin(), found.end(), i) == found.end()){
+        if (std::find(found.begin(), found.end(), i) == found.end()){
           found.push_back(i);
-        //}
+          }
       }
   }
 
