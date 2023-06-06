@@ -19,10 +19,11 @@ Database::~Database(){
 }
 
 void Database::insert(const Report* report){
-  if (database.find(report) != database.end()){
-    throw DuplicateReport(report->id);
+  if (database.find(report) == database.end()){
+    database.emplace(report);
+  } else {
+  throw DuplicateReport(report->id);
   }
-  database.emplace(report);
 }
 
 bool Database::within_range(const Report* report, float age, float height, float weight) const{
